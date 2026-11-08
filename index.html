@@ -149,19 +149,6 @@
               <span slot="unsupported">Tu navegador no soporta Web Serial. Usa Chrome o Edge.</span>
             </esp-web-install-button>
           </div>
-
-          <!-- Aviso de Driver CP2102 -->
-          <div class="alert-box alert-warning" style="margin-top: 24px; font-size: 0.85rem;">
-            <div class="alert-icon">ℹ️</div>
-            <div class="alert-content">
-              <strong>¿No aparece el puerto COM o da error al conectar la Placa Esclava?</strong><br>
-              Si estás en Windows y no se detecta la placa, se debe a la falta del controlador CP2102. Puedes descargarlo directamente aquí:
-              <a href="https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads" target="_blank" style="color: var(--orange); text-decoration: underline; font-weight: 600;">
-                Descargar Driver CP210x (Opción 3: CP210x VCP Windows)
-              </a>
-              (descomprime el archivo y ejecuta el instalador <code>CP210xVCPInstaller_x64.exe</code>).
-            </div>
-          </div>
         </div>
       </section>
 
@@ -232,6 +219,19 @@
               </button>
               <span slot="unsupported">Tu navegador no soporta Web Serial. Usa Chrome o Edge.</span>
             </esp-web-install-button>
+          </div>
+
+          <!-- Aviso de Driver CP2102 -->
+          <div class="alert-box alert-warning" style="margin-top: 24px; font-size: 0.85rem;">
+            <div class="alert-icon">ℹ️</div>
+            <div class="alert-content">
+              <strong>¿No aparece el puerto COM o da error al conectar la Placa Esclava?</strong><br>
+              Si estás en Windows y no se detecta la placa, se debe a la falta del controlador CP2102. Puedes descargarlo directamente aquí:
+              <a href="https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads" target="_blank" style="color: var(--orange); text-decoration: underline; font-weight: 600;">
+                Descargar Driver CP210x (Opción 3: CP210x VCP Windows)
+              </a>
+              (descomprime el archivo y ejecuta el instalador <code>CP210xVCPInstaller_x64.exe</code>).
+            </div>
           </div>
         </div>
       </section>
