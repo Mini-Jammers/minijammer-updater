@@ -149,6 +149,19 @@
               <span slot="unsupported">Tu navegador no soporta Web Serial. Usa Chrome o Edge.</span>
             </esp-web-install-button>
           </div>
+
+          <!-- Aviso de Driver CP2102 -->
+          <div class="alert-box alert-warning" style="margin-top: 24px; font-size: 0.85rem;">
+            <div class="alert-icon">ℹ️</div>
+            <div class="alert-content">
+              <strong>¿No aparece el puerto COM o da error al conectar la Placa Esclava?</strong><br>
+              Si estás en Windows y no se detecta la placa, se debe a la falta del controlador CP2102. Puedes descargarlo directamente aquí:
+              <a href="https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads" target="_blank" style="color: var(--orange); text-decoration: underline; font-weight: 600;">
+                Descargar Driver CP210x (Opción 3: CP210x VCP Windows)
+              </a>
+              (descomprime el archivo y ejecuta el instalador <code>CP210xVCPInstaller_x64.exe</code>).
+            </div>
+          </div>
         </div>
       </section>
 
@@ -489,11 +502,12 @@
             </details>
 
             <details class="faq-item">
-              <summary>No aparece ningún puerto COM al hacer clic en Instalar</summary>
-              <p>1. Asegúrate de que el cable USB sea de <strong>datos</strong> y no solo de carga.<br>
-                2. Si usas Windows, instala los drivers USB-UART (CH340 o CP2102 según tu placa).<br>
-                3. Asegúrate de hacer la secuencia de botones de bootloader (<code>BOOT 1</code>/<code>RESET 1</code>
-                para Maestro o <code>BOOT 2</code> para Esclavo) antes de conectar.</p>
+              <summary>No aparece ningún puerto COM o da error al conectar</summary>
+              <p>
+                1. <strong>Falta de driver CP2102 en Windows (Placa Esclava):</strong> Si la placa esclava no aparece en la lista de puertos o te da error de conexión, es por falta del controlador. Descárgalo directamente desde aquí: <a href="https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads" target="_blank" style="color: var(--cyan); text-decoration: underline; font-weight: 600;">Descargar Driver CP210x (Opción 3: CP210x VCP Windows)</a> (descomprime y ejecuta <code>CP210xVCPInstaller_x64.exe</code>).<br><br>
+                2. <strong>Cable USB:</strong> Asegúrate de que el cable sea de <strong>datos</strong> y no solo de carga.<br><br>
+                3. <strong>Botón RESET 1 (muy importante para el Esclavo):</strong> Recuerda mantener presionado <code>RESET 1</code> de la Placa Maestra mientras conectas y flasheas la Placa Esclava para liberar el bus de comunicación.
+              </p>
             </details>
 
             <details class="faq-item">
