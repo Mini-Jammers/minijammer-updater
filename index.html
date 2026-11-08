@@ -115,7 +115,7 @@
           </div>
 
           <p class="card-desc">
-            Puerto 1
+            Puerto 1 <a href="assets/manual.pdf" target="_blank" style="color: var(--cyan); text-decoration: underline; margin-left: 4px; font-size: 0.85rem;">(ver manual)</a>
           </p>
 
           <div class="steps-list">
@@ -175,7 +175,7 @@
           </div>
 
           <p class="card-desc">
-            Puerto 2
+            Puerto 2 <a href="assets/manual.pdf" target="_blank" style="color: var(--orange); text-decoration: underline; margin-left: 4px; font-size: 0.85rem;">(ver manual)</a>
           </p>
 
           <!-- Advertencia especial UART -->
@@ -456,6 +456,26 @@
 
       <!-- ================= PESTAÑA 5: GUÍA & AYUDA ================= -->
       <section id="tab-guia" class="tab-panel">
+        <!-- Recuadro: Manual de Usuario -->
+        <div id="manual-section" class="card glass-card text-center"
+          style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 40px 20px; margin-bottom: 24px;">
+          <div class="manual-icon-container"
+            style="font-size: 3.8rem; margin-bottom: 16px; filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.4));">
+            📖
+          </div>
+          <h2 style="margin-bottom: 12px;">Manual de Usuario</h2>
+          <p class="card-desc" style="max-width: 540px; margin-bottom: 26px;">
+            Consulta la guía oficial ilustrada en formato PDF para conocer la ubicación de los puertos físicos, funciones, atajos y consejos para sacarle el máximo provecho a tu MiniJammer XXL.
+          </p>
+          <div class="action-area" style="width: 100%; max-width: 320px;">
+            <a href="assets/manual.pdf" target="_blank" class="btn btn-primary glow-cyan"
+              style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+              <span>📥</span>
+              <span>Abrir Manual (PDF)</span>
+            </a>
+          </div>
+        </div>
+
         <div class="card glass-card">
           <h2>Preguntas Frecuentes y Solución de Problemas</h2>
 
@@ -486,27 +506,6 @@
       </section>
 
     </main>
-
-    <!-- Sección del Manual de Usuario (Solo visible en Placa Maestra y Placa Esclava) -->
-    <div id="manual-section" class="card glass-card text-center"
-      style="display: none; flex-direction: column; align-items: center; text-align: center; padding: 40px 20px; margin-top: 24px;">
-      <div class="manual-icon-container"
-        style="font-size: 4rem; margin-bottom: 20px; filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.4));">
-        📖
-      </div>
-      <h2 style="margin-bottom: 12px;">Manual de Usuario MiniJammer XXL</h2>
-      <p class="card-desc" style="max-width: 540px; margin-bottom: 30px;">
-        Consulta la guía oficial ilustrada en formato PDF para conocer todas las funciones, atajos de botones, el motor
-        de sampler, y consejos para sacarle el máximo provecho a tu dispositivo.
-      </p>
-      <div class="action-area" style="width: 100%; max-width: 320px;">
-        <a href="assets/manual.pdf" target="_blank" class="btn btn-primary glow-cyan"
-          style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-          <span>📥</span>
-          <span>Abrir Manual (PDF)</span>
-        </a>
-      </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">
