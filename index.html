@@ -516,9 +516,110 @@
         <button class="modal-close">&times;</button>
       </div>
       <div class="modal-body">
-        <p style="color: var(--text-muted); font-size: 0.95rem; text-align: center; padding: 36px 0; margin: 0;">
-          (Novedades en proceso de redacción)
-        </p>
+        <div class="changelog-section">
+          <h3>🎛️ Arquitectura de Pistas y Polifonía Multitimbral</h3>
+          <ul>
+            <li><strong>Sistema de 8 Pistas Independientes:</strong> Cada una de las 8 pistas puede configurarse libremente como pista de Sintetizador o pista de Sampler, permitiendo arreglos musicales completos.</li>
+            <li><strong>Polifonía Multitimbral Dinámica:</strong> Capacidad de hasta 16 voces simultáneas para el sampler y hasta 16 voces para los motores de sintetizador, con ajuste independiente de voces por pista (<code>VOX</code>: Mono, 2P, 3P, 4P, 6P) para optimizar la potencia de procesamiento.</li>
+            <li><strong>Escalado de Headroom por Pista:</strong> Algoritmo de ganancia acústica individual que evita que acordes densos en una pista atenúen el volumen de las demás pistas melódicas o rítmicas.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🎼 Secuenciador Avanzado, Polirritmia y Groove</h3>
+          <ul>
+            <li><strong>Polirritmia y Polimetría (Track Length):</strong> Longitud de compás independiente por pista (ajustable de 1 a 16 pasos con <code>COPY + SHIFT + ENC 4</code>), permitiendo métricas complejas e impares superpuestas.</li>
+            <li><strong>Swing y Shuffle por Pista:</strong> Control de swing dedicado por pista (50% a 75%) o sincronizado al tempo global, con 5 algoritmos de groove seleccionables (1/16, 1/8 Shuffle, Push, Quintuplet y Double).</li>
+            <li><strong>Duración de Paso y Notas Ligadas (TIEs):</strong> Grabación manual de notas sostenidas manteniendo pulsado el paso inicial y el paso final en el modo Step Rec, además de captura inteligente en tiempo real.</li>
+            <li><strong>Micro-Timing y Nudge:</strong> Edición fina de la posición temporal de cada nota (<code>-2</code> a <code>+3</code> pulsos de reloj) para desplazar golpes fuera de la rejilla.</li>
+            <li><strong>Automatización y Parameter Locks (P-Locks):</strong> Grabación de movimiento de perillas en vivo con Live <code>REC</code> o asignación estática paso a paso con 4 carriles de automatización por patrón.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🎹 Motores de Síntesis y Filtrado Analógico</h3>
+          <ul>
+            <li><strong>18 Motores de Síntesis Nativos:</strong> Amplio abanico tímbrico que incluye 11 tablas de ondas clásicas y 7 motores avanzados de síntesis pura:
+              <ul style="margin-top: 6px; margin-bottom: 6px;">
+                <li><code>VA-PRO</code>: Virtual analógico clásico con PWM PolyBLEP continuo y sub-oscilador analógico.</li>
+                <li><code>FM2OP</code>: Síntesis FM de 2 operadores con 8 ratios armónicos y feedback dinámico.</li>
+                <li><code>STRNG</code>: Modelado físico Karplus-Strong para cuerdas acústicas, pulsadas y resonadores.</li>
+                <li><code>WARP</code>: Morfeo de ondas 2D con distorsión de fase estilo Casio CZ y plegado armónico Buchla.</li>
+                <li><code>SWARM</code>: Enjambre al unísono de 6 osciladores para supersaws y texturas masivas.</li>
+                <li><code>HSYNC</code>: Sincronización de osciladores en hard-sync con barrido de formantes.</li>
+                <li><code>RING</code>: Modulación en anillo analógica de 4 cuadrantes.</li>
+              </ul>
+            </li>
+            <li><strong>Filtro VCF State-Variable Independiente:</strong> Filtro multimodo (LPF, BPF, HPF, Notch) por pista con saturación de respuesta analógica inspirada en circuitos OTA, envolvente de filtro dedicada (<code>Filter Decay</code>) y seguimiento de teclado (<code>Key Tracking</code>).</li>
+            <li><strong>Catálogo de Presets Integrado:</strong> 36 sonidos de fábrica de acceso instantáneo y sistema de guardado de presets de usuario en tarjeta MicroSD con <code>COPY + Clic ENC 1</code>.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🎚️ Mezclador (Mixer) de 8 Pistas y Envíos</h3>
+          <ul>
+            <li><strong>Consola de Mezcla Dedicada:</strong> Control centralizado de Volumen, Paneo estéreo y 2 Envíos de Efectos para cada una de las 8 pistas.</li>
+            <li><strong>Mute y Solo de Pistas:</strong> Silenciado y reproducción exclusiva de pistas en tiempo real con retroalimentación lumínica en los pads.</li>
+            <li><strong>Borrado Rápido de Pista:</strong> Función directa de limpieza de pista sosteniendo el pad y pulsando <code>REC</code>.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🎬 Modo Escenas y Modo Canción (Song Arranger)</h3>
+          <ul>
+            <li><strong>99 Escenas Disponibles:</strong> Organización en hasta 99 escenas independientes (<code>SCN 01</code> a <code>SCN 99</code>), cada una con su combinación de pistas, mutes y solos.</li>
+            <li><strong>16 Variaciones de Patrones por Pista:</strong> Cada pista almacena 16 variaciones rítmicas y melódicas conmutables al vuelo.</li>
+            <li><strong>Encadenador de Canción de 99 Pasos:</strong> Creación de canciones completas mediante una línea de tiempo estructurada con repeticiones configurables (<code>x1</code> a <code>x16</code>) por bloque y loop interactivo.</li>
+            <li><strong>Disparo y Conmutación en Vivo:</strong> Lanzamiento dinámico de escenas y patrones en tiempo real directamente desde la matriz de pads.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🥁 Expresividad y Pad Velocity Dinámico</h3>
+          <ul>
+            <li><strong>Sensibilidad al Impacto en los 16 Pads:</strong> Integración con la acelerometría de la placa de controles para responder con precisión a la fuerza del golpe.</li>
+            <li><strong>Curva de Respuesta Calibrada:</strong> Algoritmo dinámico con realce en medios para transicionar con naturalidad desde toques suaves hasta golpes acentuados (rango MIDI 60 a 127).</li>
+            <li><strong>Monitor de Impacto y Calibración:</strong> Herramienta en pantalla para visualizar en tiempo real la fuerza del toque y calibrar el techo máximo de sensibilidad (<code>Ceiling</code>) y tiempo de escaneo.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🎮 Modo GamePad y Macro Pad Renovado</h3>
+          <ul>
+            <li><strong>5 Perfiles de Macro Accesibles por Touchstrip:</strong> Conmutación instantánea entre 5 ranuras tocando los segmentos de la tira táctil:
+              <ul style="margin-top: 6px; margin-bottom: 6px;">
+                <li><code>MEDIA</code>: Control de volumen y reproducción multimedia del sistema operativo.</li>
+                <li><code>GAMEPAD</code>: Perfil de juego estándar HID para consolas y emuladores.</li>
+                <li><code>PC WASD</code>: Mapeo para videojuegos de PC con control de ratón integrado en el joystick.</li>
+                <li><code>CUSTOM 1</code> & <code>CUSTOM 2</code>: Perfiles de macros completamente configurables por el usuario guardados en memoria no volátil.</li>
+              </ul>
+            </li>
+            <li><strong>Compatibilidad Dual USB y Bluetooth BLE:</strong> Uso plug & play mediante cable USB o inalámbrico por Bluetooth HID.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🖥️ Interfaz de Usuario, Explorador y Controles</h3>
+          <ul>
+            <li><strong>Menú Unificado por Pestañas:</strong> Rediseño con navegación horizontal mediante <code>JOYSTICK</code> y retorno rápido de dos niveles usando <code>SHIFT</code>.</li>
+            <li><strong>Preescucha Directa desde MicroSD:</strong> Botones funcionales <code>PLAY</code> y <code>STOP</code> en el explorador de archivos para escuchar muestras WAV antes de cargarlas a la memoria.</li>
+            <li><strong>Mini Reproductor y Chop en Vivo:</strong> Apertura del editor de recorte de audio manteniendo cualquier pad y pulsando <code>ENC 1</code>.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🌐 Soporte Multi-Idioma</h3>
+          <ul>
+            <li><strong>Selector Dinámico de Idioma:</strong> Posibilidad de alternar entre Español e Inglés en todos los menús, diálogos y notificaciones del sistema desde la pestaña de configuración UI, preservando las abreviaturas técnicas estándar de la producción musical.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>💾 Sistema de Proyectos (.JAM)</h3>
+          <ul>
+            <li><strong>Formato de Proyecto Estructurado:</strong> Nuevo motor de persistencia binaria rápida que guarda de forma compacta y sincronizada los patrones (<code>PATTERNS.BIN</code>), las escenas (<code>SCENES.BIN</code>) y las canciones (<code>SONG.BIN</code>) dentro de la carpeta del Jam en la MicroSD.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -556,14 +657,113 @@
         <!-- Versión 2.0 / v2 -->
         <details class="faq-item" open style="border-color: rgba(0, 229, 255, 0.35); background: rgba(0, 229, 255, 0.03);">
           <summary style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
-            <span><strong style="color: var(--cyan);">v2</strong> — Actualización Base</span>
+            <span><strong style="color: var(--cyan);">v2</strong> — 8 Pistas, Multi-Síntesis, Mixer, Escenas & Velocity</span>
             <span style="font-size: 0.75rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">07/11/2026</span>
           </summary>
-          <div class="changelog-section" style="margin-top: 14px;">
-            <p style="color: var(--text-muted); font-size: 0.9rem; font-style: italic; padding: 8px 0; margin: 0;">
-              (Novedades en proceso de redacción)
-            </p>
-          </div>
+          <div class="changelog-section">
+          <h3>🎛️ Arquitectura de Pistas y Polifonía Multitimbral</h3>
+          <ul>
+            <li><strong>Sistema de 8 Pistas Independientes:</strong> Cada una de las 8 pistas puede configurarse libremente como pista de Sintetizador o pista de Sampler, permitiendo arreglos musicales completos.</li>
+            <li><strong>Polifonía Multitimbral Dinámica:</strong> Capacidad de hasta 16 voces simultáneas para el sampler y hasta 16 voces para los motores de sintetizador, con ajuste independiente de voces por pista (<code>VOX</code>: Mono, 2P, 3P, 4P, 6P) para optimizar la potencia de procesamiento.</li>
+            <li><strong>Escalado de Headroom por Pista:</strong> Algoritmo de ganancia acústica individual que evita que acordes densos en una pista atenúen el volumen de las demás pistas melódicas o rítmicas.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🎼 Secuenciador Avanzado, Polirritmia y Groove</h3>
+          <ul>
+            <li><strong>Polirritmia y Polimetría (Track Length):</strong> Longitud de compás independiente por pista (ajustable de 1 a 16 pasos con <code>COPY + SHIFT + ENC 4</code>), permitiendo métricas complejas e impares superpuestas.</li>
+            <li><strong>Swing y Shuffle por Pista:</strong> Control de swing dedicado por pista (50% a 75%) o sincronizado al tempo global, con 5 algoritmos de groove seleccionables (1/16, 1/8 Shuffle, Push, Quintuplet y Double).</li>
+            <li><strong>Duración de Paso y Notas Ligadas (TIEs):</strong> Grabación manual de notas sostenidas manteniendo pulsado el paso inicial y el paso final en el modo Step Rec, además de captura inteligente en tiempo real.</li>
+            <li><strong>Micro-Timing y Nudge:</strong> Edición fina de la posición temporal de cada nota (<code>-2</code> a <code>+3</code> pulsos de reloj) para desplazar golpes fuera de la rejilla.</li>
+            <li><strong>Automatización y Parameter Locks (P-Locks):</strong> Grabación de movimiento de perillas en vivo con Live <code>REC</code> o asignación estática paso a paso con 4 carriles de automatización por patrón.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🎹 Motores de Síntesis y Filtrado Analógico</h3>
+          <ul>
+            <li><strong>18 Motores de Síntesis Nativos:</strong> Amplio abanico tímbrico que incluye 11 tablas de ondas clásicas y 7 motores avanzados de síntesis pura:
+              <ul style="margin-top: 6px; margin-bottom: 6px;">
+                <li><code>VA-PRO</code>: Virtual analógico clásico con PWM PolyBLEP continuo y sub-oscilador analógico.</li>
+                <li><code>FM2OP</code>: Síntesis FM de 2 operadores con 8 ratios armónicos y feedback dinámico.</li>
+                <li><code>STRNG</code>: Modelado físico Karplus-Strong para cuerdas acústicas, pulsadas y resonadores.</li>
+                <li><code>WARP</code>: Morfeo de ondas 2D con distorsión de fase estilo Casio CZ y plegado armónico Buchla.</li>
+                <li><code>SWARM</code>: Enjambre al unísono de 6 osciladores para supersaws y texturas masivas.</li>
+                <li><code>HSYNC</code>: Sincronización de osciladores en hard-sync con barrido de formantes.</li>
+                <li><code>RING</code>: Modulación en anillo analógica de 4 cuadrantes.</li>
+              </ul>
+            </li>
+            <li><strong>Filtro VCF State-Variable Independiente:</strong> Filtro multimodo (LPF, BPF, HPF, Notch) por pista con saturación de respuesta analógica inspirada en circuitos OTA, envolvente de filtro dedicada (<code>Filter Decay</code>) y seguimiento de teclado (<code>Key Tracking</code>).</li>
+            <li><strong>Catálogo de Presets Integrado:</strong> 36 sonidos de fábrica de acceso instantáneo y sistema de guardado de presets de usuario en tarjeta MicroSD con <code>COPY + Clic ENC 1</code>.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🎚️ Mezclador (Mixer) de 8 Pistas y Envíos</h3>
+          <ul>
+            <li><strong>Consola de Mezcla Dedicada:</strong> Control centralizado de Volumen, Paneo estéreo y 2 Envíos de Efectos para cada una de las 8 pistas.</li>
+            <li><strong>Mute y Solo de Pistas:</strong> Silenciado y reproducción exclusiva de pistas en tiempo real con retroalimentación lumínica en los pads.</li>
+            <li><strong>Borrado Rápido de Pista:</strong> Función directa de limpieza de pista sosteniendo el pad y pulsando <code>REC</code>.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🎬 Modo Escenas y Modo Canción (Song Arranger)</h3>
+          <ul>
+            <li><strong>99 Escenas Disponibles:</strong> Organización en hasta 99 escenas independientes (<code>SCN 01</code> a <code>SCN 99</code>), cada una con su combinación de pistas, mutes y solos.</li>
+            <li><strong>16 Variaciones de Patrones por Pista:</strong> Cada pista almacena 16 variaciones rítmicas y melódicas conmutables al vuelo.</li>
+            <li><strong>Encadenador de Canción de 99 Pasos:</strong> Creación de canciones completas mediante una línea de tiempo estructurada con repeticiones configurables (<code>x1</code> a <code>x16</code>) por bloque y loop interactivo.</li>
+            <li><strong>Disparo y Conmutación en Vivo:</strong> Lanzamiento dinámico de escenas y patrones en tiempo real directamente desde la matriz de pads.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🥁 Expresividad y Pad Velocity Dinámico</h3>
+          <ul>
+            <li><strong>Sensibilidad al Impacto en los 16 Pads:</strong> Integración con la acelerometría de la placa de controles para responder con precisión a la fuerza del golpe.</li>
+            <li><strong>Curva de Respuesta Calibrada:</strong> Algoritmo dinámico con realce en medios para transicionar con naturalidad desde toques suaves hasta golpes acentuados (rango MIDI 60 a 127).</li>
+            <li><strong>Monitor de Impacto y Calibración:</strong> Herramienta en pantalla para visualizar en tiempo real la fuerza del toque y calibrar el techo máximo de sensibilidad (<code>Ceiling</code>) y tiempo de escaneo.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🎮 Modo GamePad y Macro Pad Renovado</h3>
+          <ul>
+            <li><strong>5 Perfiles de Macro Accesibles por Touchstrip:</strong> Conmutación instantánea entre 5 ranuras tocando los segmentos de la tira táctil:
+              <ul style="margin-top: 6px; margin-bottom: 6px;">
+                <li><code>MEDIA</code>: Control de volumen y reproducción multimedia del sistema operativo.</li>
+                <li><code>GAMEPAD</code>: Perfil de juego estándar HID para consolas y emuladores.</li>
+                <li><code>PC WASD</code>: Mapeo para videojuegos de PC con control de ratón integrado en el joystick.</li>
+                <li><code>CUSTOM 1</code> & <code>CUSTOM 2</code>: Perfiles de macros completamente configurables por el usuario guardados en memoria no volátil.</li>
+              </ul>
+            </li>
+            <li><strong>Compatibilidad Dual USB y Bluetooth BLE:</strong> Uso plug & play mediante cable USB o inalámbrico por Bluetooth HID.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🖥️ Interfaz de Usuario, Explorador y Controles</h3>
+          <ul>
+            <li><strong>Menú Unificado por Pestañas:</strong> Rediseño con navegación horizontal mediante <code>JOYSTICK</code> y retorno rápido de dos niveles usando <code>SHIFT</code>.</li>
+            <li><strong>Preescucha Directa desde MicroSD:</strong> Botones funcionales <code>PLAY</code> y <code>STOP</code> en el explorador de archivos para escuchar muestras WAV antes de cargarlas a la memoria.</li>
+            <li><strong>Mini Reproductor y Chop en Vivo:</strong> Apertura del editor de recorte de audio manteniendo cualquier pad y pulsando <code>ENC 1</code>.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>🌐 Soporte Multi-Idioma</h3>
+          <ul>
+            <li><strong>Selector Dinámico de Idioma:</strong> Posibilidad de alternar entre Español e Inglés en todos los menús, diálogos y notificaciones del sistema desde la pestaña de configuración UI, preservando las abreviaturas técnicas estándar de la producción musical.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
+          <h3>💾 Sistema de Proyectos (.JAM)</h3>
+          <ul>
+            <li><strong>Formato de Proyecto Estructurado:</strong> Nuevo motor de persistencia binaria rápida que guarda de forma compacta y sincronizada los patrones (<code>PATTERNS.BIN</code>), las escenas (<code>SCENES.BIN</code>) y las canciones (<code>SONG.BIN</code>) dentro de la carpeta del Jam en la MicroSD.</li>
+          </ul>
+        </div>
         </details>
 
         <!-- Versión 1.2 -->
