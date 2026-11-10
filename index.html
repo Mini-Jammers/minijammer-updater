@@ -184,25 +184,25 @@
             <div class="step-item">
               <div class="step-circle">1</div>
               <div class="step-text">
-                <strong>Conecta el cable USB-C</strong> al puerto exterior del MiniJammer (Puerto 1 / Placa Maestra). No es necesario abrir la carcasa.
+                <strong>Conecta el cable USB-C</strong> a la entrada USB de la Placa Maestra (Puerto 1). No es necesario abrir la carcasa ni conectar cables a la Placa Esclava.
               </div>
             </div>
             <div class="step-item">
               <div class="step-circle">2</div>
               <div class="step-text">
-                <strong>Haz clic en Conectar y Actualizar:</strong> Selecciona el puerto COM de tu MiniJammer en el navegador. <em>No necesitas presionar ningún botón:</em> el equipo entra en modo actualización de forma 100% automática por software.
+                <strong>Poner la Maestra en modo Bootloader:</strong> Mantén presionado el botón <code>BOOT 1</code>, presiona y suelta <code>RESET 1</code>, y luego suelta <code>BOOT 1</code>. <em>(Requerido ya que el puerto USB opera normalmente como interfaz de audio/MIDI).</em>
               </div>
             </div>
             <div class="step-item">
               <div class="step-circle">3</div>
               <div class="step-text">
-                <strong>Sincronización automática de ambas placas:</strong> Primero se actualiza la Placa Maestra por USB. Al finalizar, la pantalla del MiniJammer se encenderá y la Maestra actualizará automáticamente la Placa Esclava mediante el enlace interno UART.
+                <strong>Haz clic en Conectar y Actualizar:</strong> Selecciona el puerto COM de tu MiniJammer. Primero se programará la Maestra vía Web, y al reiniciar, la Maestra actualizará automáticamente la Placa Esclava por conexión interna UART.
               </div>
             </div>
           </div>
 
           <div class="action-area" style="margin-top: 20px;">
-            <esp-web-install-button manifest="manifest_maestro.json">
+            <esp-web-install-button manifest="manifest_maestro.json?v=2.1.0">
               <button slot="activate" class="btn btn-primary glow-cyan">
                 <span class="btn-icon">⚡</span>
                 <span class="btn-text">Conectar y Actualizar (Ambas Placas)</span>
@@ -214,7 +214,7 @@
           <div class="alert-box alert-info" style="margin-top: 20px; font-size: 0.85rem;">
             <div class="alert-icon">💡</div>
             <div class="alert-content">
-              <strong>0 Botones y 0 Drivers:</strong> Gracias al controlador USB nativo del ESP32-S3, la web gestiona el reinicio y flasheo automáticamente sin desarmar tu MiniJammer. <em>(Nota técnica: La combinación de botones físicos BOOT 1 + RESET 1 solo se conserva como alternativa de rescate si el firmware estuviera totalmente congelado).</em>
+              <strong>Actualización en Cadena:</strong> Solo necesitas conectar y poner en modo boot la <strong>Placa Maestra</strong>. Al arrancar el nuevo firmware, la Maestra transmitirá automáticamente el firmware actualizado a la Placa Esclava a través del bus serie interno.
             </div>
           </div>
         </div>
