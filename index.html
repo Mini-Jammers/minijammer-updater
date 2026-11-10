@@ -49,18 +49,18 @@
       </div>
     </header>
 
-    <!-- Navegación por Pestañas / Placas -->
+    <!-- Navegación por Pestañas / Métodos -->
     <div class="tabs-nav">
-      <button class="tab-btn active" data-tab="tab-maestro">
+      <button class="tab-btn active" data-tab="tab-automatico">
         <span class="tab-info">
-          <span class="tab-title">Placa Maestra</span>
-          <span class="tab-sub">Audio, Pantalla y DSP</span>
+          <span class="tab-title">⚡ Actualización Automática</span>
+          <span class="tab-sub">MicroSD o USB • Ambas Placas</span>
         </span>
       </button>
-      <button class="tab-btn" data-tab="tab-esclavo">
+      <button class="tab-btn" data-tab="tab-tradicional">
         <span class="tab-info">
-          <span class="tab-title">Placa Esclava</span>
-          <span class="tab-sub">Pads y Controles</span>
+          <span class="tab-title">🔧 Método Anterior / Rescate</span>
+          <span class="tab-sub">Flasheo por Separado • v1.0 o Previas</span>
         </span>
       </button>
       <button class="tab-btn" data-tab="tab-converter">
@@ -86,19 +86,162 @@
     <!-- Contenido de las pestañas -->
     <main class="tabs-content">
 
-      <!-- ================= PESTAÑA 1: MAESTRO ================= -->
-      <section id="tab-maestro" class="tab-panel active">
+      <!-- ================= PESTAÑA 1: ACTUALIZACIÓN AUTOMÁTICA (NUEVAS VERSIONES) ================= -->
+      <section id="tab-automatico" class="tab-panel active">
+
+        <!-- ENCABEZADO DE LA SECCIÓN AUTOMÁTICA -->
+        <div class="card glass-card" style="margin-bottom: 24px;">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="chip chip-cyan">SISTEMA AUTOMÁTICO • MINIJAMMER V2.0+</span>
+              <h2>Actualización Automática (Ambas Placas)</h2>
+              <p style="font-size: 0.9rem; color: var(--cyan); margin-top: 5px; font-weight: 500;">
+                Flashea automáticamente la Placa Maestra y la Placa Esclava en un solo proceso.
+              </p>
+              <p style="font-size: 0.8rem; color: #ffb74d; margin-top: 6px; line-height: 1.4; max-width: 580px;">
+                <strong>Advertencia:</strong> Debido a la dimensión de la actualización v2.0 dejarán de ser compatibles los JAMS creados con versiones anteriores, los archivos .WAV no se perderán pero la estructura de los proyectos sí.
+              </p>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="version-tag">v2.0</span>
+                <button class="history-icon-btn glow-cyan-dim" data-changelog="modal-historial-maestro" title="Historial de versiones">
+                  🕒
+                </button>
+              </div>
+              <span style="font-size: 0.7rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">Actualizado: 10/11/2026</span>
+              <button class="changelog-btn glow-cyan-dim" data-changelog="modal-maestro">
+                📋 Novedades
+              </button>
+            </div>
+          </div>
+          <p class="card-desc" style="margin-bottom: 0;">
+            Elige el método que prefieras: <strong>Opción A por MicroSD</strong> (sin cables ni drivers) o <strong>Opción B por Cable USB</strong> (conectando únicamente la Placa Maestra).
+          </p>
+        </div>
+
+        <!-- MÉTODO A: POR TARJETA MICROSD -->
+        <div class="card glass-card" style="margin-bottom: 24px;">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="chip chip-cyan">OPCIÓN A • RECOMENDADO</span>
+              <h3>1. Actualización por Tarjeta MicroSD (0 Cables)</h3>
+            </div>
+          </div>
+          <p class="card-desc">
+            Es la forma más rápida y cómoda. No requiere cables USB, controladores adicionales ni presionar combinaciones de botones.
+          </p>
+
+          <div class="steps-list">
+            <div class="step-item">
+              <div class="step-circle">1</div>
+              <div class="step-text">
+                <strong>Descarga el archivo unificado</strong> pulsando el botón de abajo (<code>MINIJAMMER_UPDATE.BIN</code>).
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-circle">2</div>
+              <div class="step-text">
+                <strong>Cópialo a la raíz de tu tarjeta MicroSD</strong> (directamente en la tarjeta, fuera de cualquier subcarpeta).
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-circle">3</div>
+              <div class="step-text">
+                <strong>Inserta la MicroSD y enciende tu MiniJammer:</strong> La pantalla mostrará el progreso en dos etapas (Paso 1/2: Esclavo, Paso 2/2: Maestro) y al terminar se reiniciará automáticamente al 100%.
+              </div>
+            </div>
+          </div>
+
+          <div class="action-area" style="margin-top: 20px; text-align: center;">
+            <a href="MINIJAMMER_UPDATE.BIN" download="MINIJAMMER_UPDATE.BIN" class="btn btn-primary glow-cyan" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; font-size: 1rem; border-radius: 8px;">
+              <span class="btn-icon" style="font-size: 1.3rem;">⬇️</span>
+              <span class="btn-text">Descargar MINIJAMMER_UPDATE.BIN (1.96 MB)</span>
+            </a>
+          </div>
+
+          <div class="alert-box alert-info" style="margin-top: 20px; font-size: 0.85rem;">
+            <div class="alert-icon">💡</div>
+            <div class="alert-content">
+              <strong>Compatibilidad Universal:</strong> Puedes descargar este archivo desde cualquier computadora (Windows, Mac, Linux, Chromebook) o desde tu teléfono móvil usando un adaptador o lector de tarjetas OTG.
+            </div>
+          </div>
+        </div>
+
+        <!-- MÉTODO B: POR CABLE USB ÚNICO AL MAESTRO -->
         <div class="card glass-card">
           <div class="card-header">
             <div class="card-title-group">
-              <span class="chip chip-cyan">SISTEMA PRINCIPAL</span>
-              <h2>Firmware Placa Maestra</h2>
-              <p style="font-size: 0.85rem; color: var(--cyan); margin-top: 5px; font-weight: 500;">
-                (Esta actualización requiere flashear ambas placas, maestra y esclava)
+              <span class="chip chip-cyan">OPCIÓN B • NAVEGADOR WEB</span>
+              <h3>2. Actualización Web por USB (1 Solo Cable)</h3>
+            </div>
+          </div>
+          <p class="card-desc">
+            Puerto 1 (Placa Maestra) <a href="assets/manual.pdf" target="_blank" style="color: var(--cyan); text-decoration: underline; margin-left: 4px; font-size: 0.85rem;">(ver manual)</a>
+          </p>
+
+          <div class="steps-list">
+            <div class="step-item">
+              <div class="step-circle">1</div>
+              <div class="step-text">
+                <strong>Conecta el cable USB-C</strong> únicamente a la entrada USB de la Placa Maestra (Puerto 1).
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-circle">2</div>
+              <div class="step-text">
+                <strong>Poner en modo Bootloader:</strong> Mantén presionado el botón <code>BOOT 1</code>, presiona y suelta <code>RESET 1</code>, y luego suelta <code>BOOT 1</code>.
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-circle">3</div>
+              <div class="step-text">
+                Haz clic en el botón de abajo, selecciona el puerto COM de tu MiniJammer y espera a que termine.
+              </div>
+            </div>
+          </div>
+
+          <div class="action-area" style="margin-top: 20px;">
+            <esp-web-install-button manifest="manifest_maestro.json">
+              <button slot="activate" class="btn btn-primary glow-cyan">
+                <span class="btn-icon">⚡</span>
+                <span class="btn-text">Instalar Firmware Maestro</span>
+              </button>
+              <span slot="unsupported">Tu navegador no soporta Web Serial. Usa Chrome o Edge.</span>
+            </esp-web-install-button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ================= PESTAÑA 2: MÉTODO ANTERIOR / RESCATE ================= -->
+      <section id="tab-tradicional" class="tab-panel">
+
+        <!-- ENCABEZADO DE LA SECCIÓN TRADICIONAL -->
+        <div class="card glass-card" style="margin-bottom: 24px;">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="chip chip-orange">MODO TRADICIONAL & RESCATE</span>
+              <h2>Flasheo Individual de Placas (Maestra y Esclava)</h2>
+              <p style="font-size: 0.85rem; color: #ffb74d; margin-top: 5px; font-weight: 500;">
+                (Usa este método si tu MiniJammer tiene una versión anterior como v1.0 o previa, o para rescate técnico)
               </p>
-              <p style="font-size: 0.8rem; color: #ffb74d; margin-top: 6px; line-height: 1.4; max-width: 520px;">
-                <strong>Advertencia:</strong> Debido a la dimensión de la actualización dejarán de ser compatibles los JAMS creados con versiones anteriores, los archivos .WAV no se perderán pero la estructura de los proyectos sí.
+              <p style="font-size: 0.8rem; color: #ffb74d; margin-top: 6px; line-height: 1.4; max-width: 580px;">
+                <strong>Advertencia:</strong> Si estás actualizando desde una versión anterior, deberás flashear ambas placas por separado por última vez. Los JAMS antiguos dejarán de ser compatibles, pero tus archivos .WAV permanecerán intactos.
               </p>
+            </div>
+          </div>
+          <p class="card-desc" style="margin-bottom: 0;">
+            Debes seguir los dos pasos en orden: Primero flashear la <strong>Placa Maestra (Paso 1)</strong> y luego la <strong>Placa Esclava (Paso 2)</strong>.
+          </p>
+        </div>
+
+        <!-- PASO 1: PLACA MAESTRA (100% CONTENIDO ORIGINAL INTACTO) -->
+        <div class="card glass-card" style="margin-bottom: 24px;">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="chip chip-cyan">PASO 1 • PUERTO 1</span>
+              <h3>Firmware Placa Maestra</h3>
             </div>
             <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
               <div style="display: flex; align-items: center; gap: 8px;">
@@ -150,15 +293,13 @@
             </esp-web-install-button>
           </div>
         </div>
-      </section>
 
-      <!-- ================= PESTAÑA 2: ESCLAVO ================= -->
-      <section id="tab-esclavo" class="tab-panel">
+        <!-- PASO 2: PLACA ESCLAVA (100% CONTENIDO ORIGINAL INTACTO) -->
         <div class="card glass-card">
           <div class="card-header">
             <div class="card-title-group">
-              <span class="chip chip-orange">SISTEMA DE CONTROLES</span>
-              <h2>Firmware Placa Esclava</h2>
+              <span class="chip chip-orange">PASO 2 • PUERTO 2</span>
+              <h3>Firmware Placa Esclava</h3>
             </div>
             <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
               <div style="display: flex; align-items: center; gap: 8px;">
@@ -234,6 +375,7 @@
             </div>
           </div>
         </div>
+
       </section>
 
       <!-- ================= PESTAÑA 3: CONVERTIDOR ================= -->

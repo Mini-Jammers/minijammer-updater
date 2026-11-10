@@ -53,9 +53,19 @@ if %ERRORLEVEL% NEQ 0 (
 )
 
 echo.
+echo [5/5] Generando paquete unificado para MicroSD (MINIJAMMER_UPDATE.BIN)...
+"%PYTHON_EXE%" "%~dp0..\pack_firmware.py"
+if %ERRORLEVEL% NEQ 0 (
+    echo [ERROR] Hubo un problema al empaquetar MINIJAMMER_UPDATE.BIN.
+    pause
+    exit /b 1
+)
+
+echo.
 echo =======================================================
 echo   [EXITO] Binarios generados correctamente:
-echo   - %~dp0firmware_maestro.bin
-echo   - %~dp0firmware_esclavo.bin
+echo   - %~dp0firmware_maestro.bin (Metodo 2: Web USB)
+echo   - %~dp0firmware_esclavo.bin (Metodo 3: Rescate)
+echo   - %~dp0MINIJAMMER_UPDATE.BIN (Metodo 1: MicroSD)
 echo =======================================================
 pause
