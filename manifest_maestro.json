@@ -1,13 +1,13 @@
 {
   "name": "MiniJammer XXL - Firmware Unificado (Ambas Placas)",
-  "version": "2.1.0",
+  "version": "2.0.0",
   "home_url": "https://github.com/",
   "funding_url": "",
   "builds": [
     {
       "chipFamily": "ESP32-S3",
       "parts": [
-        { "path": "firmware_maestro.bin?v=2.1.0", "offset": 0 }
+        { "path": "firmware_maestro.bin?v=2.0", "offset": 0 }
       ]
     }
   ]

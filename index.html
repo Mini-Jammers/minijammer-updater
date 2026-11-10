@@ -214,7 +214,7 @@
           </div>
 
           <div class="action-area" style="margin-top: 20px;">
-            <esp-web-install-button manifest="manifest_maestro.json?v=2.1.0">
+            <esp-web-install-button manifest="manifest_maestro.json?v=2.0">
               <button slot="activate" class="btn btn-primary glow-cyan">
                 <span class="btn-icon">⚡</span>
                 <span class="btn-text">Instalar Firmware</span>
@@ -244,7 +244,7 @@
             <div class="card-title-group">
               <h2>Flasheo Individual de Placas (Maestra y Esclava)</h2>
               <p style="font-size: 0.85rem; color: #ffb74d; margin-top: 5px; font-weight: 500;">
-                (Usa este método si tu MiniJammer tiene una versión anterior a v2.0(placa maestra) v1.1(placa esclava),
+                (Usa este método si tu MiniJammer tiene una versión anterior a la v2.0 en ambas placas,
                 o para rescate técnico. Deberás
                 flashear ambas
                 placas por separado por última vez)
@@ -335,7 +335,7 @@
             </div>
             <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
               <div style="display: flex; align-items: center; gap: 8px;">
-                <span class="version-tag">v1.1</span>
+                <span class="version-tag">v2.0</span>
                 <button class="history-icon-btn glow-orange-dim" data-changelog="modal-historial-esclavo"
                   title="Historial de versiones">
                   🕒
@@ -343,7 +343,7 @@
               </div>
               <span
                 style="font-size: 0.7rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">Actualizado:
-                07/11/2026</span>
+                10/11/2026</span>
               <button class="changelog-btn glow-orange-dim" data-changelog="modal-esclavo">
                 📋 Novedades
               </button>
@@ -816,6 +816,14 @@
           </div>
         </div>
         <div class="changelog-section">
+          <h3>⚡ Sistema de Actualización Automática Unificado</h3>
+          <ul>
+            <li><strong>Actualización por MicroSD (0 Cables):</strong> Detección y aplicación autónoma de <code>MINIJAMMER_UPDATE.BIN</code> desde la tarjeta MicroSD con interfaz de progreso minimalista, programando ambas placas automáticamente.</li>
+            <li><strong>Actualización Web USB (1 Solo Cable):</strong> Firmware del Esclavo embebido en Flash; al reiniciar tras el flasheo USB en la Maestra, esta sincroniza automáticamente al Esclavo por la conexión serie interna UART.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
           <h3>🎛️ Arquitectura de Pistas y Polifonía Multitimbral</h3>
           <ul>
             <li><strong>Sistema de 8 Pistas Independientes:</strong> Cada una de las 8 pistas puede configurarse
@@ -980,11 +988,17 @@
   <div id="modal-esclavo" class="modal-overlay">
     <div class="modal-content glass-card">
       <div class="modal-header">
-        <h2>Cambios en Placa Esclava v1.1</h2>
+        <h2>Cambios en Placa Esclava v2.0</h2>
         <button class="modal-close">&times;</button>
       </div>
       <div class="modal-body">
         <div class="changelog-section">
+          <h3>⚡ Nuevo Método de Flasheo Automático</h3>
+          <ul>
+            <li><strong>Receptor OTA Interno por UART:</strong> Soporte de actualización automática de firmware vía serie directamente desde la Placa Maestra con verificación de integridad CRC16, eliminando la necesidad de desarmar el equipo o conectar cables secundarios.</li>
+          </ul>
+        </div>
+        <div class="changelog-section" style="margin-top: 18px;">
           <h3>🥁 Implementación de Velocity</h3>
           <ul>
             <li><strong>Medición de Impacto a 800 Hz:</strong> Lectura del acelerómetro a alta velocidad para capturar
@@ -1033,6 +1047,12 @@
             </div>
           </div>
           <div class="changelog-section">
+            <h3>⚡ Sistema de Actualización Automática Unificado</h3>
+            <ul>
+              <li><strong>Actualización por MicroSD (0 Cables) y Web USB (1 Solo Cable):</strong> Capacidad de flashear ambas placas en un solo paso mediante MicroSD o puerto exterior de la Maestra, con firmware del Esclavo embebido y pantalla de progreso minimalista.</li>
+            </ul>
+          </div>
+          <div class="changelog-section" style="margin-top: 18px;">
             <h3>🎛️ Arquitectura de Pistas y Polifonía Multitimbral</h3>
             <ul>
               <li><strong>Sistema de 8 Pistas Independientes:</strong> Cada una de las 8 pistas puede configurarse
@@ -1287,16 +1307,17 @@
       </div>
       <div class="modal-body">
 
-        <!-- Versión 1.1 -->
+        <!-- Versión 2.0 -->
         <details class="faq-item" open
           style="border-color: rgba(255, 145, 0, 0.35); background: rgba(255, 145, 0, 0.03);">
           <summary style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
-            <span><strong style="color: var(--orange);">v1.1</strong> — Implementación de Velocity</span>
+            <span><strong style="color: var(--orange);">v2.0</strong> — Flasheo Automático & Velocity</span>
             <span
-              style="font-size: 0.75rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">07/11/2026</span>
+              style="font-size: 0.75rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">10/11/2026</span>
           </summary>
           <div class="changelog-section" style="margin-top: 14px;">
             <ul>
+              <li><strong>Receptor OTA Interno por UART:</strong> Capacidad de actualización de firmware directamente desde la Placa Maestra con verificación de integridad CRC16 de 128 bytes.</li>
               <li><strong>Medición de Impacto a 800 Hz:</strong> Lectura del acelerómetro a alta velocidad para capturar
                 el transitorio exacto del golpe.</li>
               <li><strong>Filtro de Gravedad:</strong> Aislamiento de la fuerza pura del impacto en los pads eliminando
