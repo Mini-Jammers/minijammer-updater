@@ -156,7 +156,7 @@
           <div class="action-area" style="margin-top: 20px; text-align: center;">
             <a href="MINIJAMMER_UPDATE.BIN" download="MINIJAMMER_UPDATE.BIN" class="btn btn-primary glow-cyan" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; font-size: 1rem; border-radius: 8px;">
               <span class="btn-icon" style="font-size: 1.3rem;">⬇️</span>
-              <span class="btn-text">Descargar MINIJAMMER_UPDATE.BIN (1.96 MB)</span>
+              <span class="btn-text">Descargar MINIJAMMER_UPDATE.BIN (2.31 MB)</span>
             </a>
           </div>
 
@@ -173,30 +173,30 @@
           <div class="card-header">
             <div class="card-title-group">
               <span class="chip chip-cyan">OPCIÓN B • NAVEGADOR WEB</span>
-              <h3>2. Actualización Web por USB (1 Solo Cable)</h3>
+              <h3>2. Actualización Web por USB (1 Solo Cable • Ambas Placas)</h3>
             </div>
           </div>
           <p class="card-desc">
-            Puerto 1 (Placa Maestra) <a href="assets/manual.pdf" target="_blank" style="color: var(--cyan); text-decoration: underline; margin-left: 4px; font-size: 0.85rem;">(ver manual)</a>
+            Conecta un único cable USB al puerto exterior del MiniJammer (Puerto 1 / Placa Maestra). <a href="assets/manual.pdf" target="_blank" style="color: var(--cyan); text-decoration: underline; margin-left: 4px; font-size: 0.85rem;">(ver manual)</a>
           </p>
 
           <div class="steps-list">
             <div class="step-item">
               <div class="step-circle">1</div>
               <div class="step-text">
-                <strong>Conecta el cable USB-C</strong> únicamente a la entrada USB de la Placa Maestra (Puerto 1).
+                <strong>Conecta el cable USB-C</strong> al puerto exterior del MiniJammer (Puerto 1 / Placa Maestra). No es necesario abrir la carcasa.
               </div>
             </div>
             <div class="step-item">
               <div class="step-circle">2</div>
               <div class="step-text">
-                <strong>Poner en modo Bootloader:</strong> Mantén presionado el botón <code>BOOT 1</code>, presiona y suelta <code>RESET 1</code>, y luego suelta <code>BOOT 1</code>.
+                <strong>Haz clic en Conectar y Actualizar:</strong> Selecciona el puerto COM de tu MiniJammer en el navegador. <em>No necesitas presionar ningún botón:</em> el equipo entra en modo actualización de forma 100% automática por software.
               </div>
             </div>
             <div class="step-item">
               <div class="step-circle">3</div>
               <div class="step-text">
-                Haz clic en el botón de abajo, selecciona el puerto COM de tu MiniJammer y espera a que termine.
+                <strong>Sincronización automática de ambas placas:</strong> Primero se actualiza la Placa Maestra por USB. Al finalizar, la pantalla del MiniJammer se encenderá y la Maestra actualizará automáticamente la Placa Esclava mediante el enlace interno UART.
               </div>
             </div>
           </div>
@@ -205,10 +205,17 @@
             <esp-web-install-button manifest="manifest_maestro.json">
               <button slot="activate" class="btn btn-primary glow-cyan">
                 <span class="btn-icon">⚡</span>
-                <span class="btn-text">Instalar Firmware Maestro</span>
+                <span class="btn-text">Conectar y Actualizar (Ambas Placas)</span>
               </button>
               <span slot="unsupported">Tu navegador no soporta Web Serial. Usa Chrome o Edge.</span>
             </esp-web-install-button>
+          </div>
+
+          <div class="alert-box alert-info" style="margin-top: 20px; font-size: 0.85rem;">
+            <div class="alert-icon">💡</div>
+            <div class="alert-content">
+              <strong>0 Botones y 0 Drivers:</strong> Gracias al controlador USB nativo del ESP32-S3, la web gestiona el reinicio y flasheo automáticamente sin desarmar tu MiniJammer. <em>(Nota técnica: La combinación de botones físicos BOOT 1 + RESET 1 solo se conserva como alternativa de rescate si el firmware estuviera totalmente congelado).</em>
+            </div>
           </div>
         </div>
 
