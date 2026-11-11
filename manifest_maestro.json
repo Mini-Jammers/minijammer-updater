@@ -7,7 +7,7 @@
     {
       "chipFamily": "ESP32-S3",
       "parts": [
-        { "path": "firmware_maestro.bin?v=2.0", "offset": 0 }
+        { "path": "firmware_maestro.bin?v=2.0.3", "offset": 0 }
       ]
     }
   ]
