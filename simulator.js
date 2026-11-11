@@ -241,11 +241,11 @@
       screenBreakdown: [
         {
           zona: 'Pestaña [MASTER] Activa (Y=0..22)',
-          detalles: 'Indicador naranja Sony a6000 en base y lista de 10 parámetros de calibración de alta fidelidad.'
+          detalles: 'Indicador naranja Sony a6000 en base y lista de 12 parámetros de calibración de alta fidelidad con scroll vertical.'
         },
         {
           zona: 'Parámetros de Audio Master de Alta Fidelidad',
-          detalles: 'EQ GRAVES (±12 dB shelf), EQ AGUDOS (±12 dB shelf), VOL MIC (ganancia preamplificador analógico), VOL LINE IN (entrada auxiliar estéreo), VOL MICRO SD, VOL SESION REC (mezcla de grabación WAV), VOL AUDIFONOS, VOL BOCINA (amplificador clase D), BLOQ DC (Filtro hardware contra corriente continua ON/OFF) y LIMITADOR BRICKWALL (-0.1 dB FS).'
+          detalles: 'EQ GRAVES (±12 dB shelf), EQ AGUDOS (±12 dB shelf), VOL JAM (ganancia de mezcla viva de sintes y sampler), VOL MIC, VOL LINE IN, VOL MICRO SD, VOL RESAMPLE (ganancia de captura a pads), VOL EXTRAC, VOL SESION, VOL AUDIFONOS, VOL BOCINA y BLOQ DC.'
         }
       ],
       controles: [
@@ -823,9 +823,9 @@
   function initSimulator() {
     // Control de entorno: el simulador solo está habilitado en entorno local de desarrollo (localhost / 127.0.0.1 / file: o ?dev=true)
     const isLocalDev = window.location.hostname === 'localhost' ||
-                       window.location.hostname === '127.0.0.1' ||
-                       window.location.protocol === 'file:' ||
-                       new URLSearchParams(window.location.search).has('dev');
+      window.location.hostname === '127.0.0.1' ||
+      window.location.protocol === 'file:' ||
+      new URLSearchParams(window.location.search).has('dev');
 
     const simTabBtn = document.getElementById('tab-btn-simulador');
     if (simTabBtn) {
