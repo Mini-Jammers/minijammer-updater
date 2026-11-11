@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.cdnfonts.com/css/helvetica-2" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=13.0">
+  <link rel="stylesheet" href="styles.css?v=14.0">
 
   <!-- JSZip para empaquetado de carpetas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -400,12 +400,13 @@
           </div>
 
           <!-- Advertencia de Baterías e Imagen (Layout 2 columnas proporcionales) -->
-          <div class="alert-box alert-important battery-warning-box">
-            <div class="battery-warning-col-img">
-              <img src="baterias%20puerto%202.jpg?v=2" alt="Posición correcta de las baterías en el MiniJammer"
-                class="battery-warning-img">
+          <div class="alert-box alert-important battery-warning-box" style="margin-top: 24px; display: flex; align-items: center; gap: 18px; padding: 16px;">
+            <div class="battery-warning-col-img" style="flex: 0 0 115px; max-width: 115px; display: flex; justify-content: center; align-items: center;">
+              <img src="baterias%20puerto%202.jpg?v=3" alt="Posición correcta de las baterías en el MiniJammer"
+                class="battery-warning-img"
+                style="width: 105px !important; max-width: 105px !important; height: auto !important; border-radius: 8px; border: 1px solid rgba(255, 61, 113, 0.4); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); display: block;">
             </div>
-            <div class="battery-warning-col-text">
+            <div class="battery-warning-col-text" style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="alert-icon" style="font-size: 1.3rem;">⚠️</span>
                 <strong style="color: #ff5277; font-size: 0.95rem;">¡Atención: Posición de las Baterías!</strong>
