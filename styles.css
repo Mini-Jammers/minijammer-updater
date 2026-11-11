@@ -850,6 +850,40 @@ code {
   max-width: 100%;
 }
 
+/* Advertencia de Baterías 2 Columnas */
+.battery-warning-box {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px;
+  border-radius: 12px;
+  margin-top: 24px;
+}
+
+.battery-warning-col-img {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.battery-warning-img {
+  width: 100%;
+  max-width: 210px;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 61, 113, 0.4);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  display: block;
+}
+
+.battery-warning-col-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 @media (max-width: 640px) {
   .tabs-nav {
     grid-template-columns: 1fr;
@@ -859,5 +893,9 @@ code {
   }
   .glass-card {
     padding: 24px;
+  }
+  .battery-warning-box {
+    flex-direction: column;
+    text-align: center;
   }
 }

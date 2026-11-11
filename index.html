@@ -399,18 +399,20 @@
             </esp-web-install-button>
           </div>
 
-          <!-- Advertencia de Baterías e Imagen -->
-          <div class="alert-box alert-important" style="margin-top: 24px; flex-direction: column; gap: 12px;">
-            <div style="display: flex; gap: 14px; align-items: flex-start;">
-              <div class="alert-icon">⚠️</div>
-              <div class="alert-content">
-                <strong style="color: #ff5277; font-size: 0.95rem;">¡Atención: Posición de las Baterías!</strong><br>
-                Asegúrate de poner en la posición correcta tus baterías, de lo contrario se quemará el módulo de carga de tu MiniJammer, la base está marcada y ambas baterías van en la misma dirección.
-              </div>
-            </div>
-            <div style="text-align: center; margin-top: 4px;">
+          <!-- Advertencia de Baterías e Imagen (Layout 2 columnas proporcionales) -->
+          <div class="alert-box alert-important battery-warning-box">
+            <div class="battery-warning-col-img">
               <img src="baterias%20puerto%202.jpg?v=2" alt="Posición correcta de las baterías en el MiniJammer"
-                style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid rgba(255, 61, 113, 0.35); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4); display: block; margin: 0 auto;">
+                class="battery-warning-img">
+            </div>
+            <div class="battery-warning-col-text">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="alert-icon" style="font-size: 1.3rem;">⚠️</span>
+                <strong style="color: #ff5277; font-size: 0.95rem;">¡Atención: Posición de las Baterías!</strong>
+              </div>
+              <p style="margin: 0; font-size: 0.88rem; line-height: 1.5; color: #ffb4c2;">
+                Asegúrate de poner en la posición correcta tus baterías, de lo contrario se quemará el módulo de carga de tu MiniJammer, la base está marcada y ambas baterías van en la misma dirección.
+              </p>
             </div>
           </div>
 
