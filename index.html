@@ -404,8 +404,10 @@
             <div class="battery-warning-col-img" style="flex: 0 0 210px; max-width: 210px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
               <img src="baterias%20puerto%202.jpg?v=3" alt="Posición correcta de las baterías en el MiniJammer"
                 class="battery-warning-img" data-changelog="modal-baterias" title="Haz clic para ampliar la imagen"
+                onclick="document.getElementById('modal-baterias').classList.add('active'); document.body.style.overflow='hidden';"
                 style="width: 210px !important; max-width: 210px !important; height: auto !important; border-radius: 8px; border: 1px solid rgba(255, 61, 113, 0.4); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); display: block; cursor: pointer;">
-              <span data-changelog="modal-baterias" style="font-size: 0.72rem; color: #ff8ca3; opacity: 0.85; cursor: pointer; text-decoration: underline;">🔍 Clic para ampliar</span>
+              <span data-changelog="modal-baterias" onclick="document.getElementById('modal-baterias').classList.add('active'); document.body.style.overflow='hidden';"
+                style="font-size: 0.72rem; color: #ff8ca3; opacity: 0.85; cursor: pointer; text-decoration: underline;">🔍 Clic para ampliar</span>
             </div>
             <div class="battery-warning-col-text" style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
               <div style="display: flex; align-items: center; gap: 8px;">
@@ -1392,7 +1394,7 @@
     </div>
   </div>
 
-  <script src="app.js?v=11.0"></script>
+  <script src="app.js?v=12.0"></script>
 </body>
 
 </html>
