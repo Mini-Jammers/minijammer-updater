@@ -380,139 +380,434 @@
     }
   };
 
-  // Diccionario de Controles Físicos para Inspección al Clic
-  const HARDWARE_CONTROL_INFO = {
+  // ===========================================================================
+  // BASE DE DATOS CONTEXTUAL DE HARDWARE - FILTRADA POR SECCIÓN Y MÓDULO ACTIVO
+  // ===========================================================================
+  const CONTEXTUAL_HARDWARE_INFO = {
     'hw-joy': {
       nombre: 'Joystick Analógico Hall 2D (con Pulsador JoySW)',
-      subtitulo: 'Navegación Cuádruple y Conmutador de Modos',
+      subtitulo: 'Navegación Cuádruple, Modulación Radar y Conmutador de Modos',
       icono: '🕹️',
-      acciones: [
-        { tipo: 'Clic Simple (JoySW)', desc: 'Abre y cierra el Mezclador de 8 Pistas (MIXER) en cualquier momento.' },
-        { tipo: 'Clic Sostenido (500ms - 2 seg)', desc: 'Abre y cierra el Menú de Sistema Unificado (estilo Sony a6000).' },
-        { tipo: 'Movimiento X (Horizontal)', desc: 'Navega entre canales en el Mixer, entre columnas en el Arranger o entre pestañas en el Menú.' },
-        { tipo: 'Movimiento Y (Vertical)', desc: 'Selecciona variaciones de patrón en el Arranger o explora archivos y parámetros en el Menú.' },
-        { tipo: 'Modulación en Jam', desc: 'En modo Jam actúa como vector de radar 2D modulando filtros o efectos asignados en tiempo real.' }
-      ]
+      modos: {
+        'sampler': [
+          { tipo: 'Eje X / Eje Y (Radar 2D)', desc: 'Modula dinámicamente en tiempo real los parámetros asignados (por defecto: Eje X modula Paneo/Filtro, Eje Y modula Pitch bend o profundidad de efectos). El vector de deflexión se visualiza en el cuadrante Radar superior derecho de la pantalla con el vector naranja.' },
+          { tipo: 'Clic Simple (JoySW)', desc: 'Abre y cierra instantáneamente la consola del Mezclador (MIXER) de 8 canales sin interrumpir la reproducción.' },
+          { tipo: 'Clic Sostenido (>500ms)', desc: 'Abre el Menú de Sistema Unificado (estilo Sony a6000) para acceder al explorador de archivos, configuración y sensores.' }
+        ],
+        'synth': [
+          { tipo: 'Eje X (Horizontal)', desc: 'Aplica Pitch Bend analógico continuo (+/- 2 semitonos) sobre las notas activas del sintetizador.' },
+          { tipo: 'Eje Y (Vertical)', desc: 'Modula en tiempo real la apertura del filtro VCF (Cutoff) o la profundidad del oscilador de baja frecuencia (LFO Depth).' },
+          { tipo: 'Clic Simple (JoySW)', desc: 'Abre y cierra la consola del Mezclador (MIXER).' },
+          { tipo: 'Clic Sostenido (>500ms)', desc: 'Abre el Menú de Sistema Unificado Sony a6000.' }
+        ],
+        'seq': [
+          { tipo: 'Eje X (Izquierda / Derecha)', desc: 'Mueve el cursor de selección de paso horizontalmente (Pasos 1 a 16 del compás) para edición precisa.' },
+          { tipo: 'Eje Y (Arriba / Abajo)', desc: 'Cambia la pista activa (T1..T8) en la vista de secuencia.' },
+          { tipo: 'Clic Simple (JoySW)', desc: 'Abre el Mezclador (MIXER).' },
+          { tipo: 'Clic Sostenido (>500ms)', desc: 'Abre el Menú de Sistema Unificado Sony a6000.' }
+        ],
+        'menu-files': [
+          { tipo: 'Eje X (Izquierda / Derecha)', desc: 'Conmuta el foco entre la columna de categoría (SAMPLER, SYNTH, JAMS) y la columna del explorador de archivos FAT32 de la MicroSD.' },
+          { tipo: 'Eje Y (Arriba / Abajo)', desc: 'Sube y baja para seleccionar carpetas o archivos WAV / proyectos .JAM.' },
+          { tipo: 'Clic Simple (JoySW)', desc: 'Entra a una subcarpeta seleccionada o confirma y carga el archivo WAV seleccionado al Pad en foco.' },
+          { tipo: 'Clic Sostenido (>500ms)', desc: 'Cierra el Menú de Sistema y regresa inmediatamente al modo Jam.' }
+        ],
+        'menu-sensors': [
+          { tipo: 'Eje X (Izquierda / Derecha)', desc: 'Alterna entre los cuadrantes de prueba de sensores (Láser ToF, Touchstrip, Giroscopio BMI160 y Joystick Hall).' },
+          { tipo: 'Eje Y (Arriba / Abajo)', desc: 'Ajusta los umbrales de sensibilidad y zonas muertas del sensor seleccionado.' },
+          { tipo: 'Clic Simple (JoySW)', desc: 'Inicia la rutina de calibración del centro de reposo del joystick y sensores inerciales.' },
+          { tipo: 'Clic Sostenido (>500ms)', desc: 'Cierra el Menú de Sistema y regresa al modo Jam.' }
+        ],
+        'menu-master': [
+          { tipo: 'Eje Y (Arriba / Abajo)', desc: 'Navega verticalmente entre los renglones de ganancia y masterización: Ganancia Mic, Línea, SD, EQ Graves, EQ Agudos, Bloqueador DC y Limitador.' },
+          { tipo: 'Clic Simple (JoySW)', desc: 'Conmuta (ON/OFF) el Limitador de picos o el filtro Bloqueador DC.' },
+          { tipo: 'Clic Sostenido (>500ms)', desc: 'Cierra el Menú de Sistema y regresa al modo Jam.' }
+        ],
+        'menu-ui': [
+          { tipo: 'Eje Y (Arriba / Abajo)', desc: 'Navega entre los parámetros de personalización: Brillo de Pantalla, Idioma (Español / Inglés), Brillo de LEDs NeoPixel, Modo Ahorro y Calibración de Pads.' },
+          { tipo: 'Clic Simple (JoySW)', desc: 'Guarda la configuración actual en la memoria no volátil (Preferences NVS) de forma permanente.' },
+          { tipo: 'Clic Sostenido (>500ms)', desc: 'Cierra el Menú de Sistema y regresa al modo Jam.' }
+        ],
+        'song': [
+          { tipo: 'Eje X (Izquierda / Derecha)', desc: 'Navega horizontalmente por los bloques de la línea de tiempo de la canción (Intro, Verso, Coro, Puente, Outro).' },
+          { tipo: 'Eje Y (Arriba / Abajo)', desc: 'Selecciona la pista vertical (T1..T8) para asignar o cambiar la variación de patrón en esa escena.' },
+          { tipo: 'Clic Simple (JoySW)', desc: 'Conmuta y reproduce directamente la escena o paso de la canción seleccionado en el cursor.' },
+          { tipo: 'Clic Sostenido (>500ms)', desc: 'Abre el Menú de Sistema.' }
+        ],
+        'mixer': [
+          { tipo: 'Eje X (Izquierda / Derecha)', desc: 'Desplaza el foco horizontalmente entre los 8 canales de pista (CH 1 a CH 8) y el canal Master.' },
+          { tipo: 'Eje Y (Arriba / Abajo)', desc: 'Selecciona el parámetro a controlar (Fader de Volumen, Balance de Paneo o Envío de Efectos FX Send).' },
+          { tipo: 'Clic Simple (JoySW)', desc: 'Cierra la consola del Mezclador y regresa inmediatamente al modo Jam.' }
+        ]
+      }
     },
+
     'hw-pot-vol': {
       nombre: 'Perilla Master de Volumen (Potenciómetro Analógico)',
       subtitulo: 'Control Físico de Ganancia de Salida',
       icono: '🔊',
-      acciones: [
-        { tipo: 'Giro Analógico', desc: 'Atenúa o amplifica la señal estéreo que sale hacia la toma de auriculares y el altavoz frontal.' },
-        { tipo: 'Independencia', desc: 'No altera el volumen digital del mezclador ni la grabación interna a MicroSD, garantizando tomas limpias.' }
-      ]
+      modos: {
+        'default': [
+          { tipo: 'Giro Analógico Continuo', desc: 'Control de ganancia analógica de salida física conectada al amplificador Clase D. Regula el volumen del altavoz frontal y de la toma de auriculares Jack 3.5mm sin degradar la resolución digital del audio interno ni afectar la grabación WAV a MicroSD.' },
+          { tipo: 'Comportamiento en esta sección', desc: 'Opera de forma independiente y global en cualquier modo del sistema (Jam, Menú, Canción o Mezclador).' }
+        ]
+      }
     },
+
     'hw-btn-shift': {
       nombre: 'Botón shift',
       subtitulo: 'Modificador Global de Segundo Nivel (Columna Izquierda)',
       icono: '⚡',
-      acciones: [
-        { tipo: 'SHIFT + PLAY', desc: 'Abre y cierra el Modo Canción / Arranger V2.0.' },
-        { control: 'SHIFT + REC', desc: 'Inicia o detiene la grabación master de audio en formato WAV estéreo a la MicroSD (/REC).' },
-        { tipo: 'SHIFT + Clic Joystick', desc: 'Abre directamente el menú de ajustes del Master Bus (Ecualizador y Ganancias).' },
-        { tipo: 'SHIFT + Encoders (1..4)', desc: 'Accede a las páginas secundarias de parámetros P1..P4 en el Sampler o parámetros extendidos en el Sinte.' },
-        { tipo: 'Pulsación Simple', desc: 'Funciona como botón de escape o retroceso de nivel en cualquier menú.' }
-      ]
+      modos: {
+        'sampler': [
+          { tipo: 'SHIFT + ENC 1..4', desc: 'Alterna entre las 4 páginas de parámetros del Sampler: P1 (Pitch y Envolvente ADSR), P2 (Filtro Cutoff y Resonancia), P3 (Efectos Drive/Bitcrush), P4 (Paneo L/R y Modo 1SHOT/GATE/LOOP/REVERSE).' },
+          { tipo: 'SHIFT + REC', desc: 'Inicia o detiene la grabación en vivo de la mezcla master estéreo en formato WAV (44.1kHz / 16-bit) directamente en la carpeta /REC de la MicroSD.' },
+          { tipo: 'SHIFT + PLAY', desc: 'Conmuta instantáneamente entre el Modo Jam y el Modo Canción / Arranger V2.0.' },
+          { tipo: 'SHIFT + Clic Joystick', desc: 'Acceso directo al menú de ecualización y ganancias del Master Bus.' }
+        ],
+        'synth': [
+          { tipo: 'SHIFT + ENC 2', desc: 'Navega cíclicamente entre las 5 capas del Dashboard dinámico del sintetizador: [1] OSC Y PITCH, [2] ENVOLVENTE ADSR, [3] FILTRO Y TONO, [4] LFO Y MODULACION, [5] ANALOGICO Y VCF.' },
+          { tipo: 'SHIFT + REC', desc: 'Inicia o detiene la grabación master de audio a la MicroSD en formato WAV.' },
+          { tipo: 'SHIFT + PLAY', desc: 'Conmuta al Modo Canción / Arranger.' }
+        ],
+        'seq': [
+          { tipo: 'SHIFT + ENC 1', desc: 'Selecciona la página de compás (Página 1: Pasos 1..16, Página 2: 17..32, Página 3: 33..48, Página 4: 49..64).' },
+          { tipo: 'SHIFT + PLAY', desc: 'Conmuta al Modo Canción / Arranger.' },
+          { tipo: 'SHIFT + REC', desc: 'Inicia grabación master a WAV.' }
+        ],
+        'menu-files': [
+          { tipo: 'Pulsación Simple', desc: 'Retrocede un nivel en el árbol de carpetas de la MicroSD (función Volver / Back).' }
+        ],
+        'menu-sensors': [
+          { tipo: 'Pulsación Simple', desc: 'Cancela la edición o sale del submenú al nivel anterior.' }
+        ],
+        'menu-master': [
+          { tipo: 'Pulsación Simple', desc: 'Cancela la edición o sale del submenú al nivel anterior.' }
+        ],
+        'menu-ui': [
+          { tipo: 'Pulsación Simple', desc: 'Cancela la edición o sale del submenú al nivel anterior.' }
+        ],
+        'song': [
+          { tipo: 'SHIFT + PLAY', desc: 'Sale del Modo Canción / Arranger y regresa al Modo Jam Principal.' },
+          { tipo: 'SHIFT + ENC 1', desc: 'Mueve el cabezal de reproducción rápidamente al compás 1 de la canción (Rebobinado al inicio).' }
+        ],
+        'mixer': [
+          { tipo: 'SHIFT + Pads 1 a 8', desc: 'Activa la escucha exclusiva (SOLO) de la pista seleccionada, silenciando temporalmente todos los demás canales de la mezcla.' },
+          { tipo: 'Pulsación Simple', desc: 'Cierra el mezclador y regresa a la vista Jam.' }
+        ]
+      }
     },
+
     'hw-btn-rec': {
       nombre: 'Botón REC (●)',
       subtitulo: 'Grabación de Notas, P-Locks y Modificador de Canción',
       icono: '🔴',
-      acciones: [
-        { tipo: 'REC en Pausa', desc: 'Entra al modo Step Recording. El marco de la matriz se ilumina en amarillo.' },
-        { tipo: 'REC en Reproducción', desc: 'Entra a Grabación en Vivo (Live Recording). Graba notas y automatizaciones de perillas (P-Locks).' },
-        { tipo: 'REC + Encoder 3', desc: 'Desplaza el cursor de la línea de tiempo en el Modo Canción (Arranger).' },
-        { tipo: 'REC + Encoder 4', desc: 'Ajusta el número de repeticiones (x1 a x16) para el paso de la canción seleccionado.' },
-        { tipo: 'Sostener Pad + REC', desc: 'Borra instantáneamente todas las notas grabadas de la pista activa.' }
-      ]
+      modos: {
+        'sampler': [
+          { tipo: 'REC en Reproducción (PLAY activo)', desc: 'Entra a Grabación en Vivo (Live Recording). Graba en tiempo real los golpes de los pads, la velocidad dinámica y las automatizaciones de las perillas (Parameter Locks).' },
+          { tipo: 'REC en Pausa (PLAY detenido)', desc: 'Entra al modo Step Recording (Secuenciación por Pasos). El marco de la matriz se ilumina en amarillo brillante.' },
+          { tipo: 'Sostener PAD + REC', desc: 'Borra instantáneamente todas las notas grabadas de ese Pad en el compás activo.' },
+          { tipo: 'SHIFT + REC', desc: 'Inicia o detiene la grabación de la mezcla master estéreo a la MicroSD en formato WAV.' }
+        ],
+        'synth': [
+          { tipo: 'REC en Reproducción (PLAY activo)', desc: 'Entra a Grabación en Vivo. Graba melodías cromáticas y automatizaciones de filtro (P-Locks) en tiempo real.' },
+          { tipo: 'REC en Pausa (PLAY detenido)', desc: 'Entra al modo Step Recording.' },
+          { tipo: 'Sostener PAD + REC', desc: 'Borra las notas grabadas de esa altura tonal en el compás activo.' },
+          { tipo: 'SHIFT + REC', desc: 'Inicia o detiene la grabación directa a MicroSD en formato WAV.' }
+        ],
+        'seq': [
+          { tipo: 'Pulsación Simple', desc: 'Activa o desactiva la edición directa de pasos (Step Record Mode). Permite programar ritmos encendiendo/apagando casillas con los 16 pads.' },
+          { tipo: 'Sostener DEL + REC', desc: 'Borra por completo todas las notas de la pista activa, dejándola limpia en blanco.' }
+        ],
+        'menu-files': [
+          { tipo: 'Sostener REC + Clic JoySW', desc: 'Inicia la grabación de un nuevo sample desde la entrada de línea (Line-In) o micrófono directamente a la carpeta actual.' }
+        ],
+        'menu-sensors': [],
+        'menu-master': [],
+        'menu-ui': [],
+        'song': [
+          { tipo: 'Pulsación Simple', desc: 'Activa la grabación de la secuencia de escenas en tiempo real (graba qué patrón entra en cada compás mientras suena el tema).' },
+          { tipo: 'REC + ENC 3', desc: 'Desplaza el cursor verde a lo largo de los bloques de compás de la canción.' },
+          { tipo: 'REC + ENC 4', desc: 'Ajusta el multiplicador de repeticiones de la escena activa (x1, x2, x4, x8, x16).' }
+        ],
+        'mixer': []
+      }
     },
+
     'hw-btn-del': {
       nombre: 'Botón COPY / DEL (❐)',
       subtitulo: 'Copiar, Pegar, Polirritmia y Micro-timing',
       icono: '📋',
-      acciones: [
-        { tipo: 'COPY/DEL + ENC 1', desc: 'Ajusta la longitud de pista (Track Length 1 a 64 pasos) para secuencias polirrítmicas.' },
-        { tipo: 'COPY/DEL + ENC 2', desc: 'Ajusta el Micro-timing Nudge y el Swing/Groove analógico estilo J Dilla.' },
-        { tipo: 'En Arranger', desc: 'Permite copiar (CP) y pegar (PS) patrones entre pistas o duplicar compases.' }
-      ]
+      modos: {
+        'sampler': [
+          { tipo: 'Sostener DEL + Tocar Pad', desc: 'Borra instantáneamente el contenido o notas del pad presionado.' },
+          { tipo: 'DEL + ENC 1', desc: 'Ajusta la longitud de pista (Track Length 1 a 64 pasos) para secuencias polirrítmicas.' },
+          { tipo: 'DEL + ENC 2', desc: 'Ajusta el Micro-timing Nudge y el Swing/Groove porcentual estilo J Dilla.' }
+        ],
+        'synth': [
+          { tipo: 'Sostener DEL + Tocar Pad', desc: 'Borra las notas asignadas a esa altura tonal.' },
+          { tipo: 'DEL + ENC 1', desc: 'Ajusta la longitud métrica de la pista melódica.' },
+          { tipo: 'DEL + ENC 2', desc: 'Ajusta el micro-timing de la pista.' }
+        ],
+        'seq': [
+          { tipo: 'Sostener DEL + Tocar Pad', desc: 'Elimina de inmediato el paso rítmico correspondiente a ese pad en el compás.' },
+          { tipo: 'Sostener DEL + REC', desc: 'Limpia por completo la secuencia completa de la pista activa.' }
+        ],
+        'menu-files': [
+          { tipo: 'Mantener presionado 2 segundos', desc: 'Elimina permanentemente el archivo WAV o el proyecto .JAM seleccionado de la tarjeta MicroSD (con diálogo de confirmación segura).' }
+        ],
+        'menu-sensors': [
+          { tipo: 'Pulsación Simple', desc: 'Restaura los valores de calibración de sensores al valor predeterminado de fábrica.' }
+        ],
+        'menu-master': [
+          { tipo: 'Pulsación Simple', desc: 'Restaura el ecualizador y ganancias al valor estándar plano (0 dB).' }
+        ],
+        'menu-ui': [
+          { tipo: 'Pulsación Simple', desc: 'Restaura los ajustes de pantalla y LEDs al perfil de fábrica.' }
+        ],
+        'song': [
+          { tipo: 'Pulsación Simple', desc: 'Elimina la variación de patrón asignada en la celda activa del Arranger dejándola vacía (--).' },
+          { tipo: 'Sostener DEL (2 segundos)', desc: 'Borra la escena completa seleccionada.' }
+        ],
+        'mixer': [
+          { tipo: 'Pulsación Simple', desc: 'Resetea el fader de volumen y el panorama del canal en foco a los valores estándar (0 dB, Paneo Centro).' }
+        ]
+      }
     },
+
     'hw-btn-play': {
       nombre: 'Botón PLAY / PAUSA (▶||)',
       subtitulo: 'Transporte y Preescucha de Muestras',
       icono: '▶️',
-      acciones: [
-        { tipo: 'Pulsación Normal', desc: 'Inicia o pausa la reproducción del secuenciador o la canción.' },
-        { tipo: 'En Explorador de Archivos', desc: 'Reproduce en preescucha instantánea el sample WAV seleccionado.' },
-        { tipo: 'SHIFT + PLAY', desc: 'Conmuta entre el Modo Jam Principal y el Modo Canción / Arranger V2.0.' }
-      ]
+      modos: {
+        'sampler': [
+          { tipo: 'Pulsación Simple', desc: 'Inicia o pone en pausa la reproducción del secuenciador sincronizado a los BPM del proyecto.' },
+          { tipo: 'SHIFT + PLAY', desc: 'Conmuta instantáneamente entre el Modo Jam y el Modo Canción / Arranger V2.0.' }
+        ],
+        'synth': [
+          { tipo: 'Pulsación Simple', desc: 'Inicia o pone en pausa la reproducción del secuenciador.' },
+          { tipo: 'SHIFT + PLAY', desc: 'Conmuta al Modo Canción / Arranger.' }
+        ],
+        'seq': [
+          { tipo: 'Pulsación Simple', desc: 'Inicia o pone en pausa la reproducción del patrón en bucle mostrando el barrido de pasos.' },
+          { tipo: 'SHIFT + PLAY', desc: 'Conmuta al Modo Canción / Arranger.' }
+        ],
+        'menu-files': [
+          { tipo: 'Pulsación Simple', desc: 'Preescucha en vivo (Audio Preview) del archivo WAV enfocado en el explorador a través del altavoz o auriculares sin cargarlo a ningún pad.' }
+        ],
+        'menu-sensors': [],
+        'menu-master': [],
+        'menu-ui': [],
+        'song': [
+          { tipo: 'Pulsación Simple', desc: 'Inicia la reproducción continua de la canción completa recorriendo la línea de tiempo de escenas de principio a fin.' },
+          { tipo: 'SHIFT + PLAY', desc: 'Sale del Modo Canción y regresa al Modo Jam Principal.' }
+        ],
+        'mixer': [
+          { tipo: 'Pulsación Simple', desc: 'Inicia o detiene el bucle de ritmo para poder ajustar la mezcla, paneos y volúmenes mientras se escucha la música.' }
+        ]
+      }
     },
+
     'hw-btn-stop': {
       nombre: 'Botón STOP (■)',
-      subtitulo: 'Parada, Silencio y Borrado Seguro',
+      subtitulo: 'Parada, Pánico de Audio y Silencio Inmediato',
       icono: '⏹️',
-      acciones: [
-        { tipo: 'Pulsación Normal', desc: 'Detiene el secuenciador y apaga todas las notas y colas de sintetizador.' },
-        { tipo: 'Mantener Presionado (2 seg en Menú)', desc: 'Borra permanentemente el archivo WAV o el proyecto .JAM seleccionado de la MicroSD.' }
-      ]
+      modos: {
+        'default': [
+          { tipo: 'Pulsación Simple', desc: 'Detiene inmediatamente la reproducción del secuenciador, silencia todas las notas y colas de síntesis activas (Pánico de audio / All Notes Off) y rebobina el cabezal de reproducción al paso 1 del compás.' }
+        ]
+      }
     },
+
     'hw-touchstrip': {
       nombre: 'Touchstrip Capacitivo con Zigzag de Cobre',
       subtitulo: 'Fader Táctil de Expresión y Modulación Continua',
       icono: '⚡',
-      acciones: [
-        { tipo: 'Deslizar Dedo', desc: 'Modula el corte de filtro VCF, pitch bend o envío de delay en tiempo real sin pasos audibles.' },
-        { tipo: '5 LEDs Laterales', desc: 'Indican visualmente la posición del dedo o el valor del parámetro asignado en la tira.' }
-      ]
+      modos: {
+        'sampler': [
+          { tipo: 'Deslizar dedo sobre el cobre', desc: 'Controlador de expresión táctil continuo. Modula el filtro de corte (Cutoff) o el pitch de la muestra en tiempo real. La barra TS1 en pantalla y los 5 LEDs laterales reflejan el nivel exacto de modulación táctil.' }
+        ],
+        'synth': [
+          { tipo: 'Deslizar dedo sobre el cobre', desc: 'Ribbon Controller analógico. Genera barridos continuos de frecuencia de corte VCF, modulación de morphing entre formas de onda o control de vibrato manual con respuesta instantánea sin escalonamiento.' }
+        ],
+        'seq': [
+          { tipo: 'Sostener Pad + Deslizar dedo', desc: 'Activa la función Roll / Note Repeat continua con divisiones rítmicas según la posición del dedo (1/8, 1/16, 1/32, 1/64) para redobles de batería estilo trap o fills.' }
+        ],
+        'menu-sensors': [
+          { tipo: 'Tocar o deslizar dedo', desc: 'Diagnóstico visual táctil. Muestra en pantalla el peso capacitivo y la calibración de los 5 segmentos individuales de cobre.' }
+        ],
+        'menu-files': [],
+        'menu-master': [],
+        'menu-ui': [],
+        'song': [
+          { tipo: 'Deslizar dedo', desc: 'Scrubber táctil para desplazarse rápidamente a través de la línea de tiempo de la canción hacia adelante o hacia atrás.' }
+        ],
+        'mixer': [
+          { tipo: 'Deslizar dedo', desc: 'Aplica un filtro DJ de corte global de master (Low-pass a la izquierda, High-pass a la derecha) para transiciones en vivo.' }
+        ]
+      }
     },
+
     'hw-enc-1': {
-      nombre: 'Encoder 1 (Rotary Encoder con Pulsador)',
-      subtitulo: 'Navegación de Pistas, Capas y Volumen de Mixer',
+      nombre: 'Encoder 1 (Rotary Encoder con Pulsador - Superior)',
+      subtitulo: 'Navegación de Pistas, Capas y Puntos de Corte',
       icono: '🎛️',
-      acciones: [
-        { tipo: 'En Modo Jam', desc: 'Cambia entre las 8 pistas del MiniJammer o navega entre las 5 capas del sintetizador.' },
-        { tipo: 'En Mezclador (Mixer)', desc: 'Controla el fader de volumen (0% a 200%) del canal en foco.' },
-        { tipo: 'En Arranger', desc: 'Crea una nueva variación de patrón ([+] NEW).' }
-      ]
+      modos: {
+        'sampler': [
+          { tipo: 'Giro de perilla', desc: 'Cambia entre las 8 pistas (T1 a T8) del MiniJammer. Si se mantiene un Pad presionado, cambia el pad en foco de edición.' },
+          { tipo: 'Clic en perilla', desc: 'Alterna la selección de pista o confirma puntos de corte en el Chop Studio.' }
+        ],
+        'synth': [
+          { tipo: 'Giro de perilla', desc: 'Selecciona la octava activa del teclado (OCT: 1 a 8) o la pista melódica.' },
+          { tipo: 'Clic en perilla', desc: 'Alterna cíclicamente entre los 18 Motores de Síntesis disponibles (VA-PRO, FM-2OP, ACID-303, RHODES, ORGAN, SWARM, etc.).' }
+        ],
+        'seq': [
+          { tipo: 'Giro de perilla', desc: 'Navega entre las páginas de ritmo de 16 pasos (Página 1: Pasos 1..16, Página 2: Pasos 17..32, Página 3: 33..48, Página 4: 49..64).' },
+          { tipo: 'Clic en perilla', desc: 'Alterna la resolución métrica de subdivisión del compás (1/16 estándar, 1/8T tresillos, 1/32 alta velocidad).' }
+        ],
+        'menu-files': [
+          { tipo: 'Giro de perilla', desc: 'Desplazamiento ultra-rápido (Fast Scroll) a través de la lista de carpetas y archivos en la MicroSD.' },
+          { tipo: 'Clic en perilla', desc: 'Abre la subcarpeta seleccionada o reproduce preescucha de audio.' }
+        ],
+        'menu-sensors': [
+          { tipo: 'Giro de perilla', desc: 'Ajuste rápido del parámetro numérico del sensor seleccionado.' }
+        ],
+        'menu-master': [
+          { tipo: 'Giro de perilla', desc: 'Ajuste rápido de ganancias de entrada/salida.' }
+        ],
+        'menu-ui': [
+          { tipo: 'Giro de perilla', desc: 'Ajuste rápido del brillo o volumen de feedback.' }
+        ],
+        'song': [
+          { tipo: 'Giro de perilla', desc: 'Desplaza el cursor a través de las celdas de la línea de tiempo de la canción (Timeline).' },
+          { tipo: 'Clic en perilla', desc: 'Crea una nueva variación de patrón ([+] NEW) en la pista activa.' }
+        ],
+        'mixer': [
+          { tipo: 'Giro de perilla', desc: 'Selecciona qué canal del mezclador (Pistas 1 a 8 o Bus Master) está en foco de edición.' },
+          { tipo: 'Clic en perilla', desc: 'Resetea la ganancia del canal en foco al nivel neutro estándar de 0 dB.' }
+        ]
+      }
     },
+
     'hw-enc-2': {
       nombre: 'Encoder 2 (Rotary Encoder con Pulsador)',
-      subtitulo: 'Parámetro Secundario, Presets y Paneo Estéreo',
+      subtitulo: 'Volumen de Sample, Parámetro ADSR y Fader Digital',
       icono: '🎛️',
-      acciones: [
-        { tipo: 'En Modo Jam', desc: 'Ajusta el volumen del sample o selecciona entre los 36 presets del sintetizador.' },
-        { tipo: 'En Mezclador (Mixer)', desc: 'Controla el balance de paneo estéreo (L50 a R50).' },
-        { tipo: 'En Arranger', desc: 'Elimina la variación de patrón seleccionada ([-] CLEAR).' }
-      ]
+      modos: {
+        'sampler': [
+          { tipo: 'Giro de perilla', desc: 'Ajusta el Volumen de la muestra activa (0% a 200%). En Chop Studio controla el nivel de Zoom óptico de la onda (x1/x2).' },
+          { tipo: 'SHIFT + Giro', desc: 'Accede a la Página P2 de parámetros (Filtro Cutoff y Resonancia).' },
+          { tipo: 'Clic en perilla', desc: 'Restaura el volumen del sample al 100% por defecto.' }
+        ],
+        'synth': [
+          { tipo: 'Giro de perilla', desc: 'Modifica el Parámetro 1 de la capa activa del Dashboard (Capa 1: Forma de Onda/Shape; Capa 2: Attack; Capa 3: Cutoff VCF; Capa 4: LFO Rate; Capa 5: Saturación/Drive).' },
+          { tipo: 'SHIFT + Giro', desc: 'Cambia entre las 5 capas del Dashboard dinámico [1] OSC [2] ADSR [3] FILTRO [4] LFO [5] VCF.' },
+          { tipo: 'Clic en perilla', desc: 'Selecciona entre los presets de fábrica del motor activo.' }
+        ],
+        'seq': [
+          { tipo: 'Giro de perilla', desc: 'Ajusta el Tempo global (BPM: 40 a 240) o el porcentaje de Swing/Groove micro-timing.' },
+          { tipo: 'Clic en perilla', desc: 'Función Tap Tempo: calcula el BPM pulsando rítmicamente la perilla.' }
+        ],
+        'menu-files': [
+          { tipo: 'Giro de perilla', desc: 'Ajusta el volumen de preescucha (Preview Volume) de los archivos WAV.' }
+        ],
+        'menu-sensors': [
+          { tipo: 'Giro de perilla', desc: 'Modifica el valor del umbral o curva de calibración.' }
+        ],
+        'menu-master': [
+          { tipo: 'Giro de perilla', desc: 'Modifica el valor de la ganancia seleccionada.' }
+        ],
+        'menu-ui': [
+          { tipo: 'Giro de perilla', desc: 'Modifica el brillo de la pantalla o de los LEDs.' }
+        ],
+        'song': [
+          { tipo: 'Giro de perilla', desc: 'Ajusta el número de repeticiones para la escena seleccionada (x1, x2, x4, x8, x16 o bucle infinito).' },
+          { tipo: 'Clic en perilla', desc: 'Elimina la variación de patrón de la pista en esa escena ([-] CLEAR).' }
+        ],
+        'mixer': [
+          { tipo: 'Giro de perilla', desc: 'Fader digital de volumen del canal en foco (-∞ dB a +6 dB con indicación en vúmetro LCD).' },
+          { tipo: 'Clic en perilla', desc: 'Silencia o reactiva (Mute/Unmute) el canal seleccionado.' }
+        ]
+      }
     },
+
     'hw-enc-3': {
       nombre: 'Encoder 3 (Rotary Encoder con Pulsador)',
-      subtitulo: 'Pitch / Cutoff y Navegación de Timeline',
+      subtitulo: 'Pitch, Filtros, P-Locks y Paneo Estéreo',
       icono: '🎛️',
-      acciones: [
-        { tipo: 'En Modo Jam', desc: 'Ajusta la afinación (Pitch) del sample o el parámetro 3 del sinte (Detune, Decay, Cutoff).' },
-        { tipo: 'REC + ENC 3 en Arranger', desc: 'Mueve el cursor verde a través de los pasos de la canción.' },
-        { tipo: 'En Mezclador (Mixer)', desc: 'Controla el Macro 1 (Pitch en Sampler / Cutoff en Sinte).' }
-      ]
+      modos: {
+        'sampler': [
+          { tipo: 'Giro de perilla', desc: 'Ajusta la Afinación (Pitch) de la muestra de 0.25x a 4.00x semitono a semitono.' },
+          { tipo: 'SHIFT + Giro', desc: 'Accede a la Página P3 de parámetros (Efectos Drive analógico, Bitcrush y Tremolo).' },
+          { tipo: 'Clic en perilla', desc: 'Restablece el Pitch a la afinación original del archivo (1.00x).' }
+        ],
+        'synth': [
+          { tipo: 'Giro de perilla', desc: 'Modifica el Parámetro 2 de la capa activa del Dashboard (Capa 1: Detune; Capa 2: Decay; Capa 3: Resonancia VCF; Capa 4: LFO Depth; Capa 5: Calidez analógica Warmth).' },
+          { tipo: 'Clic en perilla', desc: 'Restablece el parámetro a su valor neutro.' }
+        ],
+        'seq': [
+          { tipo: 'Giro de perilla', desc: 'Ajusta la longitud de pista (Track Length: de 1 a 64 pasos) permitiendo polirritmias complejas respecto a otras pistas.' }
+        ],
+        'menu-files': [
+          { tipo: 'Giro de perilla', desc: 'Filtra la lista por extensiones de archivo (.WAV para audio, .JAM para proyectos, .TXT para presets).' }
+        ],
+        'menu-sensors': [],
+        'menu-master': [
+          { tipo: 'Giro de perilla', desc: 'Ajusta el ecualizador Master de Graves (Bass Shelf de -12 dB a +12 dB).' }
+        ],
+        'menu-ui': [],
+        'song': [
+          { tipo: 'Giro de perilla', desc: 'Ajusta la transposición tonal global en semitonos para la sección enfocada.' }
+        ],
+        'mixer': [
+          { tipo: 'Giro de perilla', desc: 'Control de Balance de Paneo Estéreo (L64 .. C .. R63) del canal seleccionado.' },
+          { tipo: 'Clic en perilla', desc: 'Centra el panorama estéreo en el centro exacto (Center).' }
+        ]
+      }
     },
+
     'hw-enc-4': {
-      nombre: 'Encoder 4 (Rotary Encoder con Pulsador)',
-      subtitulo: 'Release / Resonancia y Repeticiones de Escena',
+      nombre: 'Encoder 4 (Rotary Encoder con Pulsador - Inferior)',
+      subtitulo: 'Release, Modos de Disparo y Envío de Efectos',
       icono: '🎛️',
-      acciones: [
-        { tipo: 'En Modo Jam', desc: 'Ajusta el tiempo de relajación (Release) del sample o la resonancia del filtro VCF.' },
-        { tipo: 'REC + ENC 4 en Arranger', desc: 'Ajusta el número de repeticiones de la escena (x1 a x16).' },
-        { tipo: 'En Mezclador (Mixer)', desc: 'Controla el Macro 2 (Release en Sampler / Decay en Sinte).' }
-      ]
+      modos: {
+        'sampler': [
+          { tipo: 'Giro de perilla', desc: 'Ajusta el tiempo de relajación (Release/Decay) del sample de 10ms a 5.0 segundos.' },
+          { tipo: 'SHIFT + Giro', desc: 'Accede a la Página P4 de parámetros (Modo de disparo: 1SHOT, GATE, LOOP, REVERSE y Choke Groups).' },
+          { tipo: 'Clic en perilla', desc: 'Restablece el Release al valor predeterminado de la muestra.' }
+        ],
+        'synth': [
+          { tipo: 'Giro de perilla', desc: 'Modifica el Parámetro 3 de la capa activa del Dashboard (Capa 1: Glide/Portamento; Capa 2: Release ADSR; Capa 3: Tipo de Filtro Low-Pass/Band-Pass/High-Pass; Capa 4: Destino LFO; Capa 5: Master Pan).' },
+          { tipo: 'Clic en perilla', desc: 'Restaura el parámetro al valor estándar.' }
+        ],
+        'seq': [
+          { tipo: 'Giro de perilla', desc: 'Ajusta la probabilidad de disparo (Trig Probability: 10% a 100%) para ritmos dinámicos y variaciones generativas automáticas.' }
+        ],
+        'menu-files': [],
+        'menu-sensors': [],
+        'menu-master': [
+          { tipo: 'Giro de perilla', desc: 'Ajusta el ecualizador Master de Agudos (Treble Shelf de -12 dB a +12 dB).' }
+        ],
+        'menu-ui': [],
+        'song': [
+          { tipo: 'Giro de perilla', desc: 'Define el modo de encadenamiento entre escenas (Inmediato, Al terminar el compás o Repetir bucle).' }
+        ],
+        'mixer': [
+          { tipo: 'Giro de perilla', desc: 'Ajusta el nivel de envío a la cadena de efectos Master (FX Send: Reverb y Delay).' }
+        ]
+      }
     },
+
     'hw-speaker': {
       nombre: 'Altavoz Frontal Dinámico Clase D',
       subtitulo: 'Monitoreo Integrado de Campo Cercano',
       icono: '📢',
-      acciones: [
-        { tipo: 'Monitoreo Autónomo', desc: 'Permite componer y jammear en cualquier lugar sin necesidad de cables ni auriculares.' },
-        { tipo: 'Desconexión Automática', desc: 'Se silencia automáticamente al conectar auriculares o un cable a la toma Jack de 3.5mm.' }
-      ]
+      modos: {
+        'default': [
+          { tipo: 'Monitoreo Autónomo', desc: 'Permite componer y jammear en cualquier lugar sin necesidad de cables ni auriculares.' },
+          { tipo: 'Desconexión Automática', desc: 'Se silencia automáticamente al conectar auriculares o un cable a la toma Jack de 3.5mm.' }
+        ]
+      }
     }
   };
 
@@ -763,58 +1058,146 @@
       clickedEl.classList.add('hw-highlight-press');
     }
 
-    let info = HARDWARE_CONTROL_INFO[controlId];
+    // Si se hace clic en la pantalla LCD, volver al desglose técnico de la pantalla activa
+    if (controlId === 'hw-lcd-display' || controlId === 'hw-screen') {
+      const activeData = SECTIONS_DATA[currentActiveView];
+      if (activeData) {
+        renderTechnicalManual(activeData);
+      }
+      return;
+    }
 
-    // Manejador genérico para cualquier pad de la matriz
-    if (!info && controlId.startsWith('hw-pad-')) {
-      const padNum = controlId.replace('hw-pad-', '');
+    const currentViewData = SECTIONS_DATA[currentActiveView];
+    const currentBadge = currentViewData ? currentViewData.badge : currentActiveView.toUpperCase();
+
+    let info = null;
+    let acciones = [];
+
+    // Manejador dinámico contextual para Pads de Matriz (Pads 1..16)
+    if (controlId.startsWith('hw-pad-') || controlId === 'hw-pads-matrix') {
+      const padNum = controlId.startsWith('hw-pad-') ? parseInt(controlId.replace('hw-pad-', ''), 10) : 1;
       info = {
-        nombre: `Pad de Matriz #${padNum}`,
-        subtitulo: 'Sensor de Fuerza Piezoeléctrico y Disparo Polifónico Instantáneo',
-        icono: '🟧',
-        acciones: [
-          { tipo: 'Tocar con los dedos', desc: `Dispara el sample asignado al Pad ${padNum} en modo Sampler o la nota musical correspondiente en modo Sintetizador, con velocidad dinámica de impacto (Velocity 1..127).` },
-          { tipo: 'Sostener Pad + ENC 1 (Clic)', desc: 'Abre el Chop Studio en pantalla para editar visualmente los puntos de inicio y final de la muestra.' },
-          { tipo: 'Sostener Pad + REC', desc: `Borra todas las notas grabadas del Pad ${padNum} en el compás activo.` },
-          { tipo: 'En Secuenciador por Pasos', desc: `Activa o desactiva el paso de ritmo número ${padNum} del compás.` },
-          { tipo: 'En Mezclador (MIXER)', desc: padNum <= 8 ? `Silencia o activa (Mute/Unmute) instantáneamente el Canal ${padNum}.` : 'No asignado en Mixer.' },
-          { tipo: 'SHIFT + Pad en Mezclador', desc: padNum <= 8 ? `Activa la escucha exclusiva (Solo) del Canal ${padNum}.` : 'No asignado en Mixer.' }
-        ]
+        nombre: controlId === 'hw-pads-matrix' ? 'Matriz de 16 Pads Piezoeléctricos' : `Pad de Matriz #${padNum}`,
+        subtitulo: 'Sensor de Fuerza y Disparo Dinámico Polifónico (Velocity 1..127)',
+        icono: '🟧'
       };
+
+      if (currentActiveView === 'sampler') {
+        acciones = [
+          { tipo: 'Tocar con los dedos (Golpe)', desc: `Dispara el sample asignado al Pad ${padNum} con velocidad dinámica analógica según la fuerza del impacto (Velocity 1..127) y respuesta instantánea.` },
+          { tipo: 'Sostener Pad + Clic ENC 1', desc: 'Abre el Chop Studio en la pantalla LCD para ajustar visualmente los puntos de Inicio (Start) y Fin (End) de la muestra sobre la forma de onda.' },
+          { tipo: 'Sostener Pad + ENC 2', desc: `Ajusta el volumen exclusivo del Pad ${padNum} (0% a 200%).` },
+          { tipo: 'Sostener Pad + ENC 3', desc: `Ajusta la afinación (Pitch) del Pad ${padNum} de 0.25x a 4.00x semitono a semitono.` },
+          { tipo: 'Sostener Pad + ENC 4', desc: `Ajusta el tiempo de relajación (Release/Decay) del Pad ${padNum} (10ms a 5.0 segundos).` },
+          { tipo: 'Sostener Pad + REC', desc: `Borra instantáneamente todas las notas grabadas del Pad ${padNum} en el compás activo.` },
+          { tipo: 'Sostener Pad + ENC 1 (Giro)', desc: `Mueve el foco de edición hacia el Pad ${padNum} sin disparar sonido.` }
+        ];
+      } else if (currentActiveView === 'synth') {
+        acciones = [
+          { tipo: 'Tocar con los dedos', desc: `Teclado musical cromático. Toca la nota asignada al Pad ${padNum} (escala polifónica según la octava seleccionada en pantalla) con velocidad sensible al impacto.` },
+          { tipo: 'Sostener Pad', desc: 'Mantiene la nota sonando aplicando la envolvente ADSR (Attack, Decay, Sustain) configurada en el Dashboard dinámico.' },
+          { tipo: 'Sostener Pad + REC', desc: `Borra las notas grabadas de esta altura tonal en el compás activo.` }
+        ];
+      } else if (currentActiveView === 'seq') {
+        acciones = [
+          { tipo: 'Tocar con los dedos', desc: `Activa o desactiva (Toggle ON/OFF) el paso de ritmo número ${padNum} del compás (Paso 1 a 16). El pad se ilumina en rojo cuando el paso está programado para sonar.` },
+          { tipo: 'Sostener Pad + Girar Encoders', desc: `Edición de Parameter Locks (P-Locks) exclusivos para el paso ${padNum}: bloquea un valor específico de afinación, corte de filtro, volumen o micro-timing solo en este impacto.` },
+          { tipo: 'Sostener DEL + Tocar Pad', desc: `Elimina de inmediato el paso rítmico número ${padNum}.` }
+        ];
+      } else if (currentActiveView === 'menu-files') {
+        acciones = [
+          { tipo: 'Tocar Pad', desc: `Asigna y carga inmediatamente el archivo de audio WAV seleccionado en el explorador de la MicroSD directamente al Pad ${padNum} de la pista de sampler activa.` },
+          { tipo: 'Sostener Pad', desc: `Preescucha el sample que ya está cargado actualmente en el Pad ${padNum} para compararlo antes de reemplazarlo.` }
+        ];
+      } else if (currentActiveView === 'menu-sensors') {
+        acciones = [
+          { tipo: 'Tocar con los dedos', desc: `Diagnóstico y calibración de sensibilidad de fuerza (Velocity Curve) y respuesta piezoeléctrica para el Pad ${padNum}.` }
+        ];
+      } else if (currentActiveView === 'song') {
+        acciones = [
+          { tipo: 'Tocar Pad', desc: `Conmuta y pone en cola (Queue) el Patrón o Escena ${padNum} (Escenas 1 a 16) para que entre sincronizado exactamente al terminar el compás actual.` },
+          { tipo: 'Sostener Pad', desc: `Asigna la variación de patrón seleccionada a la celda del cursor en la línea de tiempo del Arranger.` }
+        ];
+      } else if (currentActiveView === 'mixer') {
+        if (padNum <= 8) {
+          acciones = [
+            { tipo: 'Tocar con los dedos', desc: `Silencia o reactiva (MUTE / UNMUTE) instantáneamente la Pista ${padNum}. El LED del pad cambia a rojo brillante cuando la pista está silenciada.` },
+            { tipo: 'SHIFT + Pad', desc: `Activa la escucha en solitario (SOLO) de la Pista ${padNum}, silenciando temporalmente todas las demás pistas de la mezcla.` }
+          ];
+        } else {
+          acciones = [
+            { tipo: 'Tocar con los dedos (Punch-in FX)', desc: `Disparador de efecto en vivo sobre el bus Master (Efecto momentáneo estilo SP-404: Beat Repeat, Stutter, Vinyl Stop, Low-Pass Filter sweep).` }
+          ];
+        }
+      } else {
+        acciones = [
+          { tipo: 'En este submenú', desc: 'Los pads de matriz permanecen en reposo o actúan como atajos numéricos directos.' }
+        ];
+      }
+    } else {
+      const baseInfo = CONTEXTUAL_HARDWARE_INFO[controlId];
+      if (baseInfo) {
+        info = {
+          nombre: baseInfo.nombre,
+          subtitulo: baseInfo.subtitulo,
+          icono: baseInfo.icono
+        };
+        // Obtener acciones del modo específico, o de default
+        if (baseInfo.modos[currentActiveView]) {
+          acciones = baseInfo.modos[currentActiveView];
+        } else if (baseInfo.modos['default']) {
+          acciones = baseInfo.modos['default'];
+        } else {
+          acciones = [];
+        }
+      }
     }
 
     if (!info) return;
 
-    const accionesHtml = info.acciones.map(a => `
-      <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 10px 14px; margin-bottom: 8px;">
-        <div style="color: var(--cyan); font-weight: 700; font-size: 0.88rem; margin-bottom: 4px;">
-          ${a.tipo}
+    let accionesHtml = '';
+    if (acciones && acciones.length > 0) {
+      accionesHtml = acciones.map(a => `
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 10px 14px; margin-bottom: 8px;">
+          <div style="color: var(--cyan); font-weight: 700; font-size: 0.88rem; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+            <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan);"></span>
+            ${a.tipo}
+          </div>
+          <div style="color: var(--text-main); font-size: 0.84rem; line-height: 1.45;">
+            ${a.desc}
+          </div>
         </div>
-        <div style="color: var(--text-main); font-size: 0.84rem; line-height: 1.4;">
-          ${a.desc}
+      `).join('');
+    } else {
+      accionesHtml = `
+        <div style="background: rgba(255, 255, 255, 0.02); border: 1px dashed rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 14px; text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 8px;">
+          💤 En la sección <strong>${currentBadge}</strong> este control no tiene ninguna función activa asignada.
         </div>
-      </div>
-    `).join('');
+      `;
+    }
 
     inspectorCardEl.innerHTML = `
       <div class="sim-detail-header" style="margin-bottom: 16px;">
         <div class="sim-detail-icon">${info.icono}</div>
         <div class="sim-detail-title-group">
-          <span class="sim-detail-badge badge-mode-sys">Control Físico Seleccionado</span>
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 4px;">
+            <span class="sim-detail-badge badge-mode-sys">Control Físico</span>
+            <span class="sim-detail-badge badge-mode-${currentViewData ? currentViewData.sectionKey : 'jam'}">MODO: ${currentBadge}</span>
+          </div>
           <h3 class="sim-detail-title">${info.nombre}</h3>
           <span style="font-size: 0.82rem; color: var(--text-muted);">${info.subtitulo}</span>
         </div>
       </div>
 
       <div style="margin-bottom: 16px;">
-        <div style="font-size: 0.92rem; font-weight: 700; color: #ffd700; margin-bottom: 10px;">
-          ⚡ FUNCIONES DISPONIBLES CON ESTE CONTROL:
+        <div style="font-size: 0.90rem; font-weight: 700; color: #ffd700; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+          <span>⚡</span> FUNCIONES EXCLUSIVAS EN ESTE MÓDULO:
         </div>
         ${accionesHtml}
       </div>
 
-      <div class="sim-tip-box" style="border-left-color: var(--orange); background: rgba(255, 145, 0, 0.08); color: #ffd699;">
-        <strong>💡 Modo Inspección:</strong> Para volver a ver el desglose general de la pantalla, haz clic en cualquiera de las pestañas superiores (Sampler, Sintetizador, Secuenciador, etc.).
+      <div class="sim-tip-box" style="border-left-color: var(--cyan); background: rgba(0, 229, 255, 0.06); color: #c4f4fc; font-size: 0.82rem;">
+        <strong>💡 Consejo de Navegación:</strong> Para ver el análisis visual de la pantalla LCD de este módulo, haz clic sobre la <strong>pantalla LCD</strong> en el dibujo o selecciona cualquiera de las pestañas superiores.
       </div>
     `;
   }
