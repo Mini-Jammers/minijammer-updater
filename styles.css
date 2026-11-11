@@ -861,7 +861,7 @@ code {
 }
 
 .battery-warning-col-img {
-  flex: 0 0 115px;
+  flex: 0 0 210px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -869,7 +869,7 @@ code {
 
 .battery-warning-img {
   width: 100%;
-  max-width: 105px;
+  max-width: 210px;
   height: auto;
   border-radius: 8px;
   border: 1px solid rgba(255, 61, 113, 0.4);
