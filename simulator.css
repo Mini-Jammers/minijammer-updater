@@ -1,0 +1,496 @@
+/* =============================================================================
+   SIMULADOR INTERACTIVO DE ATAJOS Y HARDWARE - MINIJAMMER XXL V2.0
+   ============================================================================= */
+
+.sim-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Barra de Búsqueda Inteligente */
+.sim-search-box {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.sim-search-icon {
+  position: absolute;
+  left: 18px;
+  font-size: 1.25rem;
+  color: var(--cyan);
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px var(--cyan-glow));
+}
+
+.sim-search-input {
+  width: 100%;
+  padding: 16px 50px 16px 52px;
+  font-size: 1.05rem;
+  color: var(--text-main);
+  background: rgba(18, 22, 33, 0.7);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  border-radius: 14px;
+  outline: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.sim-search-input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 24px rgba(0, 229, 255, 0.3), inset 0 0 12px rgba(0, 229, 255, 0.1);
+  background: rgba(18, 22, 33, 0.9);
+}
+
+.sim-search-clear {
+  position: absolute;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: var(--text-muted);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.sim-search-clear:hover {
+  background: rgba(255, 61, 113, 0.3);
+  color: #fff;
+}
+
+/* Filtro de Categorías / Chips */
+.sim-filter-bar {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+}
+
+.sim-filter-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.sim-filter-btn:hover {
+  background: rgba(0, 229, 255, 0.1);
+  color: var(--text-main);
+  border-color: rgba(0, 229, 255, 0.3);
+}
+
+.sim-filter-btn.active {
+  background: rgba(0, 229, 255, 0.2);
+  color: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.3);
+}
+
+/* Layout Principal de 2 Columnas */
+.sim-grid {
+  display: grid;
+  grid-template-columns: 1.18fr 0.82fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 980px) {
+  .sim-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tarjeta del Hardware SVG */
+.sim-hw-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sim-hw-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sim-hw-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sim-status-badge {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: rgba(0, 229, 255, 0.15);
+  color: var(--cyan);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  font-family: var(--font-mono);
+}
+
+.sim-svg-wrapper {
+  width: 100%;
+  background: radial-gradient(ellipse at center, rgba(20, 26, 40, 0.95) 0%, rgba(10, 12, 18, 0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: inset 0 2px 20px rgba(0, 0, 0, 0.7), 0 8px 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.sim-svg-wrapper svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Elementos SVG interactivos */
+.hw-interactive {
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.hw-interactive:hover {
+  filter: brightness(1.25);
+}
+
+/* Animaciones de iluminación del Hardware */
+@keyframes hwGlowPulseCyan {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px #00e5ff) drop-shadow(0 0 14px rgba(0, 229, 255, 0.8));
+    stroke: #00e5ff;
+  }
+  50% {
+    filter: drop-shadow(0 0 16px #00e5ff) drop-shadow(0 0 28px rgba(0, 229, 255, 1));
+    stroke: #ffffff;
+  }
+}
+
+@keyframes hwGlowPulseOrange {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px #ff9100) drop-shadow(0 0 14px rgba(255, 145, 0, 0.8));
+    stroke: #ff9100;
+  }
+  50% {
+    filter: drop-shadow(0 0 16px #ff9100) drop-shadow(0 0 28px rgba(255, 145, 0, 1));
+    stroke: #fff4e0;
+  }
+}
+
+@keyframes hwGlowPulseRed {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px #ff3d71) drop-shadow(0 0 14px rgba(255, 61, 113, 0.8));
+    stroke: #ff3d71;
+  }
+  50% {
+    filter: drop-shadow(0 0 18px #ff3d71) drop-shadow(0 0 32px rgba(255, 61, 113, 1));
+    stroke: #ffffff;
+  }
+}
+
+@keyframes hwRotateIndicator {
+  0% {
+    transform: rotate(-18deg);
+  }
+  50% {
+    transform: rotate(24deg);
+  }
+  100% {
+    transform: rotate(-18deg);
+  }
+}
+
+/* Clases de activación aplicadas por JS */
+.hw-highlight-hold {
+  animation: hwGlowPulseRed 1.2s infinite ease-in-out !important;
+}
+
+.hw-highlight-press {
+  animation: hwGlowPulseCyan 1.2s infinite ease-in-out !important;
+}
+
+.hw-highlight-turn {
+  animation: hwGlowPulseOrange 1.2s infinite ease-in-out !important;
+}
+
+.hw-rotate-anim {
+  transform-origin: center;
+  animation: hwRotateIndicator 1.8s infinite ease-in-out;
+}
+
+/* Tarjeta del Inspector / Detalle de la Acción */
+.sim-inspector-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: sticky;
+  top: 20px;
+}
+
+.sim-detail-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.sim-detail-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+  padding: 10px;
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  border-radius: 12px;
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.2);
+}
+
+.sim-detail-title-group {
+  flex: 1;
+}
+
+.sim-detail-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+
+.badge-mode-jam {
+  background: rgba(0, 229, 255, 0.2);
+  color: var(--cyan);
+  border: 1px solid rgba(0, 229, 255, 0.4);
+}
+
+.badge-mode-song {
+  background: rgba(255, 145, 0, 0.2);
+  color: var(--orange);
+  border: 1px solid rgba(255, 145, 0, 0.4);
+}
+
+.badge-mode-seq {
+  background: rgba(80, 255, 120, 0.2);
+  color: #50ff78;
+  border: 1px solid rgba(80, 255, 120, 0.4);
+}
+
+.badge-mode-sys {
+  background: rgba(180, 140, 255, 0.2);
+  color: #c7a4ff;
+  border: 1px solid rgba(180, 140, 255, 0.4);
+}
+
+.sim-detail-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+/* Módulo de Teclas Requeridas (Visual Key Combination) */
+.sim-combo-box {
+  background: rgba(10, 14, 22, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sim-combo-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.8px;
+  font-weight: 600;
+}
+
+.sim-combo-keys {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.sim-key-badge {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.key-hold {
+  background: linear-gradient(135deg, #ff3d71, #c41847);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.key-press {
+  background: linear-gradient(135deg, #00e5ff, #0088cc);
+  color: #06111e;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.key-turn {
+  background: linear-gradient(135deg, #ff9100, #cc6600);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.key-separator {
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Paso a Paso Explicado */
+.sim-steps-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sim-step-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-main);
+}
+
+.sim-step-num {
+  width: 24px;
+  height: 24px;
+  background: rgba(0, 229, 255, 0.15);
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Tip / Nota de Ayuda */
+.sim-tip-box {
+  background: rgba(0, 229, 255, 0.06);
+  border-left: 3px solid var(--cyan);
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+  font-size: 0.84rem;
+  color: #aeeaff;
+  line-height: 1.45;
+}
+
+/* Simulación de la Pantalla LCD */
+.sim-lcd-box {
+  background: #03070b;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #00e5ff;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: inset 0 0 12px rgba(0, 229, 255, 0.2);
+}
+
+.sim-lcd-header {
+  font-size: 0.7rem;
+  color: #648296;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+  padding-bottom: 3px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Lista Rápida de Atajos */
+.sim-quick-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 6px;
+  scrollbar-width: thin;
+}
+
+.sim-item-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.sim-item-card:hover {
+  background: rgba(0, 229, 255, 0.08);
+  border-color: rgba(0, 229, 255, 0.3);
+  transform: translateX(4px);
+}
+
+.sim-item-card.selected {
+  background: rgba(0, 229, 255, 0.15);
+  border-color: var(--cyan);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.2);
+}
+
+.sim-item-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.sim-item-keys {
+  font-size: 0.76rem;
+  font-family: var(--font-mono);
+  color: var(--cyan);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 3px 8px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+}

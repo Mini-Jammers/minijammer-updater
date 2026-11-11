@@ -10,6 +10,7 @@
   <link href="https://fonts.cdnfonts.com/css/helvetica-2" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=14.0">
+  <link rel="stylesheet" href="simulator.css?v=1.0">
 
   <!-- JSZip para empaquetado de carpetas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -77,6 +78,12 @@
         <span class="tab-info">
           <span class="tab-title">Manual de Usuario</span>
           <span class="tab-sub">Guía y solución de problemas</span>
+        </span>
+      </button>
+      <button class="tab-btn" data-tab="tab-simulador">
+        <span class="tab-info">
+          <span class="tab-title">Simulador de Atajos</span>
+          <span class="tab-sub">Manual Interactivo V2.0</span>
         </span>
       </button>
     </div>
@@ -816,6 +823,234 @@
         </div>
       </section>
 
+      <!-- ================= PESTAÑA 6: SIMULADOR INTERACTIVO DE ATAJOS (V2.0) ================= -->
+      <section id="tab-simulador" class="tab-panel">
+        <div class="card glass-card" style="margin-bottom: 24px;">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="chip chip-cyan">V2.0 INTERACTIVO</span>
+              <h2>Simulador de Atajos & Hardware</h2>
+            </div>
+          </div>
+          <p class="card-desc" style="margin-bottom: 0;">
+            Aprende a dominar tu <strong>MiniJammer XXL</strong>. Escribe cualquier función que desees realizar para ver qué botones presionar, o haz clic directamente sobre cualquier control del dibujo para explorar sus combinaciones.
+          </p>
+        </div>
+
+        <div class="sim-container">
+          <!-- Buscador Inteligente -->
+          <div class="sim-search-box">
+            <span class="sim-search-icon">🔍</span>
+            <input type="text" id="sim-search-input" class="sim-search-input"
+              placeholder="Escribe una función (ej. Mover cursor, P-Locks, Grabar SD, TIE notas, Menú Master, Longitud compás)...">
+            <button id="sim-search-clear" class="sim-search-clear" title="Limpiar búsqueda">&times;</button>
+          </div>
+
+          <!-- Filtros Rápidos por Categoría -->
+          <div class="sim-filter-bar">
+            <button class="sim-filter-btn active" data-cat="all">🌟 Todos los Atajos</button>
+            <button class="sim-filter-btn" data-cat="song">🎬 Modo Canción / Arranger</button>
+            <button class="sim-filter-btn" data-cat="jam">🎵 Modo Jam & Síntesis</button>
+            <button class="sim-filter-btn" data-cat="seq">🎹 Secuenciador & TIEs</button>
+            <button class="sim-filter-btn" data-cat="sys">⚙️ Sistema & Atajos</button>
+            <button class="sim-filter-btn" data-cat="media">📻 Reproductor SD & FM</button>
+          </div>
+
+          <!-- Grid Principal: Hardware SVG + Inspector de Acción -->
+          <div class="sim-grid">
+            <!-- Columna Izquierda: Tarjeta con el Hardware SVG Interactivo -->
+            <div class="card glass-card sim-hw-card">
+              <div class="sim-hw-header">
+                <span class="sim-hw-title">
+                  <span>🕹️</span> MiniJammer XXL — Panel Frontal Físico
+                </span>
+                <span class="sim-status-badge">V2.0 HARDWARE</span>
+              </div>
+
+              <div class="sim-svg-wrapper">
+                <svg id="minijammer-svg" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="chassis-grad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#181e2b" />
+                      <stop offset="50%" stop-color="#121622" />
+                      <stop offset="100%" stop-color="#0b0e17" />
+                    </linearGradient>
+                    <linearGradient id="lcd-grad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#020810" />
+                      <stop offset="100%" stop-color="#06121f" />
+                    </linearGradient>
+                    <radialGradient id="knob-grad" cx="40%" cy="40%" r="60%">
+                      <stop offset="0%" stop-color="#3d4960" />
+                      <stop offset="70%" stop-color="#1c2433" />
+                      <stop offset="100%" stop-color="#0e131d" />
+                    </radialGradient>
+                    <linearGradient id="pad-grad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#2c364c" />
+                      <stop offset="100%" stop-color="#182030" />
+                    </linearGradient>
+                  </defs>
+
+                  <!-- CHASIS DEL MINIJAMMER XXL -->
+                  <rect x="10" y="10" width="620" height="380" rx="22" fill="url(#chassis-grad)" stroke="#2b374e" stroke-width="2.5" />
+                  <rect x="14" y="14" width="612" height="372" rx="19" fill="none" stroke="#0a0d14" stroke-width="1.5" />
+
+                  <!-- Tornillos en esquinas -->
+                  <circle cx="26" cy="26" r="3.5" fill="#44526d" stroke="#101520" />
+                  <circle cx="614" cy="26" r="3.5" fill="#44526d" stroke="#101520" />
+                  <circle cx="26" cy="374" r="3.5" fill="#44526d" stroke="#101520" />
+                  <circle cx="614" cy="374" r="3.5" fill="#44526d" stroke="#101520" />
+
+                  <!-- FILA SUPERIOR: 4 ROTARY ENCODERS -->
+                  <!-- ENC 1 -->
+                  <g id="hw-enc-1" class="hw-interactive" title="Encoder 1">
+                    <circle cx="140" cy="52" r="28" fill="#0d111a" stroke="#2a374c" stroke-width="2" />
+                    <circle cx="140" cy="52" r="21" fill="url(#knob-grad)" stroke="#3a4c68" stroke-width="1.5" />
+                    <line x1="140" y1="52" x2="140" y2="34" stroke="#00e5ff" stroke-width="2.5" stroke-linecap="round" />
+                    <text x="140" y="90" text-anchor="middle" fill="#8a99b5" font-size="9" font-weight="700" font-family="sans-serif">ENC 1</text>
+                  </g>
+
+                  <!-- ENC 2 -->
+                  <g id="hw-enc-2" class="hw-interactive" title="Encoder 2">
+                    <circle cx="255" cy="52" r="28" fill="#0d111a" stroke="#2a374c" stroke-width="2" />
+                    <circle cx="255" cy="52" r="21" fill="url(#knob-grad)" stroke="#3a4c68" stroke-width="1.5" />
+                    <line x1="255" y1="52" x2="255" y2="34" stroke="#00e5ff" stroke-width="2.5" stroke-linecap="round" />
+                    <text x="255" y="90" text-anchor="middle" fill="#8a99b5" font-size="9" font-weight="700" font-family="sans-serif">ENC 2</text>
+                  </g>
+
+                  <!-- ENC 3 -->
+                  <g id="hw-enc-3" class="hw-interactive" title="Encoder 3">
+                    <circle cx="415" cy="52" r="28" fill="#0d111a" stroke="#2a374c" stroke-width="2" />
+                    <circle cx="415" cy="52" r="21" fill="url(#knob-grad)" stroke="#3a4c68" stroke-width="1.5" />
+                    <line x1="415" y1="52" x2="415" y2="34" stroke="#00e5ff" stroke-width="2.5" stroke-linecap="round" />
+                    <text x="415" y="90" text-anchor="middle" fill="#8a99b5" font-size="9" font-weight="700" font-family="sans-serif">ENC 3</text>
+                  </g>
+
+                  <!-- ENC 4 -->
+                  <g id="hw-enc-4" class="hw-interactive" title="Encoder 4">
+                    <circle cx="530" cy="52" r="28" fill="#0d111a" stroke="#2a374c" stroke-width="2" />
+                    <circle cx="530" cy="52" r="21" fill="url(#knob-grad)" stroke="#3a4c68" stroke-width="1.5" />
+                    <line x1="530" y1="52" x2="530" y2="34" stroke="#00e5ff" stroke-width="2.5" stroke-linecap="round" />
+                    <text x="530" y="90" text-anchor="middle" fill="#8a99b5" font-size="9" font-weight="700" font-family="sans-serif">ENC 4</text>
+                  </g>
+
+                  <!-- PANTALLA TFT LCD -->
+                  <g id="hw-screen">
+                    <rect x="110" y="106" width="235" height="135" rx="8" fill="#060910" stroke="#2b3b55" stroke-width="2" />
+                    <rect x="114" y="110" width="227" height="127" rx="5" fill="url(#lcd-grad)" />
+                    <rect x="118" y="114" width="219" height="14" fill="rgba(0, 229, 255, 0.12)" />
+                    <text id="svg-lcd-header" x="122" y="125" fill="#00e5ff" font-size="9" font-family="monospace" font-weight="700">ARRANGER • SONG MODE</text>
+                    <text id="svg-lcd-text" x="122" y="150" fill="#f0f8ff" font-size="10.5" font-family="monospace">STEP [ 01 / 16 ]  SCN 01</text>
+                    <rect x="122" y="168" width="8" height="24" fill="#00e5ff" rx="1" />
+                    <rect x="134" y="174" width="8" height="18" fill="#00e5ff" rx="1" />
+                    <rect x="146" y="162" width="8" height="30" fill="#00e5ff" rx="1" />
+                    <rect x="158" y="178" width="8" height="14" fill="#00e5ff" rx="1" />
+                    <rect x="170" y="170" width="8" height="22" fill="#00e5ff" rx="1" />
+                    <line x1="120" y1="210" x2="330" y2="210" stroke="#223348" stroke-width="1" />
+                    <text x="122" y="224" fill="#6a7d9b" font-size="8.5" font-family="monospace">MINIJAMMER XXL V2.0</text>
+                  </g>
+
+                  <!-- CONTROLES LATERALES: VOLUMEN + JOYSTICK + SHIFT + TOUCH -->
+                  <g id="hw-pot-vol" class="hw-interactive" title="Volumen Master">
+                    <circle cx="58" cy="72" r="20" fill="#0a0d14" stroke="#283446" stroke-width="1.5" />
+                    <circle cx="58" cy="72" r="14" fill="url(#knob-grad)" stroke="#3e4f6a" stroke-width="1.2" />
+                    <line x1="58" y1="72" x2="50" y2="60" stroke="#ff9100" stroke-width="2" stroke-linecap="round" />
+                    <text x="58" y="100" text-anchor="middle" fill="#8a99b5" font-size="8" font-weight="700" font-family="sans-serif">VOL</text>
+                  </g>
+
+                  <g id="hw-joy" class="hw-interactive" title="Joystick Analógico">
+                    <circle cx="58" cy="165" r="32" fill="#090c13" stroke="#232e40" stroke-width="2" />
+                    <circle cx="58" cy="165" r="22" fill="#141a26" stroke="#37455d" stroke-width="1.5" />
+                    <circle cx="58" cy="165" r="13" fill="#253043" stroke="#00e5ff" stroke-width="1.5" />
+                    <path d="M 58 139 L 55 145 L 61 145 Z" fill="#627798" />
+                    <path d="M 58 191 L 55 185 L 61 185 Z" fill="#627798" />
+                    <path d="M 32 165 L 38 162 L 38 168 Z" fill="#627798" />
+                    <path d="M 84 165 L 78 162 L 78 168 Z" fill="#627798" />
+                    <text x="58" y="210" text-anchor="middle" fill="#8a99b5" font-size="8.5" font-weight="700" font-family="sans-serif">JOYSTICK</text>
+                  </g>
+
+                  <g id="hw-btn-shift" class="hw-interactive" title="Botón SHIFT">
+                    <rect x="34" y="235" width="48" height="26" rx="6" fill="#101726" stroke="#00e5ff" stroke-width="1.8" />
+                    <text x="58" y="252" text-anchor="middle" fill="#00e5ff" font-size="9.5" font-weight="700" font-family="sans-serif">SHIFT</text>
+                  </g>
+
+                  <g id="hw-touchstrip" class="hw-interactive" title="Touchstrip Capacitivo">
+                    <rect x="34" y="280" width="48" height="75" rx="5" fill="#0c1018" stroke="#222e40" stroke-width="1.5" />
+                    <rect x="37" y="284" width="42" height="11" rx="2" fill="#182232" />
+                    <rect x="37" y="298" width="42" height="11" rx="2" fill="#182232" />
+                    <rect x="37" y="312" width="42" height="11" rx="2" fill="#182232" />
+                    <rect x="37" y="326" width="42" height="11" rx="2" fill="#182232" />
+                    <rect x="37" y="340" width="42" height="11" rx="2" fill="#182232" />
+                    <text x="58" y="370" text-anchor="middle" fill="#8a99b5" font-size="7.5" font-weight="600" font-family="sans-serif">TOUCH</text>
+                  </g>
+
+                  <!-- BOTONES DE FUNCIÓN -->
+                  <g id="hw-btn-rec" class="hw-interactive" title="Botón REC">
+                    <rect x="110" y="260" width="50" height="32" rx="6" fill="#1c0f17" stroke="#ff3d71" stroke-width="1.8" />
+                    <circle cx="125" cy="276" r="4.5" fill="#ff3d71" />
+                    <text x="144" y="280" fill="#ff3d71" font-size="10" font-weight="700" font-family="sans-serif">REC</text>
+                  </g>
+
+                  <g id="hw-btn-play" class="hw-interactive" title="Botón PLAY">
+                    <rect x="172" y="260" width="50" height="32" rx="6" fill="#0e1a17" stroke="#00e575" stroke-width="1.8" />
+                    <polygon points="184,271 184,281 192,276" fill="#00e575" />
+                    <text x="206" y="280" fill="#00e575" font-size="9.5" font-weight="700" font-family="sans-serif">PLAY</text>
+                  </g>
+
+                  <g id="hw-btn-stop" class="hw-interactive" title="Botón STOP">
+                    <rect x="234" y="260" width="50" height="32" rx="6" fill="#1c1a10" stroke="#ffb800" stroke-width="1.8" />
+                    <rect x="245" y="271" width="9" height="9" fill="#ffb800" rx="1.5" />
+                    <text x="268" y="280" fill="#ffb800" font-size="9.5" font-weight="700" font-family="sans-serif">STOP</text>
+                  </g>
+
+                  <g id="hw-btn-del" class="hw-interactive" title="Botón COPY / DEL">
+                    <rect x="295" y="260" width="50" height="32" rx="6" fill="#141424" stroke="#a480ff" stroke-width="1.8" />
+                    <text x="320" y="280" text-anchor="middle" fill="#a480ff" font-size="9.5" font-weight="700" font-family="sans-serif">COPY</text>
+                  </g>
+
+                  <text x="228" y="340" text-anchor="middle" fill="#445570" font-size="11" font-weight="700" letter-spacing="2" font-family="sans-serif">MINIJAMMER XXL</text>
+                  <text x="228" y="356" text-anchor="middle" fill="#273448" font-size="8" font-weight="600" letter-spacing="1.5" font-family="sans-serif">V2.0 GROOVE WORKSTATION</text>
+
+                  <!-- MATRIZ DE 16 PADS (4x4) -->
+                  <g id="hw-pads-matrix">
+                    <!-- Fila 1 -->
+                    <g id="hw-pad-1" class="hw-interactive" title="Pad 1"><rect x="375" y="105" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="401" y="136" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">1</text></g>
+                    <g id="hw-pad-2" class="hw-interactive" title="Pad 2"><rect x="437" y="105" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="463" y="136" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">2</text></g>
+                    <g id="hw-pad-3" class="hw-interactive" title="Pad 3"><rect x="499" y="105" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="525" y="136" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">3</text></g>
+                    <g id="hw-pad-4" class="hw-interactive" title="Pad 4"><rect x="561" y="105" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="587" y="136" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">4</text></g>
+                    <!-- Fila 2 -->
+                    <g id="hw-pad-5" class="hw-interactive" title="Pad 5"><rect x="375" y="167" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="401" y="198" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">5</text></g>
+                    <g id="hw-pad-6" class="hw-interactive" title="Pad 6"><rect x="437" y="167" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="463" y="198" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">6</text></g>
+                    <g id="hw-pad-7" class="hw-interactive" title="Pad 7"><rect x="499" y="167" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="525" y="198" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">7</text></g>
+                    <g id="hw-pad-8" class="hw-interactive" title="Pad 8"><rect x="561" y="167" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="587" y="198" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">8</text></g>
+                    <!-- Fila 3 -->
+                    <g id="hw-pad-9" class="hw-interactive" title="Pad 9"><rect x="375" y="229" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="401" y="260" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">9</text></g>
+                    <g id="hw-pad-10" class="hw-interactive" title="Pad 10"><rect x="437" y="229" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="463" y="260" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">10</text></g>
+                    <g id="hw-pad-11" class="hw-interactive" title="Pad 11"><rect x="499" y="229" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="525" y="260" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">11</text></g>
+                    <g id="hw-pad-12" class="hw-interactive" title="Pad 12"><rect x="561" y="229" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="587" y="260" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">12</text></g>
+                    <!-- Fila 4 -->
+                    <g id="hw-pad-13" class="hw-interactive" title="Pad 13"><rect x="375" y="291" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="401" y="322" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">13</text></g>
+                    <g id="hw-pad-14" class="hw-interactive" title="Pad 14"><rect x="437" y="291" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="463" y="322" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">14</text></g>
+                    <g id="hw-pad-15" class="hw-interactive" title="Pad 15"><rect x="499" y="291" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="525" y="322" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">15</text></g>
+                    <g id="hw-pad-16" class="hw-interactive" title="Pad 16"><rect x="561" y="291" width="52" height="52" rx="8" fill="url(#pad-grad)" stroke="#394863" stroke-width="1.5" /><text x="587" y="322" text-anchor="middle" fill="#8ca0be" font-size="12" font-weight="700" font-family="sans-serif">16</text></g>
+                  </g>
+                </svg>
+              </div>
+
+              <!-- Lista rápida de todos los atajos filtrados -->
+              <div style="margin-top: 10px;">
+                <span class="sim-combo-label" style="display: block; margin-bottom: 8px;">Explorador rápido de atajos:</span>
+                <div id="sim-quick-list" class="sim-quick-list"></div>
+              </div>
+            </div>
+
+            <!-- Columna Derecha: Tarjeta del Inspector de Acción / Guía Paso a Paso -->
+            <div id="sim-inspector-card" class="card glass-card sim-inspector-card">
+              <!-- Renderizado dinámicamente por simulator.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
 
     <!-- Footer -->
@@ -1398,6 +1633,7 @@
   </div>
 
   <script src="app.js?v=12.0"></script>
+  <script src="simulator.js?v=1.0"></script>
 </body>
 
 </html>
