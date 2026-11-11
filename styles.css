@@ -854,14 +854,14 @@ code {
 .battery-warning-box {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 18px;
+  gap: 18px;
+  padding: 16px;
   border-radius: 12px;
   margin-top: 24px;
 }
 
 .battery-warning-col-img {
-  flex: 1;
+  flex: 0 0 115px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -869,11 +869,11 @@ code {
 
 .battery-warning-img {
   width: 100%;
-  max-width: 210px;
+  max-width: 105px;
   height: auto;
   border-radius: 8px;
   border: 1px solid rgba(255, 61, 113, 0.4);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   display: block;
 }
 
@@ -881,7 +881,7 @@ code {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 @media (max-width: 640px) {
@@ -897,5 +897,8 @@ code {
   .battery-warning-box {
     flex-direction: column;
     text-align: center;
+  }
+  .battery-warning-col-img {
+    flex: 0 0 auto;
   }
 }
