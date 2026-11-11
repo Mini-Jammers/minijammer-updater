@@ -80,7 +80,7 @@
           <span class="tab-sub">Guía y solución de problemas</span>
         </span>
       </button>
-      <button class="tab-btn" data-tab="tab-simulador">
+      <button class="tab-btn" data-tab="tab-simulador" id="tab-btn-simulador" style="display: none;">
         <span class="tab-info">
           <span class="tab-title">Simulador de Atajos</span>
           <span class="tab-sub">Manual Interactivo V2.0</span>
@@ -1188,9 +1188,10 @@
 
                         <!-- Recuadro Central: Forma de Onda (Waveform) X=66, Y=86, W=188, H=54 -->
                         <g id="jam-waveform-box">
-                          <rect x="66" y="86" width="188" height="54" rx="4" fill="#020406" stroke="#888" stroke-width="1" />
-                          <!-- Onda con Antialiasing y Amplitud -->
-                          <path d="M 70 113 Q 80 92 90 113 T 110 113 T 130 95 T 150 128 T 170 102 T 190 118 T 210 108 T 230 113 T 250 113" fill="none" stroke="#00e5ff" stroke-width="1.8" />
+                          <rect x="66" y="86" width="188" height="54" rx="4" fill="#000" stroke="#7b828a" stroke-width="1" />
+                          <line x1="67" y1="113" x2="253" y2="113" stroke="#212428" stroke-width="1" />
+                          <!-- Onda Real en Amarillo (TFT_YELLOW en UIView.cpp) -->
+                          <path d="M 70 113 L 76 113 L 82 91 L 85 134 L 89 96 L 93 129 L 97 101 L 101 124 L 106 105 L 111 120 L 117 108 L 123 118 L 130 100 L 135 126 L 140 106 L 146 119 L 154 110 L 162 116 L 172 111 L 184 115 L 198 112 L 215 114 L 250 113" fill="none" stroke="#ffd700" stroke-width="1.3" />
                           <!-- Marcador de Inicio (Verde) -->
                           <line x1="82" y1="88" x2="82" y2="138" stroke="#00e575" stroke-width="1.2" />
                           <polygon points="82,88 82,93 86,90" fill="#00e575" />
@@ -1215,44 +1216,26 @@
                           <text x="266" y="138" fill="#ff9100" font-size="7" font-family="monospace">44k/16b</text>
                         </g>
 
-                        <!-- Memoria del Sampler Y=144..152 -->
+                        <!-- Memoria del Sampler Y=144..152 (16 bloques bx = 4 + i*11, bw=9, bh=8) -->
                         <g id="jam-mem-row">
-                          <rect x="4" y="144" width="15" height="8" fill="#ff9100" stroke="#ffd700" stroke-width="1" />
-                          <rect x="21" y="144" width="15" height="8" fill="#664400" stroke="#888" stroke-width="1" />
-                          <rect x="38" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
-                          <rect x="55" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
-                          <rect x="72" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
-                          <rect x="89" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
-                          <rect x="106" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
-                          <rect x="123" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
-                          <rect x="140" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
-                          <rect x="157" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
-                          <rect x="174" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
-                          <rect x="191" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
-                          <text x="220" y="150" fill="#fff" font-size="6.5" font-family="monospace">20.1s LOFI</text>
-                          <text x="270" y="150" fill="#aaa" font-size="6.5" font-family="monospace">MEM:02827</text>
-                        </g>
-
-                        <!-- Secuenciador Inferior (16 Pasos) Y=156..167 -->
-                        <g id="jam-seq-steps">
-                          <rect x="4" y="156" width="17" height="11" rx="1" fill="#ffd700" />
-                          <rect x="23" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
-                          <rect x="42" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
-                          <rect x="61" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
-                          <rect x="80" y="156" width="17" height="11" rx="1" fill="#00e5ff" />
-                          <rect x="99" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
-                          <rect x="118" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
-                          <rect x="137" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
-                          <rect x="156" y="156" width="17" height="11" rx="1" fill="#ffd700" />
-                          <rect x="175" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
-                          <rect x="194" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
-                          <rect x="213" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
-                          <rect x="232" y="156" width="17" height="11" rx="1" fill="#00e5ff" />
-                          <rect x="251" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
-                          <rect x="270" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
-                          <rect x="289" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
-                          <!-- Cabezal de barrido en paso 4 -->
-                          <rect x="80" y="154" width="17" height="14" rx="2" fill="none" stroke="#fff" stroke-width="1.5" />
+                          <rect x="4" y="144" width="9" height="8" fill="#c86400" stroke="#ffd700" stroke-width="1" />
+                          <rect x="15" y="144" width="9" height="8" fill="#643200" stroke="#7b828a" stroke-width="1" />
+                          <rect x="26" y="144" width="9" height="8" fill="#643200" stroke="#7b828a" stroke-width="1" />
+                          <rect x="37" y="144" width="9" height="8" fill="none" stroke="#444" stroke-width="1" />
+                          <rect x="48" y="144" width="9" height="8" fill="#643200" stroke="#7b828a" stroke-width="1" />
+                          <rect x="59" y="144" width="9" height="8" fill="#643200" stroke="#7b828a" stroke-width="1" />
+                          <rect x="70" y="144" width="9" height="8" fill="none" stroke="#444" stroke-width="1" />
+                          <rect x="81" y="144" width="9" height="8" fill="none" stroke="#444" stroke-width="1" />
+                          <rect x="92" y="144" width="9" height="8" fill="none" stroke="#444" stroke-width="1" />
+                          <rect x="103" y="144" width="9" height="8" fill="none" stroke="#444" stroke-width="1" />
+                          <rect x="114" y="144" width="9" height="8" fill="none" stroke="#444" stroke-width="1" />
+                          <rect x="125" y="144" width="9" height="8" fill="none" stroke="#444" stroke-width="1" />
+                          <rect x="136" y="144" width="9" height="8" fill="none" stroke="#444" stroke-width="1" />
+                          <rect x="147" y="144" width="9" height="8" fill="none" stroke="#444" stroke-width="1" />
+                          <rect x="158" y="144" width="9" height="8" fill="none" stroke="#444" stroke-width="1" />
+                          <rect x="169" y="144" width="9" height="8" fill="none" stroke="#444" stroke-width="1" />
+                          <text x="184" y="151" fill="#fff" font-size="6.5" font-family="monospace">20.1s LOFI</text>
+                          <text x="316" y="151" text-anchor="end" fill="#888" font-size="6.5" font-family="monospace">MEM: 02827</text>
                         </g>
                       </g>
 

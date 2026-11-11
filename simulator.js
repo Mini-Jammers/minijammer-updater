@@ -526,6 +526,30 @@
   let activeBadgeEl = null;
 
   function initSimulator() {
+    // Control de entorno: el simulador solo está habilitado en entorno local de desarrollo (localhost / 127.0.0.1 / file: o ?dev=true)
+    const isLocalDev = window.location.hostname === 'localhost' ||
+                       window.location.hostname === '127.0.0.1' ||
+                       window.location.protocol === 'file:' ||
+                       new URLSearchParams(window.location.search).has('dev');
+
+    const simTabBtn = document.getElementById('tab-btn-simulador');
+    if (simTabBtn) {
+      if (isLocalDev) {
+        simTabBtn.style.display = '';
+      } else {
+        simTabBtn.style.display = 'none';
+        const simPanel = document.getElementById('tab-simulador');
+        if (simPanel && simPanel.classList.contains('active')) {
+          simPanel.classList.remove('active');
+          const defaultTab = document.getElementById('tab-automatico');
+          if (defaultTab) defaultTab.classList.add('active');
+          const defaultBtn = document.querySelector('[data-tab="tab-automatico"]');
+          if (defaultBtn) defaultBtn.classList.add('active');
+        }
+        return; // Salir en producción online para mantener inhabilitado el módulo
+      }
+    }
+
     svgElement = document.getElementById('minijammer-svg');
     inspectorCardEl = document.getElementById('sim-inspector-card');
     activeBadgeEl = document.getElementById('sim-active-screen-badge');
