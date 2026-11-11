@@ -37,7 +37,7 @@
         },
         {
           zona: 'Cuadrante de Sensores y Radar Híbrido (Y=33..72)',
-          detalles: '4 barras analógicas laterales: LZ (Láser ToF 10-400mm en rojo), TS1 (Touchstrip en cian), RT (Velocidad de rotación BMI160 en amarillo) y SH (Agitar en verde). Cuadrante Radar híbrido a la derecha (48x48 px, borde naranja) mostrando anillos concéntricos, burbuja magenta del Giroscopio 2D y anillo naranja con vector de deflexión del Joystick Hall. Columna central con barras de modulación del Encoder 3 (E3, E3C, E3S, E3SC).'
+          detalles: '4 barras analógicas laterales: LZ (Láser ToF 10-400mm en rojo), TS1 (Touchstrip en cian), RT (Velocidad de rotación BMI160 en amarillo) y VL (Volante Yaw horizontal en verde). Cuadrante Radar híbrido a la derecha (48x48 px, borde naranja) mostrando anillos concéntricos, burbuja magenta del Giroscopio 2D y anillo naranja con vector de deflexión del Joystick Hall. Columna central con barras de modulación del Encoder 3 (E3, E3C, E3S, E3SC).'
         },
         {
           zona: 'Recuadro Central de Forma de Onda (X=66, Y=86, W=188, H=54)',
@@ -210,7 +210,7 @@
         },
         {
           zona: 'Columna 1: 16 Sensores Físicos Mapeables',
-          detalles: 'Lista de fuentes físicas: LASER ToF, GIRO X, GIRO Y, VEL GIRO, AGITAR (SHAKE), JOYSTICK X, JOYSTICK Y, TOUCHSTRIP 1..5, ENCODER 3 CLK, ENC 3 SHIFT.'
+          detalles: 'Lista de fuentes físicas: LASER ToF, GIRO X, GIRO Y, VEL GIRO, VOLANTE (STEERING), JOYSTICK X, JOYSTICK Y, TOUCHSTRIP 1..5, ENCODER 3 CLK, ENC 3 SHIFT.'
         },
         {
           zona: 'Columna 2: Destinos de Modulación y Profundidad',
