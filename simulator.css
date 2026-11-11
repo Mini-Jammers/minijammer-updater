@@ -67,42 +67,159 @@
   color: #fff;
 }
 
-/* Filtro de Categorías / Chips */
-.sim-filter-bar {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding-bottom: 6px;
-  scrollbar-width: thin;
+/* =============================================================================
+   NAVEGACIÓN ESTRUCTURADA EN 4 SECCIONES REALES (NIVEL 1 & NIVEL 2)
+   ============================================================================= */
+
+/* Nivel 1: Barra de Secciones Principales */
+.sim-sections-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  width: 100%;
 }
 
-.sim-filter-btn {
-  background: rgba(255, 255, 255, 0.05);
+@media (max-width: 900px) {
+  .sim-sections-nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .sim-sections-nav {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sim-sec-btn {
+  background: rgba(18, 22, 33, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--text-muted);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
-  display: inline-flex;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.sim-sec-btn:hover {
+  background: rgba(28, 36, 52, 0.85);
+  border-color: rgba(0, 229, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.sim-sec-btn.active {
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(18, 26, 42, 0.9));
+  border-color: var(--cyan);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.25), inset 0 0 10px rgba(0, 229, 255, 0.08);
+}
+
+.sim-sec-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 3px;
+  background: var(--cyan);
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+.sim-sec-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  flex-shrink: 0;
   transition: all 0.2s ease;
 }
 
-.sim-filter-btn:hover {
-  background: rgba(0, 229, 255, 0.1);
-  color: var(--text-main);
-  border-color: rgba(0, 229, 255, 0.3);
+.sim-sec-btn.active .sim-sec-badge {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: #060910;
+  box-shadow: 0 0 10px var(--cyan-glow);
 }
 
-.sim-filter-btn.active {
-  background: rgba(0, 229, 255, 0.2);
-  color: var(--cyan);
+.sim-sec-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  line-height: 1.25;
+  transition: color 0.2s ease;
+}
+
+.sim-sec-btn.active .sim-sec-title {
+  color: #fff;
+}
+
+/* Nivel 2: Barra de Subpartes Dinámicas */
+.sim-subparts-bar {
+  background: rgba(14, 18, 27, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.sim-subparts-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sim-sub-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px 14px;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.sim-sub-btn:hover {
+  background: rgba(0, 229, 255, 0.08);
+  color: var(--text-main);
+  border-color: rgba(0, 229, 255, 0.25);
+}
+
+.sim-sub-btn.active {
+  background: rgba(0, 229, 255, 0.18);
+  color: #fff;
   border-color: var(--cyan);
-  box-shadow: 0 0 14px rgba(0, 229, 255, 0.3);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.25);
+}
+
+.sim-sub-btn.active strong {
+  color: var(--cyan);
+}
+
+.sim-sub-icon {
+  font-size: 1.05rem;
+}
+
+/* Clases de pantallas SVG del display LCD */
+.lcd-view-group {
+  transition: opacity 0.2s ease;
 }
 
 /* Layout Principal de 2 Columnas */
@@ -308,6 +425,18 @@
   border: 1px solid rgba(180, 140, 255, 0.4);
 }
 
+.badge-mode-menu {
+  background: rgba(255, 125, 0, 0.2);
+  color: #ff7d00;
+  border: 1px solid rgba(255, 125, 0, 0.4);
+}
+
+.badge-mode-mixer {
+  background: rgba(0, 229, 117, 0.2);
+  color: #00e575;
+  border: 1px solid rgba(0, 229, 117, 0.4);
+}
+
 .sim-detail-title {
   font-size: 1.25rem;
   font-weight: 700;
@@ -494,3 +623,4 @@
   border-radius: 5px;
   border: 1px solid rgba(0, 229, 255, 0.2);
 }
+

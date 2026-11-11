@@ -10,7 +10,7 @@
   <link href="https://fonts.cdnfonts.com/css/helvetica-2" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=14.0">
-  <link rel="stylesheet" href="simulator.css?v=1.0">
+  <link rel="stylesheet" href="simulator.css?v=2.0">
 
   <!-- JSZip para empaquetado de carpetas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -842,18 +842,86 @@
           <div class="sim-search-box">
             <span class="sim-search-icon">🔍</span>
             <input type="text" id="sim-search-input" class="sim-search-input"
-              placeholder="Escribe una función (ej. Mover cursor, P-Locks, Grabar SD, TIE notas, Menú Master, Longitud compás)...">
+              placeholder="Escribe una función (ej. Sampler, Sintetizador, Chop Studio, TIEs, Arranger, Mixer, Sony a6000, P-Locks)...">
             <button id="sim-search-clear" class="sim-search-clear" title="Limpiar búsqueda">&times;</button>
           </div>
 
-          <!-- Filtros Rápidos por Categoría -->
-          <div class="sim-filter-bar">
-            <button class="sim-filter-btn active" data-cat="all">🌟 Todos los Atajos</button>
-            <button class="sim-filter-btn" data-cat="song">🎬 Modo Canción / Arranger</button>
-            <button class="sim-filter-btn" data-cat="jam">🎵 Modo Jam & Síntesis</button>
-            <button class="sim-filter-btn" data-cat="seq">🎹 Secuenciador & TIEs</button>
-            <button class="sim-filter-btn" data-cat="sys">⚙️ Sistema & Atajos</button>
-            <button class="sim-filter-btn" data-cat="media">📻 Reproductor SD & FM</button>
+          <!-- ============================================================== -->
+          <!-- NAVEGACIÓN ESTRUCTURADA EN 4 SECCIONES REALES DEL MINIJAMMER  -->
+          <!-- ============================================================== -->
+          <!-- Nivel 1: Secciones Principales -->
+          <div class="sim-sections-nav" id="sim-sections-nav">
+            <button class="sim-sec-btn active" data-sec="jam">
+              <span class="sim-sec-badge">1</span>
+              <span class="sim-sec-title">MODO JAM PRINCIPAL</span>
+            </button>
+            <button class="sim-sec-btn" data-sec="menu">
+              <span class="sim-sec-badge">2</span>
+              <span class="sim-sec-title">MENÚ DE SISTEMA (Sony a6000)</span>
+            </button>
+            <button class="sim-sec-btn" data-sec="song">
+              <span class="sim-sec-badge">3</span>
+              <span class="sim-sec-title">MODO CANCIÓN / ESCENAS</span>
+            </button>
+            <button class="sim-sec-btn" data-sec="mixer">
+              <span class="sim-sec-badge">4</span>
+              <span class="sim-sec-title">MEZCLADOR (MIXER 8 PISTAS)</span>
+            </button>
+          </div>
+
+          <!-- Nivel 2: Subpartes Dinámicas -->
+          <div class="sim-subparts-bar" id="sim-subparts-bar">
+            <!-- Subpartes para Sección 1: JAM -->
+            <div class="sim-subparts-group active" id="subparts-jam">
+              <button class="sim-sub-btn active" data-view="sampler">
+                <span class="sim-sub-icon">🥁</span>
+                <span class="sim-sub-label"><strong>1.1 Sampler</strong> (Chops, Slots, Envolventes & Páginas P1-P4)</span>
+              </button>
+              <button class="sim-sub-btn" data-view="synth">
+                <span class="sim-sub-icon">🎹</span>
+                <span class="sim-sub-label"><strong>1.2 Sintetizador</strong> (18 Motores, Dashboard 5 Capas, VCF TPT-SVF)</span>
+              </button>
+              <button class="sim-sub-btn" data-view="seq">
+                <span class="sim-sub-icon">🎼</span>
+                <span class="sim-sub-label"><strong>1.3 Secuenciador</strong> (Pistas 64 Pasos, TIEs OP-XY, P-Locks, Nudge)</span>
+              </button>
+            </div>
+
+            <!-- Subpartes para Sección 2: MENÚ -->
+            <div class="sim-subparts-group" id="subparts-menu" style="display: none;">
+              <button class="sim-sub-btn active" data-view="menu-files">
+                <span class="sim-sub-icon">📁</span>
+                <span class="sim-sub-label"><strong>2.1 Explorador de Archivos</strong> (Files, SD, Preescucha en Vivo, .JAM)</span>
+              </button>
+              <button class="sim-sub-btn" data-view="menu-sensors">
+                <span class="sim-sub-icon">📡</span>
+                <span class="sim-sub-label"><strong>2.2 Sensores & Modulación</strong> (Láser ToF, Touchstrip, Giroscopio BMI160, Joy)</span>
+              </button>
+              <button class="sim-sub-btn" data-view="menu-master">
+                <span class="sim-sub-icon">🎚️</span>
+                <span class="sim-sub-label"><strong>2.3 Master Bus</strong> (EQ Graves/Agudos, Ganancias, Bloq DC, Limitador)</span>
+              </button>
+              <button class="sim-sub-btn" data-view="menu-ui">
+                <span class="sim-sub-icon">⚙️</span>
+                <span class="sim-sub-label"><strong>2.4 UI & Configuración</strong> (Idioma ES/EN, Calibración Pads, LEDs RGB)</span>
+              </button>
+            </div>
+
+            <!-- Subpartes para Sección 3: MODO CANCIÓN -->
+            <div class="sim-subparts-group" id="subparts-song" style="display: none;">
+              <button class="sim-sub-btn active" data-view="song">
+                <span class="sim-sub-icon">🎬</span>
+                <span class="sim-sub-label"><strong>3.1 Arranger V2.0</strong> (Línea de Tiempo, Escenas S#, Variaciones A-P, Atajos)</span>
+              </button>
+            </div>
+
+            <!-- Subpartes para Sección 4: MIXER -->
+            <div class="sim-subparts-group" id="subparts-mixer" style="display: none;">
+              <button class="sim-sub-btn active" data-view="mixer">
+                <span class="sim-sub-icon">🎛️</span>
+                <span class="sim-sub-label"><strong>4.1 Consola de 8 Canales</strong> (Faders, Paneo, Mute/Solo, Macros en Vivo)</span>
+              </button>
+            </div>
           </div>
 
           <!-- Grid Principal: Hardware SVG + Inspector de Acción -->
@@ -864,7 +932,7 @@
                 <span class="sim-hw-title">
                   <span>🕹️</span> MiniJammer XXL — Panel Frontal Físico
                 </span>
-                <span class="sim-status-badge">V2.0 HARDWARE</span>
+                <span id="sim-active-screen-badge" class="sim-status-badge">1.1 SAMPLER</span>
               </div>
 
               <div class="sim-svg-wrapper">
@@ -922,7 +990,7 @@
                   <!-- 2. COLUMNA IZQUIERDA: JOYSTICK + VOL + SHIFT + 4 BOTONES FUNC  -->
                   <!-- ============================================================== -->
                   <!-- Joystick Analógico (Arriba Izquierda) -->
-                  <g id="hw-joy" class="hw-interactive" title="Joystick Analógico">
+                  <g id="hw-joy" class="hw-interactive" title="Joystick Analógico Hall">
                     <circle cx="56" cy="65" r="26" fill="#0c0e14" stroke="#2c3648" stroke-width="2" />
                     <circle cx="56" cy="65" r="18" fill="#18202c" stroke="#3b4860" stroke-width="1.5" />
                     <circle cx="56" cy="65" r="11" fill="#243044" stroke="#00e5ff" stroke-width="1.5" />
@@ -978,66 +1046,1005 @@
 
 
                   <!-- ============================================================== -->
-                  <!-- 3. SECCIÓN CENTRAL: PANTALLA LCD (ARRIBA) + PADS 4x4 (ABAJO)   -->
+                  <!-- 3. SECCIÓN CENTRAL: PANTALLA LCD (320x170 EXACTA A UIVIEW.CPP)  -->
                   <!-- ============================================================== -->
-                  <!-- PANTALLA TFT LCD (320 x 170 Ratio) - RENDER EXACTO DE UIVIEW.CPP -->
                   <g id="hw-screen">
+                    <!-- Marco físico exterior de la pantalla TFT LCD -->
                     <rect x="160" y="45" width="240" height="128" rx="6" fill="#05080e" stroke="#334255" stroke-width="2" />
-                    <!-- Display activo -->
-                    <rect x="163" y="48" width="234" height="122" rx="4" fill="#020408" />
                     
-                    <!-- Barra superior global (drawGlobalUI) -->
-                    <rect x="163" y="48" width="234" height="12" fill="#0a121c" />
-                    <circle cx="170" cy="54" r="2.5" fill="#00e575" />
-                    <text x="176" y="57" fill="#00e575" font-size="6.5" font-family="monospace">MON:ON</text>
-                    <text x="210" y="57" fill="#fff" font-size="6.5" font-family="monospace">LINE</text>
-                    <text x="238" y="57" fill="#ff3d71" font-size="6.5" font-family="monospace">SPK:OFF</text>
-                    <text x="276" y="57" fill="#ff3d71" font-size="6.5" font-family="monospace">FM:OFF</text>
+                    <!-- Sub-SVG escalado con coordenadas exactas 320x170 de LovyanGFX -->
+                    <svg id="hw-lcd-display" x="162" y="47" width="236" height="124" viewBox="0 0 320 170">
+                      <!-- Fondo base de pantalla -->
+                      <rect width="320" height="170" fill="#040609" />
 
-                    <!-- Modo y Título dinámico -->
-                    <text id="svg-lcd-header" x="170" y="72" fill="#00e5ff" font-size="8" font-family="monospace" font-weight="700">JAM: 01   T1 [SYNTH]</text>
-                    
-                    <!-- Mini matriz de pads en pantalla LCD (UIView.cpp) -->
-                    <rect x="170" y="78" width="5" height="5" fill="#00e575" rx="1" />
-                    <rect x="177" y="78" width="5" height="5" fill="#e07530" rx="1" />
-                    <rect x="184" y="78" width="5" height="5" fill="#e07530" rx="1" />
-                    <rect x="191" y="78" width="5" height="5" fill="#e07530" rx="1" />
-                    <rect x="170" y="85" width="5" height="5" fill="#e07530" rx="1" />
-                    <rect x="177" y="85" width="5" height="5" fill="#f0e040" rx="1" />
-                    <rect x="184" y="85" width="5" height="5" fill="#e07530" rx="1" />
-                    <rect x="191" y="85" width="5" height="5" fill="#e07530" rx="1" />
+                      <!-- ======================================================== -->
+                      <!-- PANTALLA 1.1: JAM - SAMPLER (UIView.cpp: drawStudioView) -->
+                      <!-- ======================================================== -->
+                      <g id="screen-jam-sampler" class="lcd-view-group">
+                        <!-- Barra Global Superior (drawGlobalUI) Y=0..12 -->
+                        <rect x="0" y="0" width="320" height="13" fill="#080e18" />
+                        <circle cx="10" cy="6" r="3.5" fill="#00e575" />
+                        <line x1="24" y1="2" x2="24" y2="10" stroke="#fff" stroke-width="1" />
+                        <text x="34" y="9" fill="#00e575" font-size="7.5" font-family="monospace" font-weight="700">MON</text>
+                        <line x1="64" y1="2" x2="64" y2="10" stroke="#fff" stroke-width="1" />
+                        <text x="74" y="9" fill="#fff" font-size="7.5" font-family="monospace">LINE</text>
+                        <line x1="110" y1="2" x2="110" y2="10" stroke="#fff" stroke-width="1" />
+                        <text x="120" y="9" fill="#00e575" font-size="7.5" font-family="monospace" font-weight="700">SPK</text>
+                        <line x1="150" y1="2" x2="150" y2="10" stroke="#fff" stroke-width="1" />
+                        <text x="160" y="9" fill="#ff3d71" font-size="7.5" font-family="monospace">FM</text>
+                        <line x1="184" y1="2" x2="184" y2="10" stroke="#fff" stroke-width="1" />
+                        <circle cx="194" cy="6" r="3" fill="#555" />
+                        <text x="204" y="9" fill="#888" font-size="7.5" font-family="monospace">00:00</text>
+                        <text x="242" y="9" fill="#fff" font-size="7.5" font-family="monospace">&lt;45m&gt;</text>
 
-                    <!-- Recuadro del Osciloscopio / Onda -->
-                    <rect x="204" y="76" width="112" height="48" fill="#060c14" stroke="#223a54" stroke-width="1" rx="2" />
-                    <!-- Onda Senoidal / Crunch en Cyan -->
-                    <path d="M 206 100 Q 216 85 226 100 T 246 100 T 266 100 T 286 100 T 306 100" fill="none" stroke="#00e5ff" stroke-width="1.8" />
-                    <!-- Línea de envolvente en amarillo -->
-                    <line x1="206" y1="82" x2="250" y2="108" stroke="#f5c242" stroke-width="1.2" stroke-dasharray="2,2" />
+                        <!-- Barra de Pistas Y=15..27 -->
+                        <g id="jam-track-bar">
+                          <!-- T1:SMP (Activa en Amarillo Sampler) -->
+                          <rect x="66" y="15" width="48" height="12" rx="3" fill="#463700" stroke="#ffd700" stroke-width="1" />
+                          <circle cx="72" cy="21" r="2" fill="#ffd700" />
+                          <text x="78" y="24" fill="#fff" font-size="7.5" font-family="monospace" font-weight="700">T1:SMP</text>
+                          <!-- T2:SMP -->
+                          <rect x="118" y="15" width="48" height="12" rx="3" fill="#121418" stroke="#64550f" stroke-width="1" />
+                          <text x="142" y="24" text-anchor="middle" fill="#ffd700" font-size="7.5" font-family="monospace">T2:SMP</text>
+                          <!-- T3:SYN -->
+                          <rect x="170" y="15" width="48" height="12" rx="3" fill="#121418" stroke="#0f2d96" stroke-width="1" />
+                          <text x="194" y="24" text-anchor="middle" fill="#3c82f5" font-size="7.5" font-family="monospace">T3:SYN</text>
+                          <!-- T4:AMY -->
+                          <rect x="222" y="15" width="48" height="12" rx="3" fill="#121418" stroke="#550f55" stroke-width="1" />
+                          <text x="246" y="24" text-anchor="middle" fill="#ff00ff" font-size="7.5" font-family="monospace">T4:AMY</text>
+                          <!-- Pagina 1/2 -->
+                          <text x="282" y="24" fill="#aaa" font-size="7.5" font-family="monospace">1/2</text>
+                        </g>
 
-                    <!-- Panel de Parámetros derecho en pantalla LCD -->
-                    <text x="322" y="84" fill="#a4b8d0" font-size="6.5" font-family="monospace">MODO: 1SHOT</text>
-                    <text x="322" y="93" fill="#a4b8d0" font-size="6.5" font-family="monospace">CHOKE: OFF</text>
-                    <text x="322" y="102" fill="#ffaa40" font-size="6.5" font-family="monospace">QUAL: LOFI</text>
-                    <text x="322" y="118" fill="#00e575" font-size="7" font-weight="700" font-family="monospace">26MB SD</text>
+                        <!-- Mini Matriz de 16 Pads en Pantalla (UIView.cpp padStartY=19) -->
+                        <g id="jam-screen-pads">
+                          <!-- Fila 0 -->
+                          <rect x="7" y="19" width="10" height="10" rx="2" fill="#c86400" stroke="#00e5ff" stroke-width="1.2" />
+                          <rect x="20" y="19" width="10" height="10" rx="2" fill="#c86400" />
+                          <rect x="33" y="19" width="10" height="10" rx="2" fill="#00e575" />
+                          <rect x="46" y="19" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <!-- Fila 1 -->
+                          <rect x="7" y="32" width="10" height="10" rx="2" fill="#c86400" />
+                          <rect x="20" y="32" width="10" height="10" rx="2" fill="#c86400" />
+                          <rect x="33" y="32" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <rect x="46" y="32" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <!-- Fila 2 -->
+                          <rect x="7" y="45" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <rect x="20" y="45" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <rect x="33" y="45" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <rect x="46" y="45" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <!-- Fila 3 -->
+                          <rect x="7" y="58" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <rect x="20" y="58" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <rect x="33" y="58" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <rect x="46" y="58" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <!-- Estado Mute / Solo -->
+                          <text x="6" y="77" fill="#ffd700" font-size="7" font-family="monospace">MUTE|SOLO</text>
+                        </g>
 
-                    <!-- Mensaje / Texto del atajo actual -->
-                    <text id="svg-lcd-text" x="170" y="140" fill="#f0f8ff" font-size="8.5" font-family="monospace" font-weight="700">STEP [ 04 / 16 ]  SCN 02</text>
-                    
-                    <!-- Barra de 16 pasos del secuenciador (UIView.cpp) -->
-                    <g id="svg-lcd-steps">
-                      <rect x="170" y="148" width="10" height="12" fill="#00e5ff" rx="1" />
-                      <rect x="183" y="148" width="10" height="12" fill="#203040" rx="1" />
-                      <rect x="196" y="148" width="10" height="12" fill="#203040" rx="1" />
-                      <rect x="209" y="148" width="10" height="12" fill="#ff9100" rx="1" />
-                      <rect x="222" y="148" width="10" height="12" fill="#203040" rx="1" />
-                      <rect x="235" y="148" width="10" height="12" fill="#203040" rx="1" />
-                      <rect x="248" y="148" width="10" height="12" fill="#203040" rx="1" />
-                      <rect x="261" y="148" width="10" height="12" fill="#203040" rx="1" />
-                      <rect x="274" y="148" width="10" height="12" fill="#203040" rx="1" />
-                      <rect x="287" y="148" width="10" height="12" fill="#203040" rx="1" />
-                      <rect x="300" y="148" width="10" height="12" fill="#203040" rx="1" />
-                      <rect x="313" y="148" width="10" height="12" fill="#203040" rx="1" />
-                    </g>
+                        <!-- Barras de Sensores Y=33..72 -->
+                        <g id="jam-sensors-bars">
+                          <!-- LZ (Laser ToF) -->
+                          <text x="70" y="40" fill="#ff00ff" font-size="7" font-family="monospace">LZ</text>
+                          <rect x="88" y="33" width="55" height="8" rx="2" fill="none" stroke="#444" />
+                          <rect x="89" y="34" width="28" height="6" rx="1" fill="#ff3d71" />
+                          <!-- TS1 (Touchstrip) -->
+                          <text x="66" y="53" fill="#ff00ff" font-size="7" font-family="monospace">TS1</text>
+                          <rect x="88" y="46" width="55" height="8" rx="2" fill="none" stroke="#444" />
+                          <rect x="89" y="47" width="42" height="6" rx="1" fill="#00e5ff" />
+                          <!-- RT (Rotación) -->
+                          <text x="70" y="66" fill="#ff00ff" font-size="7" font-family="monospace">RT</text>
+                          <rect x="88" y="59" width="55" height="8" rx="2" fill="none" stroke="#444" />
+                          <rect x="89" y="60" width="18" height="6" rx="1" fill="#ffd700" />
+                          <!-- SH (Agitar) -->
+                          <text x="70" y="79" fill="#ff00ff" font-size="7" font-family="monospace">SH</text>
+                          <rect x="88" y="72" width="55" height="8" rx="2" fill="none" stroke="#444" />
+                          <rect x="89" y="73" width="10" height="6" rx="1" fill="#00e575" />
+                        </g>
+
+                        <!-- Radar Híbrido Giroscopio + Joystick (X=258, Y=33, 48x48) -->
+                        <g id="jam-hybrid-radar">
+                          <rect x="258" y="33" width="48" height="48" rx="4" fill="#0e1218" stroke="#ff7d00" stroke-width="1.2" />
+                          <circle cx="282" cy="57" r="19" fill="none" stroke="#283240" stroke-width="1" />
+                          <circle cx="282" cy="57" r="10" fill="none" stroke="#1a202a" stroke-width="1" />
+                          <line x1="263" y1="57" x2="301" y2="57" stroke="#242c38" />
+                          <line x1="282" y1="38" x2="282" y2="76" stroke="#242c38" />
+                          <circle cx="282" cy="57" r="4" fill="none" stroke="#1e2430" />
+                          <!-- Burbuja Giroscopio BMI160 (Magenta) -->
+                          <circle cx="289" cy="50" r="3" fill="#ff00ff" />
+                          <!-- Anillo Joystick Hall con Vector (Naranja) -->
+                          <line x1="282" y1="57" x2="274" y2="64" stroke="#3c5a78" stroke-width="1" />
+                          <circle cx="274" cy="64" r="3" fill="#0e1218" stroke="#ff7d00" stroke-width="1" />
+                        </g>
+
+                        <!-- Encoders Column (E3, E3C, E3S, E3SC) -->
+                        <g id="jam-enc-bars">
+                          <text x="156" y="40" fill="#ff00ff" font-size="6.5" font-family="monospace">E3</text>
+                          <rect x="178" y="33" width="55" height="8" rx="2" fill="none" stroke="#444" />
+                          <rect x="179" y="34" width="30" height="6" rx="1" fill="#00e5ff" />
+                          <text x="152" y="53" fill="#ff00ff" font-size="6.5" font-family="monospace">E3C</text>
+                          <rect x="178" y="46" width="55" height="8" rx="2" fill="none" stroke="#444" />
+                          <rect x="179" y="47" width="15" height="6" rx="1" fill="#00e5ff" />
+                          <text x="152" y="66" fill="#ff00ff" font-size="6.5" font-family="monospace">E3S</text>
+                          <rect x="178" y="59" width="55" height="8" rx="2" fill="none" stroke="#444" />
+                          <rect x="179" y="60" width="45" height="6" rx="1" fill="#00e5ff" />
+                          <text x="148" y="79" fill="#ff00ff" font-size="6" font-family="monospace">E3SC</text>
+                          <rect x="178" y="72" width="55" height="8" rx="2" fill="none" stroke="#444" />
+                          <rect x="179" y="73" width="22" height="6" rx="1" fill="#00e5ff" />
+                        </g>
+
+                        <!-- Bloque de Parámetros Izquierdo (X=5, Y=86) -->
+                        <g id="jam-params-left">
+                          <text x="5" y="93" fill="#00e575" font-size="7.5" font-family="monospace" font-weight="700">P1 P:1</text>
+                          <text x="5" y="104" fill="#888" font-size="7" font-family="monospace">VOL:</text>
+                          <text x="32" y="104" fill="#00e5ff" font-size="7" font-family="monospace">100%</text>
+                          <text x="5" y="115" fill="#888" font-size="7" font-family="monospace">PIT:</text>
+                          <text x="32" y="115" fill="#00e5ff" font-size="7" font-family="monospace">1.00x</text>
+                          <text x="5" y="126" fill="#888" font-size="7" font-family="monospace">ATK:</text>
+                          <text x="32" y="126" fill="#00e5ff" font-size="7" font-family="monospace">0ms</text>
+                          <text x="5" y="137" fill="#888" font-size="7" font-family="monospace">REL:</text>
+                          <text x="32" y="137" fill="#00e5ff" font-size="7" font-family="monospace">250ms</text>
+                        </g>
+
+                        <!-- Recuadro Central: Forma de Onda (Waveform) X=66, Y=86, W=188, H=54 -->
+                        <g id="jam-waveform-box">
+                          <rect x="66" y="86" width="188" height="54" rx="4" fill="#020406" stroke="#888" stroke-width="1" />
+                          <!-- Onda con Antialiasing y Amplitud -->
+                          <path d="M 70 113 Q 80 92 90 113 T 110 113 T 130 95 T 150 128 T 170 102 T 190 118 T 210 108 T 230 113 T 250 113" fill="none" stroke="#00e5ff" stroke-width="1.8" />
+                          <!-- Marcador de Inicio (Verde) -->
+                          <line x1="82" y1="88" x2="82" y2="138" stroke="#00e575" stroke-width="1.2" />
+                          <polygon points="82,88 82,93 86,90" fill="#00e575" />
+                          <polygon points="82,138 82,133 86,135" fill="#00e575" />
+                          <!-- Marcador de Fin (Rojo) -->
+                          <line x1="235" y1="88" x2="235" y2="138" stroke="#ff3d71" stroke-width="1.2" />
+                          <polygon points="235,88 235,93 231,90" fill="#ff3d71" />
+                          <polygon points="235,138 235,133 231,135" fill="#ff3d71" />
+                          <!-- Cabezal de Playhead (Blanco) -->
+                          <line x1="140" y1="88" x2="140" y2="138" stroke="#fff" stroke-width="1" />
+                          <!-- Zoom y Velocidad -->
+                          <text x="248" y="94" text-anchor="end" fill="#00e5ff" font-size="6.5" font-family="monospace">x1</text>
+                          <text x="248" y="137" text-anchor="end" fill="#ff9100" font-size="7" font-family="monospace" font-weight="700">V:127</text>
+                        </g>
+
+                        <!-- Bloque de Parámetros Derecho (X=266, Y=88) -->
+                        <g id="jam-params-right">
+                          <text x="266" y="94" fill="#888" font-size="7" font-family="monospace">MODE:</text>
+                          <text x="266" y="105" fill="#00e5ff" font-size="7" font-family="monospace">&gt;1SHOT</text>
+                          <text x="266" y="116" fill="#888" font-size="7" font-family="monospace">CHOKE:</text>
+                          <text x="266" y="127" fill="#00e5ff" font-size="7" font-family="monospace">&gt;OFF</text>
+                          <text x="266" y="138" fill="#ff9100" font-size="7" font-family="monospace">44k/16b</text>
+                        </g>
+
+                        <!-- Memoria del Sampler Y=144..152 -->
+                        <g id="jam-mem-row">
+                          <rect x="4" y="144" width="15" height="8" fill="#ff9100" stroke="#ffd700" stroke-width="1" />
+                          <rect x="21" y="144" width="15" height="8" fill="#664400" stroke="#888" stroke-width="1" />
+                          <rect x="38" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
+                          <rect x="55" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
+                          <rect x="72" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
+                          <rect x="89" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
+                          <rect x="106" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
+                          <rect x="123" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
+                          <rect x="140" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
+                          <rect x="157" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
+                          <rect x="174" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
+                          <rect x="191" y="144" width="15" height="8" fill="none" stroke="#555" stroke-width="1" />
+                          <text x="220" y="150" fill="#fff" font-size="6.5" font-family="monospace">20.1s LOFI</text>
+                          <text x="270" y="150" fill="#aaa" font-size="6.5" font-family="monospace">MEM:02827</text>
+                        </g>
+
+                        <!-- Secuenciador Inferior (16 Pasos) Y=156..167 -->
+                        <g id="jam-seq-steps">
+                          <rect x="4" y="156" width="17" height="11" rx="1" fill="#ffd700" />
+                          <rect x="23" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="42" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="61" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="80" y="156" width="17" height="11" rx="1" fill="#00e5ff" />
+                          <rect x="99" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="118" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="137" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="156" y="156" width="17" height="11" rx="1" fill="#ffd700" />
+                          <rect x="175" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="194" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="213" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="232" y="156" width="17" height="11" rx="1" fill="#00e5ff" />
+                          <rect x="251" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="270" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="289" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <!-- Cabezal de barrido en paso 4 -->
+                          <rect x="80" y="154" width="17" height="14" rx="2" fill="none" stroke="#fff" stroke-width="1.5" />
+                        </g>
+                      </g>
+
+                      <!-- ======================================================== -->
+                      <!-- PANTALLA 1.2: JAM - SINTETIZADOR (DASHBOARD 5 CAPAS)     -->
+                      <!-- ======================================================== -->
+                      <g id="screen-jam-synth" class="lcd-view-group" style="display: none;">
+                        <!-- Barra Global Superior Y=0..12 -->
+                        <rect x="0" y="0" width="320" height="13" fill="#080e18" />
+                        <circle cx="10" cy="6" r="3.5" fill="#00e575" />
+                        <line x1="24" y1="2" x2="24" y2="10" stroke="#fff" stroke-width="1" />
+                        <text x="34" y="9" fill="#00e575" font-size="7.5" font-family="monospace" font-weight="700">MON</text>
+                        <line x1="64" y1="2" x2="64" y2="10" stroke="#fff" stroke-width="1" />
+                        <text x="74" y="9" fill="#fff" font-size="7.5" font-family="monospace">LINE</text>
+                        <line x1="110" y1="2" x2="110" y2="10" stroke="#fff" stroke-width="1" />
+                        <text x="120" y="9" fill="#00e575" font-size="7.5" font-family="monospace" font-weight="700">SPK</text>
+                        <line x1="150" y1="2" x2="150" y2="10" stroke="#fff" stroke-width="1" />
+                        <text x="160" y="9" fill="#ff3d71" font-size="7.5" font-family="monospace">FM</text>
+                        <line x1="184" y1="2" x2="184" y2="10" stroke="#fff" stroke-width="1" />
+                        <circle cx="194" cy="6" r="3" fill="#555" />
+                        <text x="204" y="9" fill="#888" font-size="7.5" font-family="monospace">00:00</text>
+                        <text x="242" y="9" fill="#fff" font-size="7.5" font-family="monospace">&lt;45m&gt;</text>
+
+                        <!-- Barra de Pistas (T1:SYN Activa en Azul Rey) -->
+                        <g>
+                          <rect x="66" y="15" width="48" height="12" rx="3" fill="#0f234b" stroke="#1e5ff0" stroke-width="1.2" />
+                          <circle cx="72" cy="21" r="2" fill="#1e5ff0" />
+                          <text x="78" y="24" fill="#fff" font-size="7.5" font-family="monospace" font-weight="700">T1:SYN</text>
+                          <rect x="118" y="15" width="48" height="12" rx="3" fill="#121418" stroke="#64550f" stroke-width="1" />
+                          <text x="142" y="24" text-anchor="middle" fill="#ffd700" font-size="7.5" font-family="monospace">T2:SMP</text>
+                          <rect x="170" y="15" width="48" height="12" rx="3" fill="#121418" stroke="#0f2d96" stroke-width="1" />
+                          <text x="194" y="24" text-anchor="middle" fill="#3c82f5" font-size="7.5" font-family="monospace">T3:SYN</text>
+                          <rect x="222" y="15" width="48" height="12" rx="3" fill="#121418" stroke="#550f55" stroke-width="1" />
+                          <text x="246" y="24" text-anchor="middle" fill="#ff00ff" font-size="7.5" font-family="monospace">T4:AMY</text>
+                          <text x="282" y="24" fill="#aaa" font-size="7.5" font-family="monospace">1/2</text>
+                        </g>
+
+                        <!-- Teclado Cromático / Matriz de Pads en Sinte -->
+                        <g>
+                          <rect x="7" y="19" width="10" height="10" rx="2" fill="#00e575" stroke="#00e5ff" stroke-width="1.2" />
+                          <rect x="20" y="19" width="10" height="10" rx="2" fill="#1c2432" stroke="#444" />
+                          <rect x="33" y="19" width="10" height="10" rx="2" fill="#c86400" />
+                          <rect x="46" y="19" width="10" height="10" rx="2" fill="#1c2432" stroke="#444" />
+                          <rect x="7" y="32" width="10" height="10" rx="2" fill="#00e575" />
+                          <rect x="20" y="32" width="10" height="10" rx="2" fill="#c86400" />
+                          <rect x="33" y="32" width="10" height="10" rx="2" fill="#1c2432" stroke="#444" />
+                          <rect x="46" y="32" width="10" height="10" rx="2" fill="#00e575" />
+                          <rect x="7" y="45" width="10" height="10" rx="2" fill="#1c2432" stroke="#444" />
+                          <rect x="20" y="45" width="10" height="10" rx="2" fill="#c86400" />
+                          <rect x="33" y="45" width="10" height="10" rx="2" fill="#1c2432" stroke="#444" />
+                          <rect x="46" y="45" width="10" height="10" rx="2" fill="#1c2432" stroke="#444" />
+                          <rect x="7" y="58" width="10" height="10" rx="2" fill="#1c2432" stroke="#444" />
+                          <rect x="20" y="58" width="10" height="10" rx="2" fill="#1c2432" stroke="#444" />
+                          <rect x="33" y="58" width="10" height="10" rx="2" fill="#1c2432" stroke="#444" />
+                          <rect x="46" y="58" width="10" height="10" rx="2" fill="#1c2432" stroke="#444" />
+                          <text x="6" y="77" fill="#ffd700" font-size="7" font-family="monospace">MUTE|SOLO</text>
+                        </g>
+
+                        <!-- Sensores e Híbrido Radar en Sinte -->
+                        <g>
+                          <text x="70" y="40" fill="#ff00ff" font-size="7" font-family="monospace">LZ</text>
+                          <rect x="88" y="33" width="55" height="8" rx="2" fill="none" stroke="#444" />
+                          <rect x="89" y="34" width="35" height="6" rx="1" fill="#ff3d71" />
+                          <text x="66" y="53" fill="#ff00ff" font-size="7" font-family="monospace">TS1</text>
+                          <rect x="88" y="46" width="55" height="8" rx="2" fill="none" stroke="#444" />
+                          <rect x="89" y="47" width="22" height="6" rx="1" fill="#00e5ff" />
+                          <text x="70" y="66" fill="#ff00ff" font-size="7" font-family="monospace">RT</text>
+                          <rect x="88" y="59" width="55" height="8" rx="2" fill="none" stroke="#444" />
+                          <rect x="89" y="60" width="12" height="6" rx="1" fill="#ffd700" />
+                          <text x="70" y="79" fill="#ff00ff" font-size="7" font-family="monospace">SH</text>
+                          <rect x="88" y="72" width="55" height="8" rx="2" fill="none" stroke="#444" />
+                          <rect x="89" y="73" width="8" height="6" rx="1" fill="#00e575" />
+
+                          <!-- Radar -->
+                          <rect x="258" y="33" width="48" height="48" rx="4" fill="#0e1218" stroke="#ff7d00" stroke-width="1.2" />
+                          <circle cx="282" cy="57" r="19" fill="none" stroke="#283240" />
+                          <circle cx="282" cy="57" r="10" fill="none" stroke="#1a202a" />
+                          <line x1="263" y1="57" x2="301" y2="57" stroke="#242c38" />
+                          <line x1="282" y1="38" x2="282" y2="76" stroke="#242c38" />
+                          <circle cx="286" cy="52" r="3" fill="#ff00ff" />
+                          <line x1="282" y1="57" x2="276" y2="61" stroke="#3c5a78" />
+                          <circle cx="276" cy="61" r="3" fill="#0e1218" stroke="#ff7d00" />
+                        </g>
+
+                        <!-- Info Izquierda de Nota en Sinte (X=5, Y=86) -->
+                        <g>
+                          <text x="5" y="94" fill="#888" font-size="7" font-family="monospace">NOTE:</text>
+                          <text x="32" y="94" fill="#00e575" font-size="7.5" font-family="monospace" font-weight="700">C4</text>
+                          <text x="5" y="106" fill="#888" font-size="7" font-family="monospace">OCT:</text>
+                          <text x="32" y="106" fill="#00e5ff" font-size="7.5" font-family="monospace">4</text>
+                          <text x="5" y="118" fill="#888" font-size="7" font-family="monospace">VOL:</text>
+                          <text x="32" y="118" fill="#00e5ff" font-size="7.5" font-family="monospace">100%</text>
+                          <text x="5" y="130" fill="#888" font-size="7" font-family="monospace">WAVE:</text>
+                          <text x="32" y="130" fill="#00e5ff" font-size="7.5" font-family="monospace">12</text>
+                          <text x="5" y="142" fill="#aaa" font-size="6.5" font-family="monospace">VA-PRO</text>
+                        </g>
+
+                        <!-- DASHBOARD DINÁMICO DEL SINTETIZADOR (X=66, Y=86, W=250, H=66) -->
+                        <g>
+                          <rect x="66" y="86" width="250" height="66" rx="4" fill="#070a10" stroke="#444" stroke-width="1.2" />
+                          <!-- Header con las 5 Capas -->
+                          <rect x="67" y="87" width="248" height="14" fill="#0f1419" />
+                          <!-- Botones 1..5 -->
+                          <rect x="70" y="89" width="13" height="10" rx="2" fill="#ffd700" />
+                          <text x="76" y="97" text-anchor="middle" fill="#000" font-size="6.5" font-family="monospace" font-weight="700">1</text>
+                          <rect x="85" y="89" width="13" height="10" rx="2" fill="none" stroke="#555" />
+                          <text x="91" y="97" text-anchor="middle" fill="#888" font-size="6.5" font-family="monospace">2</text>
+                          <rect x="100" y="89" width="13" height="10" rx="2" fill="none" stroke="#555" />
+                          <text x="106" y="97" text-anchor="middle" fill="#888" font-size="6.5" font-family="monospace">3</text>
+                          <rect x="115" y="89" width="13" height="10" rx="2" fill="none" stroke="#555" />
+                          <text x="121" y="97" text-anchor="middle" fill="#888" font-size="6.5" font-family="monospace">4</text>
+                          <rect x="130" y="89" width="13" height="10" rx="2" fill="none" stroke="#555" />
+                          <text x="136" y="97" text-anchor="middle" fill="#888" font-size="6.5" font-family="monospace">5</text>
+
+                          <text x="148" y="97" fill="#ffd700" font-size="7.5" font-family="monospace" font-weight="700">OSC Y PITCH</text>
+                          <text x="310" y="97" text-anchor="end" fill="#00e5ff" font-size="7" font-family="monospace">V:115</text>
+
+                          <!-- 4 Tarjetas de Parámetros -->
+                          <!-- Tarjeta 1: OCTAVA -->
+                          <rect x="70" y="103" width="58" height="46" rx="2" fill="#141c26" stroke="#ffd700" stroke-width="0.8" />
+                          <text x="99" y="112" text-anchor="middle" fill="#ffd700" font-size="6.5" font-family="monospace">OCTAVA</text>
+                          <text x="99" y="127" text-anchor="middle" fill="#fff" font-size="10" font-family="monospace" font-weight="700">C4</text>
+                          <rect x="75" y="139" width="48" height="5" fill="#1a202c" stroke="#334" />
+                          <rect x="76" y="140" width="24" height="3" fill="#ffd700" />
+
+                          <!-- Tarjeta 2: PRESET -->
+                          <rect x="131" y="103" width="58" height="46" rx="2" fill="#141c26" stroke="#ffd700" stroke-width="0.8" />
+                          <text x="160" y="112" text-anchor="middle" fill="#ffd700" font-size="6.5" font-family="monospace">PRESET</text>
+                          <text x="160" y="124" text-anchor="middle" fill="#ffd700" font-size="7" font-family="monospace">ACID_BASS</text>
+                          <text x="160" y="133" text-anchor="middle" fill="#aaa" font-size="6" font-family="monospace">#09 ROM</text>
+                          <rect x="136" y="139" width="48" height="5" fill="#1a202c" stroke="#334" />
+                          <rect x="137" y="140" width="18" height="3" fill="#ffd700" />
+
+                          <!-- Tarjeta 3: DETUNE -->
+                          <rect x="192" y="103" width="58" height="46" rx="2" fill="#141c26" stroke="#ffd700" stroke-width="0.8" />
+                          <text x="221" y="112" text-anchor="middle" fill="#ffd700" font-size="6.5" font-family="monospace">DETUNE</text>
+                          <text x="221" y="125" text-anchor="middle" fill="#fff" font-size="7.5" font-family="monospace">SQR 40%</text>
+                          <text x="221" y="134" text-anchor="middle" fill="#ff3d71" font-size="6.5" font-family="monospace" font-weight="700">LZ</text>
+                          <rect x="197" y="139" width="48" height="5" fill="#1a202c" stroke="#334" />
+                          <rect x="198" y="140" width="22" height="3" fill="#ffd700" />
+
+                          <!-- Tarjeta 4: DRIVE -->
+                          <rect x="253" y="103" width="58" height="46" rx="2" fill="#141c26" stroke="#ffd700" stroke-width="0.8" />
+                          <text x="282" y="112" text-anchor="middle" fill="#ffd700" font-size="6.5" font-family="monospace">DRIVE</text>
+                          <text x="282" y="125" text-anchor="middle" fill="#fff" font-size="7.5" font-family="monospace">15%</text>
+                          <text x="282" y="134" text-anchor="middle" fill="#00e5ff" font-size="6.5" font-family="monospace" font-weight="700">TS</text>
+                          <rect x="258" y="139" width="48" height="5" fill="#1a202c" stroke="#334" />
+                          <rect x="259" y="140" width="10" height="3" fill="#ffd700" />
+                        </g>
+
+                        <!-- Secuenciador Inferior en Sinte Y=156..167 -->
+                        <g>
+                          <rect x="4" y="156" width="17" height="11" rx="1" fill="#1e5ff0" />
+                          <rect x="23" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="42" y="156" width="17" height="11" rx="1" fill="#1e5ff0" />
+                          <rect x="61" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="80" y="156" width="17" height="11" rx="1" fill="#1e5ff0" />
+                          <rect x="99" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="118" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="137" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="156" y="156" width="17" height="11" rx="1" fill="#1e5ff0" />
+                          <rect x="175" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="194" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="213" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="232" y="156" width="17" height="11" rx="1" fill="#1e5ff0" />
+                          <rect x="251" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="270" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="289" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                        </g>
+                      </g>
+
+                      <!-- ======================================================== -->
+                      <!-- PANTALLA 1.3: JAM - SECUENCIADOR (STEP REC & TIES OP-XY) -->
+                      <!-- ======================================================== -->
+                      <g id="screen-jam-seq" class="lcd-view-group" style="display: none;">
+                        <rect x="0" y="0" width="320" height="13" fill="#080e18" />
+                        <circle cx="10" cy="6" r="3.5" fill="#00e575" />
+                        <text x="34" y="9" fill="#00e575" font-size="7.5" font-family="monospace" font-weight="700">MON</text>
+                        <text x="74" y="9" fill="#fff" font-size="7.5" font-family="monospace">LINE</text>
+                        <text x="120" y="9" fill="#00e575" font-size="7.5" font-family="monospace" font-weight="700">SPK</text>
+                        <text x="160" y="9" fill="#ff3d71" font-size="7.5" font-family="monospace">FM</text>
+                        <text x="204" y="9" fill="#888" font-size="7.5" font-family="monospace">00:00</text>
+                        <text x="242" y="9" fill="#fff" font-size="7.5" font-family="monospace">&lt;45m&gt;</text>
+
+                        <!-- Pistas -->
+                        <g>
+                          <rect x="66" y="15" width="48" height="12" rx="3" fill="#463700" stroke="#ffd700" stroke-width="1" />
+                          <text x="90" y="24" text-anchor="middle" fill="#fff" font-size="7.5" font-family="monospace" font-weight="700">T1:SMP</text>
+                          <rect x="118" y="15" width="48" height="12" rx="3" fill="#121418" stroke="#64550f" stroke-width="1" />
+                          <text x="142" y="24" text-anchor="middle" fill="#ffd700" font-size="7.5" font-family="monospace">T2:SMP</text>
+                          <rect x="170" y="15" width="48" height="12" rx="3" fill="#121418" stroke="#0f2d96" stroke-width="1" />
+                          <text x="194" y="24" text-anchor="middle" fill="#3c82f5" font-size="7.5" font-family="monospace">T3:SYN</text>
+                          <rect x="222" y="15" width="48" height="12" rx="3" fill="#121418" stroke="#550f55" stroke-width="1" />
+                          <text x="246" y="24" text-anchor="middle" fill="#ff00ff" font-size="7.5" font-family="monospace">T4:AMY</text>
+                        </g>
+
+                        <!-- MARCO AMARILLO VIVO DE STEP RECORDING (UIView.cpp: frameX=4, frameY=16) -->
+                        <rect x="4" y="16" width="55" height="55" rx="3" fill="none" stroke="#ffd700" stroke-width="1.8" />
+                        <g>
+                          <!-- Notas grabadas (rojo) y ligadas (naranja TIEs) -->
+                          <rect x="7" y="19" width="10" height="10" rx="2" fill="#ff3d71" />
+                          <rect x="20" y="19" width="10" height="10" rx="2" fill="#e66400" />
+                          <rect x="33" y="19" width="10" height="10" rx="2" fill="#e66400" />
+                          <rect x="46" y="19" width="10" height="10" rx="2" fill="#ff3d71" />
+                          <rect x="7" y="32" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <rect x="20" y="32" width="10" height="10" rx="2" fill="#ff3d71" />
+                          <rect x="33" y="32" width="10" height="10" rx="2" fill="#fff" />
+                          <rect x="46" y="32" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <rect x="7" y="45" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <rect x="20" y="45" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <rect x="33" y="45" width="10" height="10" rx="2" fill="#e66400" />
+                          <rect x="46" y="45" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <rect x="7" y="58" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <rect x="20" y="58" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <rect x="33" y="58" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                          <rect x="46" y="58" width="10" height="10" rx="2" fill="none" stroke="#444" />
+                        </g>
+
+                        <!-- Radar y Sensores -->
+                        <g>
+                          <rect x="258" y="33" width="48" height="48" rx="4" fill="#0e1218" stroke="#ff7d00" stroke-width="1.2" />
+                          <circle cx="282" cy="57" r="19" fill="none" stroke="#283240" />
+                          <circle cx="282" cy="57" r="10" fill="none" stroke="#1a202a" />
+                          <circle cx="284" cy="54" r="3" fill="#ff00ff" />
+                        </g>
+
+                        <!-- Panel Central de Modo Grabación por Pasos -->
+                        <g>
+                          <rect x="66" y="33" width="186" height="48" rx="4" fill="#101824" stroke="#ffd700" stroke-width="1.2" />
+                          <text x="74" y="46" fill="#ffd700" font-size="8.5" font-family="monospace" font-weight="700">● MODO STEP REC ACTIVO</text>
+                          <text x="74" y="58" fill="#fff" font-size="7.5" font-family="monospace">PASO [ 07 / 16 ]  PÁGINA 1/4</text>
+                          <text x="74" y="70" fill="#ff9100" font-size="7" font-family="monospace">SOSTENER PAD A + B = TIE SUSTAIN</text>
+                        </g>
+
+                        <!-- Panel de Motion Sequencing & P-Locks (X=66, Y=86, W=250, H=66) -->
+                        <g>
+                          <rect x="66" y="86" width="250" height="66" rx="4" fill="#0c1018" stroke="#ff9100" stroke-width="1" />
+                          <text x="74" y="99" fill="#ff9100" font-size="8" font-family="monospace" font-weight="700">AUTOMATIZACIÓN P-LOCKS EN PASO 07:</text>
+                          <!-- Carril 1 -->
+                          <text x="74" y="112" fill="#888" font-size="7.5" font-family="monospace">CUTOFF:</text>
+                          <text x="120" y="112" fill="#ff9100" font-size="7.5" font-family="monospace">1.45 kHz (LOCK)</text>
+                          <!-- Carril 2 -->
+                          <text x="74" y="124" fill="#888" font-size="7.5" font-family="monospace">PITCH BEND:</text>
+                          <text x="120" y="124" fill="#ff9100" font-size="7.5" font-family="monospace">+7 SEMITONOS</text>
+                          <!-- Carril 3 -->
+                          <text x="74" y="136" fill="#888" font-size="7.5" font-family="monospace">MICRO-NUDGE:</text>
+                          <text x="120" y="136" fill="#00e575" font-size="7.5" font-family="monospace">+18% (SWING J DILLA)</text>
+                          <text x="74" y="147" fill="#aaa" font-size="6.5" font-family="monospace">TRACK LEN: 16 STEPS (4 COMPASES = 64)</text>
+                        </g>
+
+                        <!-- Barra de 16 Pasos -->
+                        <g>
+                          <rect x="4" y="156" width="17" height="11" rx="1" fill="#ff3d71" />
+                          <rect x="23" y="156" width="17" height="11" rx="1" fill="#e66400" />
+                          <rect x="42" y="156" width="17" height="11" rx="1" fill="#e66400" />
+                          <rect x="61" y="156" width="17" height="11" rx="1" fill="#ff3d71" />
+                          <rect x="80" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="99" y="156" width="17" height="11" rx="1" fill="#ff3d71" />
+                          <rect x="118" y="156" width="17" height="11" rx="1" fill="#fff" />
+                          <rect x="137" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="156" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="175" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="194" y="156" width="17" height="11" rx="1" fill="#e66400" />
+                          <rect x="213" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="232" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="251" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="270" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <rect x="289" y="156" width="17" height="11" rx="1" fill="#141c24" stroke="#223" />
+                          <!-- Marco del paso enfocado -->
+                          <rect x="118" y="154" width="17" height="14" rx="2" fill="none" stroke="#ffd700" stroke-width="1.8" />
+                        </g>
+                      </g>
+
+                      <!-- ======================================================== -->
+                      <!-- PANTALLA 2.1: MENÚ DE SISTEMA - ARCHIVOS (FILES / SD)    -->
+                      <!-- ======================================================== -->
+                      <g id="screen-menu-files" class="lcd-view-group" style="display: none;">
+                        <!-- Fondo Menú Sony a6000 -->
+                        <rect width="320" height="170" fill="#0e0e12" />
+                        <!-- Pestañas Superiores Y=0..22 -->
+                        <rect x="0" y="0" width="80" height="22" fill="#1e1e26" />
+                        <!-- Indicador Naranja Sony a6000 en Base -->
+                        <rect x="4" y="20" width="72" height="3" fill="#ff7d00" />
+                        <rect x="2" y="2" width="76" height="18" fill="none" stroke="#fff" stroke-width="1" />
+                        <text x="40" y="13" text-anchor="middle" fill="#fff" font-size="7.5" font-family="monospace" font-weight="700">ARCHIVOS</text>
+
+                        <rect x="80" y="0" width="80" height="22" fill="#121216" />
+                        <line x1="80" y1="0" x2="80" y2="22" stroke="#2d2d37" />
+                        <text x="120" y="13" text-anchor="middle" fill="#6e6e7d" font-size="7.5" font-family="monospace">SENSORES</text>
+
+                        <rect x="160" y="0" width="80" height="22" fill="#121216" />
+                        <line x1="160" y1="0" x2="160" y2="22" stroke="#2d2d37" />
+                        <text x="200" y="13" text-anchor="middle" fill="#6e6e7d" font-size="7.5" font-family="monospace">MASTER</text>
+
+                        <rect x="240" y="0" width="80" height="22" fill="#121216" />
+                        <line x1="240" y1="0" x2="240" y2="22" stroke="#2d2d37" />
+                        <text x="280" y="13" text-anchor="middle" fill="#6e6e7d" font-size="7.5" font-family="monospace">UI</text>
+                        <!-- Divisor Horizontal -->
+                        <line x1="0" y1="22" x2="320" y2="22" stroke="#2d2d37" />
+
+                        <!-- Divisor Vertical entre Columna 1 y 2 Y=23..150 -->
+                        <line x1="100" y1="23" x2="100" y2="150" stroke="#2d2d37" />
+
+                        <!-- Columna 1: Motores (X=0..100) -->
+                        <g>
+                          <!-- SAMPLER Seleccionado -->
+                          <rect x="4" y="26" width="92" height="16" rx="2" fill="#26262e" stroke="#fff" stroke-width="1" />
+                          <text x="8" y="37" fill="#fff" font-size="7.5" font-family="monospace" font-weight="700">SAMPLER</text>
+                          <text x="8" y="58" fill="#777" font-size="7.5" font-family="monospace">SYNTH</text>
+                          <text x="8" y="79" fill="#777" font-size="7.5" font-family="monospace">AMY SYNTH</text>
+                          <text x="8" y="100" fill="#777" font-size="7.5" font-family="monospace">JAMS</text>
+                        </g>
+
+                        <!-- Columna 2: Archivos en MicroSD (X=100..320) -->
+                        <g>
+                          <text x="108" y="38" fill="#ffd700" font-size="7.5" font-family="monospace">📁 ../ (SUBIR)</text>
+                          <text x="108" y="52" fill="#ffd700" font-size="7.5" font-family="monospace">📁 DRUMS_808/</text>
+                          <text x="108" y="66" fill="#ffd700" font-size="7.5" font-family="monospace">📁 SYNTH_STABS/</text>
+                          <!-- Archivo Seleccionado -->
+                          <rect x="104" y="74" width="210" height="15" rx="2" fill="#182436" stroke="#00e5ff" stroke-width="1" />
+                          <text x="108" y="85" fill="#00e5ff" font-size="7.5" font-family="monospace" font-weight="700">🎵 808_KICK_PUNCH.WAV</text>
+                          <text x="108" y="103" fill="#ccc" font-size="7.5" font-family="monospace">🎵 808_SNARE_CRISP.WAV</text>
+                          <text x="108" y="117" fill="#ccc" font-size="7.5" font-family="monospace">🎵 HIHAT_CLOSED.WAV</text>
+                          <text x="108" y="131" fill="#ccc" font-size="7.5" font-family="monospace">🎵 CLAP_VINTAGE.WAV</text>
+                          <text x="108" y="145" fill="#888" font-size="7" font-family="monospace">44.1kHz • 16b PCM • 1.2s</text>
+                        </g>
+
+                        <!-- Pie de Página Y=151..169 -->
+                        <rect x="0" y="151" width="320" height="19" fill="#121218" />
+                        <line x1="0" y1="151" x2="320" y2="151" stroke="#2d2d37" />
+                        <text x="8" y="163" fill="#00e575" font-size="7.5" font-family="monospace" font-weight="700">&gt;&gt; PREVIEW / ESCUCHAR</text>
+                        <text x="312" y="163" text-anchor="end" fill="#ff3d71" font-size="7.5" font-family="monospace" font-weight="700">MANTÉN [STOP] BORRAR</text>
+                      </g>
+
+                      <!-- ======================================================== -->
+                      <!-- PANTALLA 2.2: MENÚ DE SISTEMA - SENSORES Y MODULACIÓN    -->
+                      <!-- ======================================================== -->
+                      <g id="screen-menu-sensors" class="lcd-view-group" style="display: none;">
+                        <rect width="320" height="170" fill="#0e0e12" />
+                        <!-- Tabs -->
+                        <rect x="0" y="0" width="80" height="22" fill="#121216" />
+                        <text x="40" y="13" text-anchor="middle" fill="#6e6e7d" font-size="7.5" font-family="monospace">ARCHIVOS</text>
+                        <rect x="80" y="0" width="80" height="22" fill="#1e1e26" />
+                        <rect x="84" y="20" width="72" height="3" fill="#ff7d00" />
+                        <text x="120" y="13" text-anchor="middle" fill="#fff" font-size="7.5" font-family="monospace" font-weight="700">SENSORES</text>
+                        <rect x="160" y="0" width="80" height="22" fill="#121216" />
+                        <text x="200" y="13" text-anchor="middle" fill="#6e6e7d" font-size="7.5" font-family="monospace">MASTER</text>
+                        <rect x="240" y="0" width="80" height="22" fill="#121216" />
+                        <text x="280" y="13" text-anchor="middle" fill="#6e6e7d" font-size="7.5" font-family="monospace">UI</text>
+                        <line x1="0" y1="22" x2="320" y2="22" stroke="#2d2d37" />
+
+                        <line x1="130" y1="23" x2="130" y2="150" stroke="#2d2d37" />
+
+                        <!-- Columna 1: Sensores Físicos -->
+                        <g>
+                          <rect x="4" y="26" width="122" height="13" rx="2" fill="#444" />
+                          <text x="8" y="35" fill="#fff" font-size="7.5" font-family="monospace" font-weight="700">LASER ToF</text>
+                          <text x="8" y="47" fill="#ccc" font-size="7.5" font-family="monospace">GIRO X</text>
+                          <text x="8" y="59" fill="#ccc" font-size="7.5" font-family="monospace">GIRO Y</text>
+                          <text x="8" y="71" fill="#ccc" font-size="7.5" font-family="monospace">VEL GIRO</text>
+                          <text x="8" y="83" fill="#ccc" font-size="7.5" font-family="monospace">AGITAR (SHAKE)</text>
+                          <text x="8" y="95" fill="#ccc" font-size="7.5" font-family="monospace">JOYSTICK X</text>
+                          <text x="8" y="107" fill="#ccc" font-size="7.5" font-family="monospace">JOYSTICK Y</text>
+                          <text x="8" y="119" fill="#ccc" font-size="7.5" font-family="monospace">TOUCHSTRIP 1..5</text>
+                          <text x="8" y="131" fill="#ccc" font-size="7.5" font-family="monospace">ENCODER 3 CLK</text>
+                          <text x="8" y="143" fill="#ccc" font-size="7.5" font-family="monospace">ENC 3 SHIFT</text>
+                        </g>
+
+                        <!-- Columna 2: Destinos de Modulación -->
+                        <g>
+                          <text x="138" y="38" fill="#888" font-size="7.5" font-family="monospace">DESTINO:</text>
+                          <text x="195" y="38" fill="#00e5ff" font-size="7.5" font-family="monospace" font-weight="700">FILTER CUTOFF</text>
+                          <text x="138" y="55" fill="#888" font-size="7.5" font-family="monospace">PROFUNDIDAD:</text>
+                          <text x="195" y="55" fill="#ffd700" font-size="7.5" font-family="monospace" font-weight="700">+85%</text>
+                          <text x="138" y="72" fill="#888" font-size="7.5" font-family="monospace">POLARIDAD:</text>
+                          <text x="195" y="72" fill="#fff" font-size="7.5" font-family="monospace">UNIPOLAR (0..1)</text>
+                          <text x="138" y="89" fill="#888" font-size="7.5" font-family="monospace">CURVA:</text>
+                          <text x="195" y="89" fill="#fff" font-size="7.5" font-family="monospace">EXPONENCIAL</text>
+                          <!-- Medidor en Vivo -->
+                          <text x="138" y="112" fill="#888" font-size="7" font-family="monospace">VALOR SENSOR EN VIVO:</text>
+                          <rect x="138" y="118" width="170" height="10" rx="2" fill="#141c26" stroke="#334" />
+                          <rect x="139" y="119" width="120" height="8" rx="1" fill="#ff3d71" />
+                          <text x="138" y="142" fill="#aaa" font-size="7" font-family="monospace">DIST: 142mm • RANGO: 10..400mm</text>
+                        </g>
+
+                        <!-- Footer -->
+                        <rect x="0" y="151" width="320" height="19" fill="#121218" />
+                        <line x1="0" y1="151" x2="320" y2="151" stroke="#2d2d37" />
+                        <text x="8" y="163" fill="#aaa" font-size="7" font-family="monospace">E1: SELECCIONAR    E2: DESTINO    E3: PROFUNDIDAD</text>
+                      </g>
+
+                      <!-- ======================================================== -->
+                      <!-- PANTALLA 2.3: MENÚ DE SISTEMA - MASTER BUS (EQ & GAIN)   -->
+                      <!-- ======================================================== -->
+                      <g id="screen-menu-master" class="lcd-view-group" style="display: none;">
+                        <rect width="320" height="170" fill="#0e0e12" />
+                        <!-- Tabs -->
+                        <rect x="0" y="0" width="80" height="22" fill="#121216" />
+                        <text x="40" y="13" text-anchor="middle" fill="#6e6e7d" font-size="7.5" font-family="monospace">ARCHIVOS</text>
+                        <rect x="80" y="0" width="80" height="22" fill="#121216" />
+                        <text x="120" y="13" text-anchor="middle" fill="#6e6e7d" font-size="7.5" font-family="monospace">SENSORES</text>
+                        <rect x="160" y="0" width="80" height="22" fill="#1e1e26" />
+                        <rect x="164" y="20" width="72" height="3" fill="#ff7d00" />
+                        <text x="200" y="13" text-anchor="middle" fill="#fff" font-size="7.5" font-family="monospace" font-weight="700">MASTER</text>
+                        <rect x="240" y="0" width="80" height="22" fill="#121216" />
+                        <text x="280" y="13" text-anchor="middle" fill="#6e6e7d" font-size="7.5" font-family="monospace">UI</text>
+                        <line x1="0" y1="22" x2="320" y2="22" stroke="#2d2d37" />
+
+                        <line x1="140" y1="23" x2="140" y2="150" stroke="#2d2d37" />
+
+                        <!-- Lista de Parámetros Master -->
+                        <g>
+                          <rect x="4" y="26" width="132" height="12" rx="2" fill="#444" />
+                          <text x="8" y="35" fill="#fff" font-size="7.5" font-family="monospace" font-weight="700">EQ GRAVES</text>
+                          <text x="160" y="35" fill="#00e5ff" font-size="7.5" font-family="monospace" font-weight="700">+2.5 dB</text>
+
+                          <text x="8" y="47" fill="#ccc" font-size="7.5" font-family="monospace">EQ AGUDOS</text>
+                          <text x="160" y="47" fill="#00e5ff" font-size="7.5" font-family="monospace">+1.0 dB</text>
+
+                          <text x="8" y="59" fill="#ccc" font-size="7.5" font-family="monospace">VOL MIC</text>
+                          <text x="160" y="59" fill="#00e5ff" font-size="7.5" font-family="monospace">85%</text>
+
+                          <text x="8" y="71" fill="#ccc" font-size="7.5" font-family="monospace">VOL LINE IN</text>
+                          <text x="160" y="71" fill="#00e5ff" font-size="7.5" font-family="monospace">100%</text>
+
+                          <text x="8" y="83" fill="#ccc" font-size="7.5" font-family="monospace">VOL MICRO SD</text>
+                          <text x="160" y="83" fill="#00e5ff" font-size="7.5" font-family="monospace">100%</text>
+
+                          <text x="8" y="95" fill="#ccc" font-size="7.5" font-family="monospace">VOL SESION REC</text>
+                          <text x="160" y="95" fill="#00e5ff" font-size="7.5" font-family="monospace">90%</text>
+
+                          <text x="8" y="107" fill="#ccc" font-size="7.5" font-family="monospace">VOL AUDIFONOS</text>
+                          <text x="160" y="107" fill="#00e5ff" font-size="7.5" font-family="monospace">75%</text>
+
+                          <text x="8" y="119" fill="#ccc" font-size="7.5" font-family="monospace">VOL BOCINA</text>
+                          <text x="160" y="119" fill="#00e5ff" font-size="7.5" font-family="monospace">80%</text>
+
+                          <text x="8" y="131" fill="#ccc" font-size="7.5" font-family="monospace">BLOQ DC</text>
+                          <text x="160" y="131" fill="#00e575" font-size="7.5" font-family="monospace" font-weight="700">ON (ACTIVO)</text>
+
+                          <text x="8" y="143" fill="#ccc" font-size="7.5" font-family="monospace">LIMITADOR BRICK</text>
+                          <text x="160" y="143" fill="#ffd700" font-size="7.5" font-family="monospace">-0.1 dB FS</text>
+                        </g>
+
+                        <!-- Footer -->
+                        <rect x="0" y="151" width="320" height="19" fill="#121218" />
+                        <line x1="0" y1="151" x2="320" y2="151" stroke="#2d2d37" />
+                        <text x="8" y="163" fill="#aaa" font-size="7" font-family="monospace">JOY/E1: NAVEGAR    E2: AJUSTAR VALOR    SHIFT: SALIR</text>
+                      </g>
+
+                      <!-- ======================================================== -->
+                      <!-- PANTALLA 2.4: MENÚ DE SISTEMA - UI Y CONFIGURACIÓN       -->
+                      <!-- ======================================================== -->
+                      <g id="screen-menu-ui" class="lcd-view-group" style="display: none;">
+                        <rect width="320" height="170" fill="#0e0e12" />
+                        <!-- Tabs -->
+                        <rect x="0" y="0" width="80" height="22" fill="#121216" />
+                        <text x="40" y="13" text-anchor="middle" fill="#6e6e7d" font-size="7.5" font-family="monospace">ARCHIVOS</text>
+                        <rect x="80" y="0" width="80" height="22" fill="#121216" />
+                        <text x="120" y="13" text-anchor="middle" fill="#6e6e7d" font-size="7.5" font-family="monospace">SENSORES</text>
+                        <rect x="160" y="0" width="80" height="22" fill="#121216" />
+                        <text x="200" y="13" text-anchor="middle" fill="#6e6e7d" font-size="7.5" font-family="monospace">MASTER</text>
+                        <rect x="240" y="0" width="80" height="22" fill="#1e1e26" />
+                        <rect x="244" y="20" width="72" height="3" fill="#ff7d00" />
+                        <text x="280" y="13" text-anchor="middle" fill="#fff" font-size="7.5" font-family="monospace" font-weight="700">UI</text>
+                        <line x1="0" y1="22" x2="320" y2="22" stroke="#2d2d37" />
+
+                        <line x1="140" y1="23" x2="140" y2="150" stroke="#2d2d37" />
+
+                        <!-- Lista Parámetros UI -->
+                        <g>
+                          <rect x="4" y="26" width="132" height="12" rx="2" fill="#444" />
+                          <text x="8" y="35" fill="#fff" font-size="7.5" font-family="monospace" font-weight="700">IDIOMA</text>
+                          <text x="160" y="35" fill="#00e575" font-size="7.5" font-family="monospace" font-weight="700">ESPAÑOL</text>
+
+                          <text x="8" y="47" fill="#ccc" font-size="7.5" font-family="monospace">VELOCIDAD</text>
+                          <text x="160" y="47" fill="#00e5ff" font-size="7.5" font-family="monospace">MEDIA (PIEZO)</text>
+
+                          <text x="8" y="59" fill="#ccc" font-size="7.5" font-family="monospace">TECHO VEL</text>
+                          <text x="160" y="59" fill="#00e5ff" font-size="7.5" font-family="monospace">127 (MÁXIMO)</text>
+
+                          <text x="8" y="71" fill="#ccc" font-size="7.5" font-family="monospace">TIEMPO ESC</text>
+                          <text x="160" y="71" fill="#00e5ff" font-size="7.5" font-family="monospace">15 ms</text>
+
+                          <text x="8" y="83" fill="#ccc" font-size="7.5" font-family="monospace">PANTALLA INICIO</text>
+                          <text x="160" y="83" fill="#00e575" font-size="7.5" font-family="monospace">ON</text>
+
+                          <text x="8" y="95" fill="#ccc" font-size="7.5" font-family="monospace">COLOR SHIFT</text>
+                          <text x="160" y="95" fill="#ff00ff" font-size="7.5" font-family="monospace">MAGENTA RGB</text>
+
+                          <text x="8" y="107" fill="#ccc" font-size="7.5" font-family="monospace">BASE VÚMETRO</text>
+                          <text x="160" y="107" fill="#00e575" font-size="7.5" font-family="monospace">VERDE</text>
+
+                          <text x="8" y="119" fill="#ccc" font-size="7.5" font-family="monospace">PICO VÚMETRO</text>
+                          <text x="160" y="119" fill="#ff3d71" font-size="7.5" font-family="monospace">ROJO</text>
+
+                          <text x="8" y="131" fill="#ccc" font-size="7.5" font-family="monospace">RESTAURAR DEF</text>
+                          <text x="160" y="131" fill="#ffd700" font-size="7.5" font-family="monospace">&gt;PULSAR PLAY</text>
+                        </g>
+
+                        <!-- Footer -->
+                        <rect x="0" y="151" width="320" height="19" fill="#121218" />
+                        <line x1="0" y1="151" x2="320" y2="151" stroke="#2d2d37" />
+                        <text x="8" y="163" fill="#aaa" font-size="7" font-family="monospace">JOY/E1: NAVEGAR    E2: CAMBIAR VALOR    SHIFT: SALIR</text>
+                      </g>
+
+                      <!-- ======================================================== -->
+                      <!-- PANTALLA 3: MODO CANCIÓN / ESCENAS (ARRANGER V2.0)       -->
+                      <!-- ======================================================== -->
+                      <g id="screen-song" class="lcd-view-group" style="display: none;">
+                        <rect width="320" height="170" fill="#000" />
+                        <!-- 8 Columnas Verticales con Divisores Y=20..134 -->
+                        <line x1="37" y1="20" x2="37" y2="134" stroke="#1a1c22" />
+                        <line x1="74" y1="20" x2="74" y2="134" stroke="#1a1c22" />
+                        <line x1="111" y1="20" x2="111" y2="134" stroke="#1a1c22" />
+                        <line x1="148" y1="20" x2="148" y2="134" stroke="#1a1c22" />
+                        <line x1="185" y1="20" x2="185" y2="134" stroke="#1a1c22" />
+                        <line x1="222" y1="20" x2="222" y2="134" stroke="#1a1c22" />
+                        <line x1="259" y1="20" x2="259" y2="134" stroke="#1a1c22" />
+                        <line x1="295" y1="0" x2="295" y2="134" stroke="#242830" stroke-width="1.2" />
+
+                        <!-- Badges Superiores T1..T8 Y=3..17 -->
+                        <g>
+                          <!-- T1 (SMP Activa) -->
+                          <rect x="2" y="3" width="33" height="15" rx="2" fill="#463700" stroke="#ffd700" stroke-width="1" />
+                          <circle cx="8" cy="10" r="2" fill="#ffd700" />
+                          <text x="14" y="13" fill="#fff" font-size="7.5" font-family="monospace" font-weight="700">T1</text>
+                          <!-- T2 -->
+                          <rect x="39" y="3" width="33" height="15" rx="2" fill="#121418" stroke="#64550f" />
+                          <text x="55" y="13" text-anchor="middle" fill="#ffd700" font-size="7.5" font-family="monospace">T2</text>
+                          <!-- T3 -->
+                          <rect x="76" y="3" width="33" height="15" rx="2" fill="#121418" stroke="#0f2d96" />
+                          <text x="92" y="13" text-anchor="middle" fill="#3c82f5" font-size="7.5" font-family="monospace">T3</text>
+                          <!-- T4 -->
+                          <rect x="113" y="3" width="33" height="15" rx="2" fill="#121418" stroke="#0f2d96" />
+                          <text x="129" y="13" text-anchor="middle" fill="#3c82f5" font-size="7.5" font-family="monospace">T4</text>
+                          <!-- T5 -->
+                          <rect x="150" y="3" width="33" height="15" rx="2" fill="#121418" stroke="#550f55" />
+                          <text x="166" y="13" text-anchor="middle" fill="#ff00ff" font-size="7.5" font-family="monospace">T5</text>
+                          <!-- T6..T8 -->
+                          <rect x="187" y="3" width="33" height="15" rx="2" fill="#121418" stroke="#333" />
+                          <text x="203" y="13" text-anchor="middle" fill="#666" font-size="7.5" font-family="monospace">T6</text>
+                          <rect x="224" y="3" width="33" height="15" rx="2" fill="#121418" stroke="#333" />
+                          <text x="240" y="13" text-anchor="middle" fill="#666" font-size="7.5" font-family="monospace">T7</text>
+                          <rect x="261" y="3" width="33" height="15" rx="2" fill="#121418" stroke="#333" />
+                          <text x="277" y="13" text-anchor="middle" fill="#666" font-size="7.5" font-family="monospace">T8</text>
+                        </g>
+
+                        <!-- Pila Vertical de Variaciones de Patrón Y=22..134 -->
+                        <g>
+                          <!-- T1 Variaciones: A (activa centro Y=55), B arriba, C abajo -->
+                          <rect x="2" y="29" width="33" height="24" rx="2" fill="#161208" stroke="#55440e" />
+                          <text x="18" y="44" text-anchor="middle" fill="#998030" font-size="10" font-family="monospace">B</text>
+                          <!-- A (Activa seleccionada en T1) -->
+                          <rect x="2" y="55" width="33" height="24" rx="2" fill="#372d08" stroke="#ffd700" stroke-width="1.2" />
+                          <text x="18" y="70" text-anchor="middle" fill="#fff" font-size="12" font-family="monospace" font-weight="700">A</text>
+                          <rect x="2" y="81" width="33" height="24" rx="2" fill="#161208" stroke="#55440e" />
+                          <text x="18" y="96" text-anchor="middle" fill="#998030" font-size="10" font-family="monospace">C</text>
+
+                          <!-- T2: A -->
+                          <rect x="39" y="55" width="33" height="24" rx="2" fill="#241e06" stroke="#aa8c14" />
+                          <text x="55" y="70" text-anchor="middle" fill="#ffd700" font-size="11" font-family="monospace">A</text>
+
+                          <!-- T3: A -->
+                          <rect x="76" y="55" width="33" height="24" rx="2" fill="#0c1a34" stroke="#326ec8" />
+                          <text x="92" y="70" text-anchor="middle" fill="#3c82f5" font-size="11" font-family="monospace">A</text>
+
+                          <!-- T4: B -->
+                          <rect x="113" y="55" width="33" height="24" rx="2" fill="#0c1a34" stroke="#326ec8" />
+                          <text x="129" y="70" text-anchor="middle" fill="#3c82f5" font-size="11" font-family="monospace">B</text>
+
+                          <!-- T5: A -->
+                          <rect x="150" y="55" width="33" height="24" rx="2" fill="#240824" stroke="#aa1eaa" />
+                          <text x="166" y="70" text-anchor="middle" fill="#ff00ff" font-size="11" font-family="monospace">A</text>
+
+                          <!-- T6..T8 vacías: guión medio -->
+                          <line x1="193" y1="67" x2="213" y2="67" stroke="#333" stroke-width="2" />
+                          <line x1="230" y1="67" x2="250" y2="67" stroke="#333" stroke-width="2" />
+                          <line x1="267" y1="67" x2="287" y2="67" stroke="#333" stroke-width="2" />
+                        </g>
+
+                        <!-- Columna Derecha de Acciones Encoders (X=296..320) -->
+                        <g>
+                          <!-- ENC 1 -> "+" (NEW) -->
+                          <rect x="298" y="23" width="20" height="22" rx="3" fill="#121418" stroke="#889" />
+                          <text x="308" y="37" text-anchor="middle" fill="#fff" font-size="11" font-family="monospace" font-weight="700">+</text>
+                          <!-- ENC 2 -> "-" (CLEAR) -->
+                          <rect x="298" y="49" width="20" height="22" rx="3" fill="#121418" stroke="#889" />
+                          <text x="308" y="63" text-anchor="middle" fill="#fff" font-size="11" font-family="monospace" font-weight="700">-</text>
+                          <!-- ENC 3 -> "M" (MUTE / S- con REC) -->
+                          <rect x="298" y="75" width="20" height="22" rx="3" fill="#3c1212" stroke="#662222" />
+                          <text x="308" y="89" text-anchor="middle" fill="#ff7777" font-size="9" font-family="monospace" font-weight="700">M</text>
+                          <!-- ENC 4 -> "S" (SOLO / Loop infinito con REC) -->
+                          <rect x="298" y="101" width="20" height="22" rx="3" fill="#021a26" stroke="#006e96" />
+                          <text x="308" y="115" text-anchor="middle" fill="#00d7f5" font-size="9" font-family="monospace" font-weight="700">S</text>
+                        </g>
+
+                        <!-- Indicador de Escena Activa (Inferior Izquierda X=2, Y=136, W=28, H=32) -->
+                        <g>
+                          <rect x="2" y="136" width="28" height="32" rx="3" fill="#1a1c22" stroke="#8c919b" stroke-width="1.2" />
+                          <text x="16" y="156" text-anchor="middle" fill="#fff" font-size="12" font-family="monospace" font-weight="700">S1</text>
+                        </g>
+
+                        <!-- Línea de Tiempo Inferior (Timeline X=33, Y=136, W=285, H=32) -->
+                        <g>
+                          <rect x="33" y="136" width="285" height="32" rx="3" fill="#0c1c12" stroke="#4be16e" stroke-width="1.2" />
+                          <line x1="264" y1="140" x2="264" y2="164" stroke="#37a555" stroke-width="1" />
+
+                          <!-- Pasos Visibles (33px ancho cada uno) -->
+                          <!-- Paso 1 (Seleccionado / Cursor verde) -->
+                          <rect x="36" y="139" width="33" height="26" rx="2" fill="#14341e" stroke="#2daf4b" stroke-width="1.5" />
+                          <text x="39" y="147" fill="#509164" font-size="6.5" font-family="monospace">1</text>
+                          <text x="52" y="155" text-anchor="middle" fill="#fff" font-size="10" font-family="monospace" font-weight="700">S1</text>
+                          <text x="66" y="163" text-anchor="end" fill="#ffd700" font-size="6.5" font-family="monospace">x2</text>
+
+                          <!-- Paso 2 -->
+                          <rect x="72" y="139" width="33" height="26" rx="2" fill="#0e2014" stroke="#235030" />
+                          <text x="75" y="147" fill="#509164" font-size="6.5" font-family="monospace">2</text>
+                          <text x="88" y="155" text-anchor="middle" fill="#96e6af" font-size="10" font-family="monospace">S2</text>
+
+                          <!-- Paso 3 -->
+                          <rect x="108" y="139" width="33" height="26" rx="2" fill="#0e2014" stroke="#235030" />
+                          <text x="111" y="147" fill="#509164" font-size="6.5" font-family="monospace">3</text>
+                          <text x="124" y="155" text-anchor="middle" fill="#96e6af" font-size="10" font-family="monospace">S3</text>
+                          <text x="138" y="163" text-anchor="end" fill="#ffd700" font-size="6.5" font-family="monospace">x4</text>
+
+                          <!-- Paso 4 -->
+                          <rect x="144" y="139" width="33" height="26" rx="2" fill="#0e2014" stroke="#235030" />
+                          <text x="147" y="147" fill="#509164" font-size="6.5" font-family="monospace">4</text>
+                          <text x="160" y="155" text-anchor="middle" fill="#96e6af" font-size="10" font-family="monospace">S1</text>
+
+                          <!-- Paso 5: Slot de Inserción "+" -->
+                          <rect x="180" y="139" width="33" height="26" rx="2" fill="#0c1610" stroke="#1c3724" />
+                          <text x="196" y="155" text-anchor="middle" fill="#4b875a" font-size="12" font-family="monospace" font-weight="700">+</text>
+
+                          <!-- Indicadores Derecha: Ratio y LOOP -->
+                          <text x="290" y="147" text-anchor="middle" fill="#fff" font-size="8" font-family="monospace" font-weight="700">1/4</text>
+                          <text x="290" y="161" text-anchor="middle" fill="#00e5ff" font-size="7" font-family="monospace" font-weight="700">LOOP</text>
+                        </g>
+                      </g>
+
+                      <!-- ======================================================== -->
+                      <!-- PANTALLA 4: MEZCLADOR (MIXER 8 PISTAS) (UIView.cpp)      -->
+                      <!-- ======================================================== -->
+                      <g id="screen-mixer" class="lcd-view-group" style="display: none;">
+                        <rect width="320" height="170" fill="#0c0e12" />
+                        <!-- 8 Canales Verticales (X = 5 + t*39, W=37, H=165) -->
+                        
+                        <!-- Canal 1: T1:SMP (Seleccionado, Borde Blanco) -->
+                        <g>
+                          <rect x="5" y="2" width="37" height="165" fill="#1a202a" stroke="#fff" stroke-width="1.2" />
+                          <!-- Header -->
+                          <text x="23" y="11" text-anchor="middle" fill="#fff" font-size="7.5" font-family="monospace" font-weight="700">T1</text>
+                          <circle cx="34" cy="7" r="2" fill="#ffd700" />
+                          <text x="23" y="20" text-anchor="middle" fill="#ffd700" font-size="6.5" font-family="monospace">SMP</text>
+                          <!-- Pan Mini-Slider Y=23 -->
+                          <rect x="11" y="23" width="24" height="3" fill="#232832" />
+                          <line x1="23" y1="22" x2="23" y2="27" stroke="#464b55" />
+                          <rect x="22" y="22" width="3" height="5" fill="#00e5ff" />
+                          <!-- Fader Groove Y=30..88, Alto 58px -->
+                          <rect x="20" y="30" width="6" height="58" fill="#0a0c10" stroke="#232832" />
+                          <!-- Nivel 85% Verde-Amarillo-Rojo -->
+                          <rect x="21" y="40" width="4" height="47" fill="#00e575" />
+                          <rect x="21" y="40" width="4" height="12" fill="#ffd700" />
+                          <!-- Cap del Fader -->
+                          <rect x="15" y="39" width="16" height="4" rx="1.5" fill="#fff" />
+                          <line x1="17" y1="41" x2="29" y2="41" stroke="#333" />
+                          <!-- Texto Vol -->
+                          <text x="23" y="98" text-anchor="middle" fill="#fff" font-size="7.5" font-family="monospace" font-weight="700">85%</text>
+                          <!-- Botones Mute & Solo Y=103 -->
+                          <rect x="9" y="103" width="13" height="13" rx="2" fill="none" stroke="#2d323c" />
+                          <text x="15" y="112" text-anchor="middle" fill="#505560" font-size="7" font-family="monospace">M</text>
+                          <rect x="25" y="103" width="13" height="13" rx="2" fill="none" stroke="#005f82" />
+                          <text x="31" y="112" text-anchor="middle" fill="#00bedf" font-size="7" font-family="monospace">S</text>
+                          <!-- Paneo Numérico Y=121 -->
+                          <text x="23" y="125" text-anchor="middle" fill="#fff" font-size="7" font-family="monospace">C</text>
+                          <!-- Recuadro Macro Inferior Y=129..163 -->
+                          <rect x="7" y="129" width="33" height="34" fill="#12161e" stroke="#3c4b5f" />
+                          <text x="23" y="139" text-anchor="middle" fill="#00e5ff" font-size="7" font-family="monospace">P 1.0</text>
+                          <line x1="10" y1="146" x2="37" y2="146" stroke="#232d3c" />
+                          <text x="23" y="156" text-anchor="middle" fill="#ffd700" font-size="7" font-family="monospace">R 45%</text>
+                        </g>
+
+                        <!-- Canal 2: T2:SMP -->
+                        <g>
+                          <rect x="44" y="2" width="37" height="165" fill="#101218" stroke="#1e222a" />
+                          <text x="62" y="11" text-anchor="middle" fill="#889" font-size="7.5" font-family="monospace">T2</text>
+                          <circle cx="73" cy="7" r="2" fill="#64550f" />
+                          <text x="62" y="20" text-anchor="middle" fill="#ffd700" font-size="6.5" font-family="monospace">SMP</text>
+                          <rect x="50" y="23" width="24" height="3" fill="#232832" />
+                          <rect x="59" y="22" width="3" height="5" fill="#fff" />
+                          <rect x="59" y="30" width="6" height="58" fill="#0a0c10" stroke="#232832" />
+                          <rect x="60" y="38" width="4" height="49" fill="#00e575" />
+                          <rect x="54" y="37" width="16" height="4" rx="1.5" fill="#bbb" />
+                          <text x="62" y="98" text-anchor="middle" fill="#aaa" font-size="7.5" font-family="monospace">90%</text>
+                          <rect x="48" y="103" width="13" height="13" rx="2" fill="none" stroke="#2d323c" />
+                          <text x="54" y="112" text-anchor="middle" fill="#505560" font-size="7" font-family="monospace">M</text>
+                          <rect x="64" y="103" width="13" height="13" rx="2" fill="none" stroke="#005f82" />
+                          <text x="70" y="112" text-anchor="middle" fill="#00bedf" font-size="7" font-family="monospace">S</text>
+                          <text x="62" y="125" text-anchor="middle" fill="#888" font-size="7" font-family="monospace">L10</text>
+                          <rect x="46" y="129" width="33" height="34" fill="#0a0c10" stroke="#1a1e26" />
+                          <text x="62" y="139" text-anchor="middle" fill="#6eb9e1" font-size="7" font-family="monospace">P 1.0</text>
+                          <line x1="49" y1="146" x2="76" y2="146" stroke="#141820" />
+                          <text x="62" y="156" text-anchor="middle" fill="#cda546" font-size="7" font-family="monospace">R 40%</text>
+                        </g>
+
+                        <!-- Canal 3: T3:SYN -->
+                        <g>
+                          <rect x="83" y="2" width="37" height="165" fill="#101218" stroke="#1e222a" />
+                          <text x="101" y="11" text-anchor="middle" fill="#1450e6" font-size="7.5" font-family="monospace">T3</text>
+                          <circle cx="112" cy="7" r="2" fill="#1450e6" />
+                          <text x="101" y="20" text-anchor="middle" fill="#1450e6" font-size="6.5" font-family="monospace">SYN</text>
+                          <rect x="89" y="23" width="24" height="3" fill="#232832" />
+                          <rect x="104" y="22" width="3" height="5" fill="#fff" />
+                          <rect x="98" y="30" width="6" height="58" fill="#0a0c10" stroke="#232832" />
+                          <rect x="99" y="32" width="4" height="55" fill="#00e575" />
+                          <rect x="99" y="32" width="4" height="15" fill="#ffd700" />
+                          <rect x="93" y="31" width="16" height="4" rx="1.5" fill="#bbb" />
+                          <text x="101" y="98" text-anchor="middle" fill="#aaa" font-size="7.5" font-family="monospace">100%</text>
+                          <rect x="87" y="103" width="13" height="13" rx="2" fill="none" stroke="#2d323c" />
+                          <text x="93" y="112" text-anchor="middle" fill="#505560" font-size="7" font-family="monospace">M</text>
+                          <rect x="103" y="103" width="13" height="13" rx="2" fill="none" stroke="#005f82" />
+                          <text x="109" y="112" text-anchor="middle" fill="#00bedf" font-size="7" font-family="monospace">S</text>
+                          <text x="101" y="125" text-anchor="middle" fill="#888" font-size="7" font-family="monospace">R15</text>
+                          <rect x="85" y="129" width="33" height="34" fill="#0a0c10" stroke="#1a1e26" />
+                          <text x="101" y="139" text-anchor="middle" fill="#6eb9e1" font-size="7" font-family="monospace">C 75%</text>
+                          <line x1="88" y1="146" x2="115" y2="146" stroke="#141820" />
+                          <text x="101" y="156" text-anchor="middle" fill="#cda546" font-size="7" font-family="monospace">D 40%</text>
+                        </g>
+
+                        <!-- Canal 4: T4:SYN -->
+                        <g>
+                          <rect x="122" y="2" width="37" height="165" fill="#101218" stroke="#1e222a" />
+                          <text x="140" y="11" text-anchor="middle" fill="#1450e6" font-size="7.5" font-family="monospace">T4</text>
+                          <text x="140" y="20" text-anchor="middle" fill="#1450e6" font-size="6.5" font-family="monospace">SYN</text>
+                          <rect x="137" y="30" width="6" height="58" fill="#0a0c10" stroke="#232832" />
+                          <rect x="138" y="44" width="4" height="43" fill="#00e575" />
+                          <rect x="132" y="43" width="16" height="4" rx="1.5" fill="#bbb" />
+                          <text x="140" y="98" text-anchor="middle" fill="#aaa" font-size="7.5" font-family="monospace">75%</text>
+                          <rect x="126" y="103" width="13" height="13" rx="2" fill="none" stroke="#2d323c" />
+                          <text x="132" y="112" text-anchor="middle" fill="#505560" font-size="7" font-family="monospace">M</text>
+                          <rect x="142" y="103" width="13" height="13" rx="2" fill="none" stroke="#005f82" />
+                          <text x="148" y="112" text-anchor="middle" fill="#00bedf" font-size="7" font-family="monospace">S</text>
+                          <text x="140" y="125" text-anchor="middle" fill="#888" font-size="7" font-family="monospace">L20</text>
+                          <rect x="124" y="129" width="33" height="34" fill="#0a0c10" stroke="#1a1e26" />
+                          <text x="140" y="139" text-anchor="middle" fill="#6eb9e1" font-size="7" font-family="monospace">C 60%</text>
+                          <line x1="127" y1="146" x2="154" y2="146" stroke="#141820" />
+                          <text x="140" y="156" text-anchor="middle" fill="#cda546" font-size="7" font-family="monospace">D 65%</text>
+                        </g>
+
+                        <!-- Canal 5: T5:AMY -->
+                        <g>
+                          <rect x="161" y="2" width="37" height="165" fill="#101218" stroke="#1e222a" />
+                          <text x="179" y="11" text-anchor="middle" fill="#ff00ff" font-size="7.5" font-family="monospace">T5</text>
+                          <text x="179" y="20" text-anchor="middle" fill="#ff00ff" font-size="6.5" font-family="monospace">AMY</text>
+                          <rect x="176" y="30" width="6" height="58" fill="#0a0c10" stroke="#232832" />
+                          <rect x="177" y="41" width="4" height="46" fill="#00e575" />
+                          <rect x="171" y="40" width="16" height="4" rx="1.5" fill="#bbb" />
+                          <text x="179" y="98" text-anchor="middle" fill="#aaa" font-size="7.5" font-family="monospace">80%</text>
+                          <rect x="165" y="103" width="13" height="13" rx="2" fill="none" stroke="#2d323c" />
+                          <text x="171" y="112" text-anchor="middle" fill="#505560" font-size="7" font-family="monospace">M</text>
+                          <rect x="181" y="103" width="13" height="13" rx="2" fill="none" stroke="#005f82" />
+                          <text x="187" y="112" text-anchor="middle" fill="#00bedf" font-size="7" font-family="monospace">S</text>
+                          <text x="179" y="125" text-anchor="middle" fill="#888" font-size="7" font-family="monospace">C</text>
+                          <rect x="163" y="129" width="33" height="34" fill="#0a0c10" stroke="#1a1e26" />
+                          <text x="179" y="139" text-anchor="middle" fill="#6eb9e1" font-size="7" font-family="monospace">C 80%</text>
+                          <line x1="166" y1="146" x2="193" y2="146" stroke="#141820" />
+                          <text x="179" y="156" text-anchor="middle" fill="#cda546" font-size="7" font-family="monospace">D 50%</text>
+                        </g>
+
+                        <!-- Canales 6, 7, 8 (Vacías) -->
+                        <g>
+                          <rect x="200" y="2" width="37" height="165" fill="#0e1014" stroke="#1a1c22" />
+                          <text x="218" y="11" text-anchor="middle" fill="#555" font-size="7.5" font-family="monospace">T6</text>
+                          <text x="218" y="20" text-anchor="middle" fill="#444" font-size="6.5" font-family="monospace">---</text>
+                          <rect x="215" y="30" width="6" height="58" fill="#080a0c" stroke="#1a1c22" />
+                          <text x="218" y="98" text-anchor="middle" fill="#444" font-size="7.5" font-family="monospace">0%</text>
+
+                          <rect x="239" y="2" width="37" height="165" fill="#0e1014" stroke="#1a1c22" />
+                          <text x="257" y="11" text-anchor="middle" fill="#555" font-size="7.5" font-family="monospace">T7</text>
+                          <text x="257" y="20" text-anchor="middle" fill="#444" font-size="6.5" font-family="monospace">---</text>
+                          <rect x="254" y="30" width="6" height="58" fill="#080a0c" stroke="#1a1c22" />
+                          <text x="257" y="98" text-anchor="middle" fill="#444" font-size="7.5" font-family="monospace">0%</text>
+
+                          <rect x="278" y="2" width="37" height="165" fill="#0e1014" stroke="#1a1c22" />
+                          <text x="296" y="11" text-anchor="middle" fill="#555" font-size="7.5" font-family="monospace">T8</text>
+                          <text x="296" y="20" text-anchor="middle" fill="#444" font-size="6.5" font-family="monospace">---</text>
+                          <rect x="293" y="30" width="6" height="58" fill="#080a0c" stroke="#1a1c22" />
+                          <text x="296" y="98" text-anchor="middle" fill="#444" font-size="7.5" font-family="monospace">0%</text>
+                        </g>
+                      </g>
+                    </svg>
                   </g>
 
                   <!-- MATRIZ DE 16 PADS (4x4) DIRECTAMENTE BAJO LA PANTALLA -->
@@ -1193,12 +2200,6 @@
                     <circle cx="492" cy="371" r="4" fill="#fff" opacity="0.3" />
                   </g>
                 </svg>
-              </div>
-
-              <!-- Lista rápida de todos los atajos filtrados -->
-              <div style="margin-top: 10px;">
-                <span class="sim-combo-label" style="display: block; margin-bottom: 8px;">Explorador rápido de atajos:</span>
-                <div id="sim-quick-list" class="sim-quick-list"></div>
               </div>
             </div>
 
@@ -1792,7 +2793,7 @@
   </div>
 
   <script src="app.js?v=12.0"></script>
-  <script src="simulator.js?v=1.0"></script>
+  <script src="simulator.js?v=2.0"></script>
 </body>
 
 </html>
