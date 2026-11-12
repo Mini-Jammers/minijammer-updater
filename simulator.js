@@ -245,7 +245,7 @@
         },
         {
           zona: 'Parámetros de Audio Master de Alta Fidelidad',
-          detalles: 'EQ GRAVES (±12 dB shelf), EQ AGUDOS (±12 dB shelf), VOL JAM (ganancia de mezcla viva de sintes y sampler), VOL MIC, VOL LINE IN, VOL MICRO SD, VOL RESAMPLE (ganancia de captura a pads), VOL EXTRAC, VOL SESION, VOL AUDIFONOS, VOL BOCINA y BLOQ DC.'
+          detalles: 'Cada parámetro muestra su nombre a la izquierda, una barra gráfica monocromática en tonos blancos normalizada (0..100%) en el centro y su valor numérico exacto a la derecha: EQ GRAVES (con marca central al 50%), EQ AGUDOS, VOL JAM, VOL MIC, VOL LINE IN, VOL MICRO SD, VOL RESAMPLE, VOL EXTRAC, VOL SESION, VOL AUDIFONOS, VOL BOCINA y BLOQ DC.'
         }
       ],
       controles: [
