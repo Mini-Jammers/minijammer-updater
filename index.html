@@ -256,18 +256,20 @@
           <div class="card-header">
             <div class="card-title-group">
               <h2>Flasheo Individual de Placas (Maestra y Esclava)</h2>
-              <p style="font-size: 0.85rem; color: #ffb74d; margin-top: 5px; font-weight: 500;">
-                (Usa este método si tu MiniJammer tiene una versión anterior a la v2.0 en ambas placas,
-                o para rescate técnico. Deberás
-                flashear ambas
-                placas por separado por última vez)
-              </p>
               <p style="font-size: 0.8rem; color: #ffb74d; margin-top: 6px; line-height: 1.4; max-width: 580px;">
                 <strong>Advertencia:</strong> Debido a la dimensión de la actualización dejarán de ser compatibles los
                 JAMS creados con versiones anteriores a la v2.0, los archivos .WAV no se perderán pero la estructura de
                 los
                 proyectos sí.
               </p>
+            </div>
+          </div>
+          <div class="alert-box alert-warning"
+            style="margin-top: 16px; margin-bottom: 16px; padding: 18px 20px; background: rgba(255, 145, 0, 0.18); border: 2px solid rgba(255, 179, 0, 0.8); box-shadow: 0 0 18px rgba(255, 145, 0, 0.22); align-items: center;">
+            <div class="alert-content" style="font-size: 1.08rem; line-height: 1.5; color: #ffd180;">
+              Usa este método si tu MiniJammer tiene una versión anterior a la <strong style="color: #fff;">v2.0</strong>
+              en ambas placas, o para rescate técnico. Deberás flashear <strong style="color: #fff;">ambas placas por
+                separado por última vez</strong>.
             </div>
           </div>
           <p class="card-desc" style="margin-bottom: 0;">
@@ -380,6 +382,32 @@
             </div>
           </div>
 
+          <!-- Advertencia de Baterías e Imagen (Layout 2 columnas proporcionales) -->
+          <div class="alert-box alert-important battery-warning-box"
+            style="margin-top: 0; display: flex; align-items: center; gap: 18px; padding: 16px;">
+            <div class="battery-warning-col-img"
+              style="flex: 0 0 210px; max-width: 210px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+              <img src="baterias%20puerto%202.jpg?v=3" alt="Posición correcta de las baterías en el MiniJammer"
+                class="battery-warning-img" data-changelog="modal-baterias" title="Haz clic para ampliar la imagen"
+                onclick="document.getElementById('modal-baterias').classList.add('active'); document.body.style.overflow='hidden';"
+                style="width: 210px !important; max-width: 210px !important; height: auto !important; border-radius: 8px; border: 1px solid rgba(255, 61, 113, 0.4); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); display: block; cursor: pointer;">
+              <span data-changelog="modal-baterias"
+                onclick="document.getElementById('modal-baterias').classList.add('active'); document.body.style.overflow='hidden';"
+                style="font-size: 0.72rem; color: #ff8ca3; opacity: 0.85; cursor: pointer; text-decoration: underline;">🔍
+                Clic para ampliar</span>
+            </div>
+            <div class="battery-warning-col-text" style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="alert-icon" style="font-size: 1.3rem;">⚠️</span>
+                <strong style="color: #ff5277; font-size: 0.95rem;">¡Atención: Posición de las Baterías!</strong>
+              </div>
+              <p style="margin: 0; font-size: 0.88rem; line-height: 1.5; color: #ffb4c2;">
+                Asegúrate de poner en la posición correcta tus baterías, de lo contrario se quemará el módulo de carga
+                de tu MiniJammer, la base está marcada y ambas baterías van en la misma dirección.
+              </p>
+            </div>
+          </div>
+
           <div class="steps-list">
             <div class="step-item">
               <div class="step-circle">1</div>
@@ -410,32 +438,6 @@
               </button>
               <span slot="unsupported">Tu navegador no soporta Web Serial. Usa Chrome o Edge.</span>
             </esp-web-install-button>
-          </div>
-
-          <!-- Advertencia de Baterías e Imagen (Layout 2 columnas proporcionales) -->
-          <div class="alert-box alert-important battery-warning-box"
-            style="margin-top: 24px; display: flex; align-items: center; gap: 18px; padding: 16px;">
-            <div class="battery-warning-col-img"
-              style="flex: 0 0 210px; max-width: 210px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-              <img src="baterias%20puerto%202.jpg?v=3" alt="Posición correcta de las baterías en el MiniJammer"
-                class="battery-warning-img" data-changelog="modal-baterias" title="Haz clic para ampliar la imagen"
-                onclick="document.getElementById('modal-baterias').classList.add('active'); document.body.style.overflow='hidden';"
-                style="width: 210px !important; max-width: 210px !important; height: auto !important; border-radius: 8px; border: 1px solid rgba(255, 61, 113, 0.4); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); display: block; cursor: pointer;">
-              <span data-changelog="modal-baterias"
-                onclick="document.getElementById('modal-baterias').classList.add('active'); document.body.style.overflow='hidden';"
-                style="font-size: 0.72rem; color: #ff8ca3; opacity: 0.85; cursor: pointer; text-decoration: underline;">🔍
-                Clic para ampliar</span>
-            </div>
-            <div class="battery-warning-col-text" style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <span class="alert-icon" style="font-size: 1.3rem;">⚠️</span>
-                <strong style="color: #ff5277; font-size: 0.95rem;">¡Atención: Posición de las Baterías!</strong>
-              </div>
-              <p style="margin: 0; font-size: 0.88rem; line-height: 1.5; color: #ffb4c2;">
-                Asegúrate de poner en la posición correcta tus baterías, de lo contrario se quemará el módulo de carga
-                de tu MiniJammer, la base está marcada y ambas baterías van en la misma dirección.
-              </p>
-            </div>
           </div>
 
           <!-- Aviso de Driver CP2102 -->
