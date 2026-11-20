@@ -50,16 +50,16 @@
 
     <!-- Navegación por Pestañas / Métodos -->
     <div class="tabs-nav">
-      <button class="tab-btn active" data-tab="tab-automatico">
-        <span class="tab-info">
-          <span class="tab-title">Actualización Automática</span>
-          <span class="tab-sub">MicroSD o USB • Ambas Placas</span>
-        </span>
-      </button>
-      <button class="tab-btn" data-tab="tab-tradicional">
+      <button class="tab-btn active" data-tab="tab-tradicional">
         <span class="tab-info">
           <span class="tab-title">Método Anterior / Rescate</span>
           <span class="tab-sub">Flasheo por Separado • v1.0 o Previas</span>
+        </span>
+      </button>
+      <button class="tab-btn" data-tab="tab-automatico">
+        <span class="tab-info">
+          <span class="tab-title">Actualización Automática</span>
+          <span class="tab-sub">MicroSD o USB • Ambas Placas</span>
         </span>
       </button>
       <button class="tab-btn" data-tab="tab-converter">
@@ -91,8 +91,8 @@
     <!-- Contenido de las pestañas -->
     <main class="tabs-content">
 
-      <!-- ================= PESTAÑA 1: ACTUALIZACIÓN AUTOMÁTICA (NUEVAS VERSIONES) ================= -->
-      <section id="tab-automatico" class="tab-panel active">
+      <!-- ================= PESTAÑA 2: ACTUALIZACIÓN AUTOMÁTICA (NUEVAS VERSIONES) ================= -->
+      <section id="tab-automatico" class="tab-panel">
 
         <!-- ENCABEZADO DE LA SECCIÓN AUTOMÁTICA -->
         <div class="card glass-card" style="margin-bottom: 24px;">
@@ -102,10 +102,6 @@
               <h2>Actualización Automática (Ambas Placas)</h2>
               <p style="font-size: 0.9rem; color: var(--cyan); margin-top: 5px; font-weight: 500;">
                 Flashea automáticamente la Placa Maestra y la Placa Esclava en un solo proceso.
-              </p>
-              <p style="font-size: 0.8rem; color: #ffb74d; margin-top: 6px; line-height: 1.4; max-width: 580px;">
-                Si no haz actualizado a la v2.0 es necesario que actualices ambas placas con el método anterior para
-                habilitar estos nuevos métodos.
               </p>
             </div>
             <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
@@ -122,6 +118,16 @@
               <button class="changelog-btn glow-cyan-dim" data-changelog="modal-maestro">
                 📋 Novedades
               </button>
+            </div>
+          </div>
+          <div class="alert-box alert-warning"
+            style="margin-top: 16px; margin-bottom: 16px; padding: 18px 20px; background: rgba(255, 145, 0, 0.18); border: 2px solid rgba(255, 179, 0, 0.8); box-shadow: 0 0 18px rgba(255, 145, 0, 0.22); align-items: center;">
+            <div class="alert-icon" style="font-size: 1.8rem;">⚠️</div>
+            <div class="alert-content" style="font-size: 1.08rem; line-height: 1.5; color: #ffd180;">
+              <strong style="color: #fff; text-transform: uppercase; letter-spacing: 0.5px;">¡Importante!</strong>
+              Si no has actualizado a la <strong style="color: #fff;">v2.0</strong>, es necesario que actualices
+              <strong style="color: #fff;">ambas placas con el Método Anterior</strong> (primera pestaña) para habilitar
+              estos nuevos métodos.
             </div>
           </div>
           <p class="card-desc" style="margin-bottom: 0;">
@@ -242,8 +248,8 @@
 
       </section>
 
-      <!-- ================= PESTAÑA 2: MÉTODO ANTERIOR / RESCATE ================= -->
-      <section id="tab-tradicional" class="tab-panel">
+      <!-- ================= PESTAÑA 1: MÉTODO ANTERIOR / RESCATE ================= -->
+      <section id="tab-tradicional" class="tab-panel active">
 
         <!-- ENCABEZADO DE LA SECCIÓN TRADICIONAL -->
         <div class="card glass-card" style="margin-bottom: 24px;">
