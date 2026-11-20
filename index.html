@@ -118,7 +118,7 @@
               </div>
               <span
                 style="font-size: 0.7rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">Actualizado:
-                19/11/2026</span>
+                20/11/2026</span>
               <button class="changelog-btn glow-cyan-dim" data-changelog="modal-maestro">
                 📋 Novedades
               </button>
@@ -167,10 +167,10 @@
           </div>
 
           <div class="action-area" style="margin-top: 20px; text-align: center;">
-            <a href="MINIJAMMER_UPDATE.BIN?v=2.1" download="MINIJAMMER_UPDATE.BIN" class="btn btn-primary glow-cyan"
+            <a href="MINIJAMMER_UPDATE.BIN?v=2.1.1" download="MINIJAMMER_UPDATE.BIN" class="btn btn-primary glow-cyan"
               style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; font-size: 1rem; border-radius: 8px;">
               <span class="btn-icon" style="font-size: 1.3rem;">⬇️</span>
-              <span class="btn-text">Descargar MINIJAMMER_UPDATE.BIN (2.38 MB)</span>
+              <span class="btn-text">Descargar MINIJAMMER_UPDATE.BIN (2.49 MB)</span>
             </a>
           </div>
 
@@ -221,7 +221,7 @@
           </div>
 
           <div class="action-area" style="margin-top: 20px;">
-            <esp-web-install-button manifest="manifest_maestro.json?v=2.1">
+            <esp-web-install-button manifest="manifest_maestro.json?v=2.1.1">
               <button slot="activate" class="btn btn-primary glow-cyan">
                 <span class="btn-icon">⚡</span>
                 <span class="btn-text">Instalar Firmware</span>
@@ -287,7 +287,7 @@
               </div>
               <span
                 style="font-size: 0.7rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">Actualizado:
-                19/11/2026</span>
+                20/11/2026</span>
               <button class="changelog-btn glow-cyan-dim" data-changelog="modal-maestro">
                 📋 Novedades
               </button>
@@ -323,7 +323,7 @@
           </div>
 
           <div class="action-area">
-            <esp-web-install-button manifest="manifest_maestro.json?v=2.1">
+            <esp-web-install-button manifest="manifest_maestro.json?v=2.1.1">
               <button slot="activate" class="btn btn-primary glow-cyan">
                 <span class="btn-icon">⚡</span>
                 <span class="btn-text">Instalar Firmware Maestro</span>
@@ -2783,6 +2783,40 @@
       </div>
       <div class="modal-body">
         <div class="changelog-section">
+          <h3>💿 Modo Player Hi-Fi (DAP), USB DAC 24-bit/96 kHz y Motor de Audio 24 Bits</h3>
+          <ul>
+            <li><strong>Motor de Audio Global a 24 Bits Reales:</strong> Salida de audífonos/línea y captura por
+              <code>LINE IN</code> actualizadas a 24 bits reales con filtro DC transparente (sin compuerta agresiva),
+              además de interpolación cúbica de alta precisión en el Mini-Player de Studio (compatible con WAV 24-bit) y
+              Audio USB, manteniendo intacto el rendimiento de las 8 pistas del Jam.</li>
+            <li><strong>Carrusel de 4 Fuentes en Modo Player:</strong> Selector dedicado para alternar entre
+              <code>MICRO SD</code>, <code>RADIO FM</code>, <code>USB DAC</code> y <code>LINE IN</code>.</li>
+            <li><strong>Reproductor MicroSD Hi-Res (<code>FLAC</code>, <code>WAV</code> y <code>MP3</code>):</strong>
+              Decodificación nativa de <strong>FLAC y WAV hasta 24-bit / 96 kHz</strong> y <strong>MP3</strong>. Permite
+              alternar con <code>Clic Enc 3</code> (o <code>SHIFT + COPY</code>) entre <code>HI-FI DIRECT</code>
+              —reproducción <em>bit-exact</em> a la frecuencia nativa del archivo (<code>44.1 / 48 / 88.2 / 96 kHz</code>)
+              sin limitador ni procesado— y <code>DJ / FX</code> (pitch de tornamesa, Loop A-B y extracción de chops en
+              WAV).</li>
+            <li><strong>Búsqueda Fluida en Tracks (<code>Joystick X</code>):</strong> Adelanto y retroceso sin cortes con
+              barra de previsualización en amarillo, aceleración progresiva al mantener presionado y salto instantáneo al
+              soltar —funciona en pausa o reproduciendo incluso en FLAC 24/96.</li>
+            <li><strong>Modo <code>USB DAC</code> Exclusivo Asíncrono (24-bit / hasta 96 kHz):</strong> Modo DAC dedicado
+              (<em>"MiniJammer XXL Hi-Fi DAC"</em>) con sincronización asíncrona para reproducción
+              <strong>Bit-Perfect</strong> en Windows (Foobar2000 WASAPI Exclusivo, etc.) y Android (HiBy Music USB
+              Exclusivo). Detecta automáticamente <code>44.1 / 48 / 88.2 / 96 kHz</code>, muestra estado
+              <code>LOCKED</code>, búfer USB, espectro en vivo y mute rápido con <code>PLAY</code>.</li>
+            <li><strong>Modo <code>LINE IN HI-FI</code> (Entrada TRS 24-bit Directa):</strong> Paso directo de señal
+              analógica a <code>48 kHz</code> o <code>96 kHz</code> (<code>PLAY</code>), filtro
+              <code>DC Blocker 5 Hz</code> activable (<code>COPY</code>) y ajuste fino de ganancia (<code>Enc 1</code>,
+              <code>0.10x–3.00x</code>).</li>
+            <li><strong>Modo <code>DARK / QUIET</code> Audiófilo (<code>Clic Enc 4</code> o
+                <code>SHIFT + STOP</code>):</strong> Apaga por completo la pantalla y todos los LEDs durante la escucha
+              (<code>MICRO SD</code>, <code>USB DAC</code> o <code>LINE IN</code>) para eliminar ruido eléctrico/visual y
+              ahorrar batería; despierta al instante al tocar cualquier control.</li>
+          </ul>
+        </div>
+
+        <div class="changelog-section" style="margin-top: 18px;">
           <h3>🎧 Interfaz de Audio Digital USB Bidireccional</h3>
           <ul>
             <li><strong>Audio USB Estéreo (44.1 kHz / 16-bit):</strong> Conexión plug &amp; play con PC, Mac o
@@ -2954,12 +2988,46 @@
         <details class="faq-item" open
           style="border-color: rgba(0, 229, 255, 0.35); background: rgba(0, 229, 255, 0.03);">
           <summary style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
-            <span><strong style="color: var(--cyan);">v2.1</strong> — Audio USB, MIDI 2×4, Armonía, Punch-In FX 2.0, Walkie
-              &amp; Sampler Pro</span>
+            <span><strong style="color: var(--cyan);">v2.1</strong> — Player Hi-Fi (FLAC / USB DAC 24-bit 96 kHz), Audio
+              USB, MIDI 2×4, Armonía, Punch-In FX 2.0, Walkie &amp; Sampler Pro</span>
             <span
-              style="font-size: 0.75rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">19/11/2026</span>
+              style="font-size: 0.75rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">20/11/2026</span>
           </summary>
           <div class="changelog-section" style="margin-top: 14px;">
+            <h3>💿 Modo Player Hi-Fi (DAP), USB DAC 24-bit/96 kHz y Motor de Audio 24 Bits</h3>
+            <ul>
+              <li><strong>Motor de Audio Global a 24 Bits Reales:</strong> Salida de audífonos/línea y captura por
+                <code>LINE IN</code> actualizadas a 24 bits reales con filtro DC transparente (sin compuerta agresiva),
+                además de interpolación cúbica de alta precisión en el Mini-Player de Studio (compatible con WAV 24-bit) y
+                Audio USB, manteniendo intacto el rendimiento de las 8 pistas del Jam.</li>
+              <li><strong>Carrusel de 4 Fuentes en Modo Player:</strong> Selector dedicado para alternar entre
+                <code>MICRO SD</code>, <code>RADIO FM</code>, <code>USB DAC</code> y <code>LINE IN</code>.</li>
+              <li><strong>Reproductor MicroSD Hi-Res (<code>FLAC</code>, <code>WAV</code> y <code>MP3</code>):</strong>
+                Decodificación nativa de <strong>FLAC y WAV hasta 24-bit / 96 kHz</strong> y <strong>MP3</strong>. Permite
+                alternar con <code>Clic Enc 3</code> (o <code>SHIFT + COPY</code>) entre <code>HI-FI DIRECT</code>
+                —reproducción <em>bit-exact</em> a la frecuencia nativa del archivo (<code>44.1 / 48 / 88.2 / 96 kHz</code>)
+                sin limitador ni procesado— y <code>DJ / FX</code> (pitch de tornamesa, Loop A-B y extracción de chops en
+                WAV).</li>
+              <li><strong>Búsqueda Fluida en Tracks (<code>Joystick X</code>):</strong> Adelanto y retroceso sin cortes con
+                barra de previsualización en amarillo, aceleración progresiva al mantener presionado y salto instantáneo al
+                soltar —funciona en pausa o reproduciendo incluso en FLAC 24/96.</li>
+              <li><strong>Modo <code>USB DAC</code> Exclusivo Asíncrono (24-bit / hasta 96 kHz):</strong> Modo DAC dedicado
+                (<em>"MiniJammer XXL Hi-Fi DAC"</em>) con sincronización asíncrona para reproducción
+                <strong>Bit-Perfect</strong> en Windows (Foobar2000 WASAPI Exclusivo, etc.) y Android (HiBy Music USB
+                Exclusivo). Detecta automáticamente <code>44.1 / 48 / 88.2 / 96 kHz</code>, muestra estado
+                <code>LOCKED</code>, búfer USB, espectro en vivo y mute rápido con <code>PLAY</code>.</li>
+              <li><strong>Modo <code>LINE IN HI-FI</code> (Entrada TRS 24-bit Directa):</strong> Paso directo de señal
+                analógica a <code>48 kHz</code> o <code>96 kHz</code> (<code>PLAY</code>), filtro
+                <code>DC Blocker 5 Hz</code> activable (<code>COPY</code>) y ajuste fino de ganancia (<code>Enc 1</code>,
+                <code>0.10x–3.00x</code>).</li>
+              <li><strong>Modo <code>DARK / QUIET</code> Audiófilo (<code>Clic Enc 4</code> o
+                  <code>SHIFT + STOP</code>):</strong> Apaga por completo la pantalla y todos los LEDs durante la escucha
+                (<code>MICRO SD</code>, <code>USB DAC</code> o <code>LINE IN</code>) para eliminar ruido eléctrico/visual y
+                ahorrar batería; despierta al instante al tocar cualquier control.</li>
+            </ul>
+          </div>
+
+          <div class="changelog-section" style="margin-top: 18px;">
             <h3>🎧 Interfaz de Audio Digital USB Bidireccional</h3>
             <ul>
               <li><strong>Audio USB Estéreo (44.1 kHz / 16-bit):</strong> Conexión plug &amp; play con PC, Mac o
