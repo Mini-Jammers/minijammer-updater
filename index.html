@@ -3204,7 +3204,7 @@
             <h3>🎼 Secuenciador Avanzado, Polirritmia y Groove</h3>
             <ul>
               <li><strong>Polirritmia y Polimetría (Track Length):</strong> Longitud de compás independiente por pista
-                (ajustable de 1 a 16 pasos con <code>COPY + SHIFT + ENC 4</code>), permitiendo métricas complejas e
+                (ajustable de 1 a 256 pasos con <code>COPY + REC + ENC 4</code>), permitiendo métricas complejas e
                 impares superpuestas.</li>
               <li><strong>Swing y Shuffle por Pista:</strong> Control de swing dedicado por pista (50% a 75%) o
                 sincronizado al tempo global, con 5 algoritmos de groove seleccionables (1/16, 1/8 Shuffle, Push,
@@ -3245,7 +3245,7 @@
                 de guardado de presets de usuario en tarjeta MicroSD con <code>COPY + Clic ENC 1</code>.</li>
               <li><strong>Asignación de Sensores para Modulación:</strong> Mapeo directo de sensores físicos (láser ToF,
                 touchstrip, giroscopio y joystick) para modular en tiempo real los parámetros del sintetizador mediante
-                <code>SHIFT + Encoders</code>.
+                <code>Clic + Giro</code> (o <code>SHIFT + Clic + Giro</code>) en <code>Enc 1 / Enc 2</code>.
               </li>
               <li><strong>Integración de MIDI-IN por USB:</strong> Compatibilidad directa con teclados y controladores
                 externos por USB, permitiendo tocar en vivo y secuenciar pistas de sintetizador y sampler con respuesta
@@ -3358,7 +3358,8 @@
           <div class="changelog-section" style="margin-top: 14px;">
             <ul>
               <li><strong>Mini-Reproductor & Chop en Vivo:</strong> Streaming directo de audio desde MicroSD hacia pads,
-                ajuste de corte con <code>ENC 1</code> / <code>ENC 2</code> y extracción a RAM con <code>REC</code>.
+                ajuste de corte con <code>SHIFT + ENC 1</code> / <code>SHIFT + ENC 2</code> y extracción a RAM con
+                <code>REC</code>.
               </li>
               <li><strong>Grabadora de Sesión SD:</strong> Grabación master estéreo directa a tarjeta MicroSD con
                 <code>SHIFT + REC</code> sin límite de RAM.
@@ -3370,9 +3371,9 @@
                 <code>VINTAGE</code> y <code>EXTREMO</code> (hasta 40s por pad) junto a <code>HIFI</code> y
                 <code>LOFI</code>.
               </li>
-              <li><strong>5 Fuentes de Audio:</strong> Selector en <code>ENC 1</code> con modos <code>MIC</code>,
-                <code>LINE</code>, <code>RESAMPLING</code> y mezclas híbridas en vivo (<code>RESA+MIC</code>,
-                <code>RESA+LINE</code>).
+              <li><strong>5 Fuentes de Audio:</strong> Selector en <code>SHIFT + Clic Largo ENC 1</code> con modos
+                <code>MIC</code>, <code>LINE</code>, <code>RESAMPLING</code> y mezclas híbridas en vivo
+                (<code>RESA+MIC</code>, <code>RESA+LINE</code>).
               </li>
               <li><strong>Compatibilidad MicroSD:</strong> Soporte de carpetas largas de hasta 63 caracteres y rutas de
                 256 bytes para evitar carpetas vacías.</li>
@@ -3393,15 +3394,15 @@
           </summary>
           <div class="changelog-section" style="margin-top: 14px;">
             <ul>
-              <li><strong>Preescucha de Audio:</strong> Controles <code>PLAY (func[2])</code> y
-                <code>STOP (func[3])</code> integrados en el explorador LCD.
+              <li><strong>Preescucha de Audio:</strong> Controles <code>PLAY</code> y
+                <code>STOP</code> integrados en el explorador LCD.
               </li>
               <li><strong>Retención de Selección:</strong> El cursor mantiene su posición en la lista al borrar
                 archivos.</li>
               <li><strong>Resampling Lo-Fi:</strong> Detección automática y frecuencia real de 22050 Hz sin aceleración
                 de pitch.</li>
-              <li><strong>Menú LED RGB:</strong> 11 parámetros con scroll suave, paso <code>+/- 2</code> y atajo
-                <code>SHIFT</code> + Doble Clic Joystick.
+              <li><strong>Menú LED RGB:</strong> 11 parámetros con scroll suave y paso <code>+/- 2</code> desde la
+                pestaña <code>UI / LED</code> del Menú de Sistema (<code>Clic Semi-Largo Joystick</code>).
               </li>
               <li><strong>Efectos Encoder 3:</strong> 4 modos físicos asignables (<code>ENC 3</code>,
                 <code>ENC 3 CLK</code>, <code>ENC 3 SH</code>, <code>ENC 3 SH+CLK</code>).
