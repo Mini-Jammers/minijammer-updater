@@ -153,7 +153,7 @@
               <div class="step-circle">1</div>
               <div class="step-text">
                 <strong>Descarga el archivo unificado</strong> pulsando el botón de abajo
-                (<code>MINIJAMMER_UPDATE.BIN</code>).
+                (<code>MINIJAMMERXXL_UPDATE_V2.1.BIN</code>).
               </div>
             </div>
             <div class="step-item">
@@ -173,10 +173,10 @@
           </div>
 
           <div class="action-area" style="margin-top: 20px; text-align: center;">
-            <a href="MINIJAMMER_UPDATE.BIN?v=2.1.6" download="MINIJAMMER_UPDATE.BIN" class="btn btn-primary glow-cyan"
+            <a href="MINIJAMMERXXL_UPDATE_V2.1.BIN?v=2.1.7" download="MINIJAMMERXXL_UPDATE_V2.1.BIN" class="btn btn-primary glow-cyan"
               style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; font-size: 1rem; border-radius: 8px;">
               <span class="btn-icon" style="font-size: 1.3rem;">⬇️</span>
-              <span class="btn-text">Descargar MINIJAMMER_UPDATE.BIN (2.49 MB)</span>
+              <span class="btn-text">Descargar MINIJAMMERXXL_UPDATE_V2.1.BIN (2.50 MB)</span>
             </a>
           </div>
 
@@ -227,7 +227,7 @@
           </div>
 
           <div class="action-area" style="margin-top: 20px;">
-            <esp-web-install-button manifest="manifest_maestro.json?v=2.1.6">
+            <esp-web-install-button manifest="manifest_maestro.json?v=2.1.7">
               <button slot="activate" class="btn btn-primary glow-cyan">
                 <span class="btn-icon">⚡</span>
                 <span class="btn-text">Instalar Firmware</span>
@@ -267,9 +267,11 @@
           <div class="alert-box alert-warning"
             style="margin-top: 16px; margin-bottom: 16px; padding: 18px 20px; background: rgba(255, 145, 0, 0.18); border: 2px solid rgba(255, 179, 0, 0.8); box-shadow: 0 0 18px rgba(255, 145, 0, 0.22); align-items: center;">
             <div class="alert-content" style="font-size: 1.08rem; line-height: 1.5; color: #ffd180;">
-              Usa este método si tu MiniJammer tiene una versión anterior a la <strong style="color: #fff;">v2.0</strong>
+              Usa este método si tu MiniJammer tiene una versión anterior a la <strong
+                style="color: #fff;">v2.0</strong>
               en ambas placas, o para rescate técnico. Deberás flashear <strong style="color: #fff;">ambas placas por
-                separado por última vez, despues de esto podrás utilizar los métodos de actualizacion automatica.</strong>.
+                separado por última vez, despues de esto podrás utilizar los métodos de actualizacion
+                automatica.</strong>.
             </div>
           </div>
           <p class="card-desc" style="margin-bottom: 0;">
@@ -331,7 +333,7 @@
           </div>
 
           <div class="action-area">
-            <esp-web-install-button manifest="manifest_maestro.json?v=2.1.6">
+            <esp-web-install-button manifest="manifest_maestro.json?v=2.1.7">
               <button slot="activate" class="btn btn-primary glow-cyan">
                 <span class="btn-icon">⚡</span>
                 <span class="btn-text">Instalar Firmware Maestro</span>
@@ -431,7 +433,7 @@
           </div>
 
           <div class="action-area">
-            <esp-web-install-button manifest="manifest_esclavo.json?v=2.1">
+            <esp-web-install-button manifest="manifest_esclavo.json?v=2.1.7">
               <button slot="activate" class="btn btn-primary glow-orange">
                 <span class="btn-icon">⚡</span>
                 <span class="btn-text">Instalar Firmware Esclavo</span>
@@ -2796,11 +2798,14 @@
             <li><strong>Audio USB Estéreo (44.1 kHz / 16-bit):</strong> Conexión plug &amp; play con PC, Mac o
               dispositivos móviles para enviar la mezcla master directa a tu DAW o celular, y recibir audio digital por
               USB para grabarlo en los pads (<code>USB</code> y <code>RESA + USB</code> en
-              <code>SHIFT + Clic Largo Enc 1</code>).</li>
+              <code>SHIFT + Clic Largo Enc 1</code>).
+            </li>
             <li><strong>Control de Ganancia USB IN / OUT:</strong> Nuevos parámetros <code>VOL USB IN</code> y
               <code>VOL USB OUT</code> en la pestaña <code>MASTER</code> del Menú de Sistema
-              (<code>Clic Semi-Largo Joystick</code> → <code>Joystick X/Y</code> → <code>Giro Enc 1</code>), con guardado
-              automático en memoria.</li>
+              (<code>Clic Semi-Largo Joystick</code> → <code>Joystick X/Y</code> → <code>Giro Enc 1</code>), con
+              guardado
+              automático en memoria.
+            </li>
           </ul>
         </div>
 
@@ -2813,17 +2818,20 @@
               <code>SENSORES</code> del Menú de Sistema (<code>Clic Semi-Largo Joystick</code> →
               <code>Joystick X</code> cambia modo, <code>Giro Enc 1</code> mueve el foco y <code>Giro Enc 2</code>
               elige preset/efecto); disparo en vivo tocando cada segmento (o <code>SHIFT + Pad</code> al activar
-              <code>SW PADS</code>) y cambio instantáneo de página con <code>SHIFT + Touch (1..5)</code>.</li>
+              <code>SW PADS</code>) y cambio instantáneo de página con <code>SHIFT + Touch (1..5)</code>.
+            </li>
             <li><strong>Efectos Punch-In en Todos los Sensores:</strong> Enrutamiento libre de efectos (incluyendo
               <code>Tape Stop</code> extendido a ~590 ms para scratch y frenado de vinilo, <code>Stutter</code> y
               <code>Reverse</code>) al láser, giroscopio, volante, joystick o encoders con control analógico continuo.
               Activación/desactivación rápida en vivo: <code>Clic Enc 3</code> (Láser),
               <code>Clic Largo Enc 3</code> (Giroscopio), <code>SHIFT + Clic Enc 3</code> (Rotación) y
-              <code>SHIFT + Clic Largo Enc 3</code> (Volante).</li>
+              <code>SHIFT + Clic Largo Enc 3</code> (Volante).
+            </li>
             <li><strong>Menú de Sensores Rediseñado:</strong> Acceso con <code>Clic Semi-Largo Joystick</code> (pestaña
               <code>SENSORES</code>): interfaz limpia sin ventanas emergentes, <code>Joystick Y</code> selecciona el
               sensor, <code>Joystick X</code> cambia el modo (Audio/MIDI o Ribbon/Punch, indicado con flechas
-              <code>&lt; &gt;</code>) y <code>Giro Enc 1 / Enc 2</code> asigna el efecto o número CC.</li>
+              <code>&lt; &gt;</code>) y <code>Giro Enc 1 / Enc 2</code> asigna el efecto o número CC.
+            </li>
           </ul>
         </div>
 
@@ -2834,18 +2842,23 @@
               asignable desde el Menú de Sistema (<code>Clic Semi-Largo Joystick</code> → pestaña
               <code>ARCHIVOS</code> → <code>MIDI OUT</code> → <code>Clic Joystick</code>), con emisión simultánea por
               USB y BLE, protección contra notas pegadas y ajuste de canal/BLE desde la barra inferior
-              (<code>Doble SHIFT</code> → <code>CH</code> / <code>BLE</code>) o en el Mixer (<code>Clic Joystick</code> →
-              <code>Enc 3</code> Canal / <code>Clic Enc 4</code> BLE).</li>
-            <li><strong>Dashboard MIDI 2×4 con 8 Perillas CC:</strong> Matriz de 8 perillas vectoriales configurables por
+              (<code>Doble SHIFT</code> → <code>CH</code> / <code>BLE</code>) o en el Mixer (<code>Clic Joystick</code>
+              →
+              <code>Enc 3</code> Canal / <code>Clic Enc 4</code> BLE).
+            </li>
+            <li><strong>Dashboard MIDI 2×4 con 8 Perillas CC:</strong> Matriz de 8 perillas vectoriales configurables
+              por
               pista controladas simétricamente desde <code>Enc 1</code> (fila 1) y <code>Enc 2</code> (fila 2) con
               <code>Giro</code>, <code>SHIFT + Giro</code>, <code>Clic + Giro</code> y <code>SHIFT + Clic + Giro</code>,
               más botones <code>REC</code> y <code>COPY</code> asignables a CC. Edición de números CC
               (<code>0..127</code>): <code>Clic Largo Enc 1</code> para entrar, <code>Giro Enc 1</code> elige control,
-              <code>Giro Enc 2</code> cambia CC y <code>SHIFT</code> guarda y sale.</li>
+              <code>Giro Enc 2</code> cambia CC y <code>SHIFT</code> guarda y sale.
+            </li>
             <li><strong>Sensores y Touchstrip en Modo MIDI:</strong> Todos los sensores físicos y la Touchstrip ahora
               pueden alternar entre modo Audio y modo MIDI (<code>RIBBON MIDI</code> y <code>PUNCH MIDI</code>) desde la
               pestaña <code>SENSORES</code> con <code>Joystick X</code>, eligiendo el número CC con
-              <code>Giro Enc 1 / Enc 2</code>.</li>
+              <code>Giro Enc 1 / Enc 2</code>.
+            </li>
           </ul>
         </div>
 
@@ -2856,10 +2869,13 @@
               armonía (salida limpia con <code>SHIFT</code>): <code>Giro Enc 1</code> elige estilo
               (<code>NORMAL</code>, <code>CHORD</code>, <code>STRUM</code>, <code>ARP</code>), <code>Giro Enc 2</code>
               familia de acorde o patrón de arpegio, <code>Giro Enc 3</code> inversión o división rítmica y
-              <code>Giro Enc 4</code> velocidad de rasgueo, octavas de arpegio u octava del acorde.</li>
+              <code>Giro Enc 4</code> velocidad de rasgueo, octavas de arpegio u octava del acorde.
+            </li>
             <li><strong>Secuenciación Polifónica Inteligente:</strong> Grabación de acordes completos en el secuenciador
-              respetando el límite de voces configurado en cada pista desde la barra inferior (<code>Doble SHIFT</code> →
-              <code>VOX</code> con <code>Joystick Y</code> o <code>Enc 1</code>).</li>
+              respetando el límite de voces configurado en cada pista desde la barra inferior (<code>Doble SHIFT</code>
+              →
+              <code>VOX</code> con <code>Joystick Y</code> o <code>Enc 1</code>).
+            </li>
           </ul>
         </div>
 
@@ -2870,7 +2886,8 @@
               usando el micrófono interno, con pantalla de estado (<code>TX / RX / STANDBY</code>): mantén presionado
               <code>REC</code> para hablar (PTT), cambia entre los 14 canales con <code>Pads 1..14</code> o
               <code>Giro Enc 1</code>, ajusta el volumen de recepción con <code>Giro Enc 2</code> y sal al menú
-              principal con <code>Clic Largo Joystick</code> (0.8 s).</li>
+              principal con <code>Clic Largo Joystick</code> (0.8 s).
+            </li>
             <li><strong>Alcance RF Maximizado:</strong> Potencia de transmisión al máximo de hardware
               (<code>+20 dBm</code>), protocolo Long Range y modulación de alta sensibilidad para ampliar la distancia
               de comunicación.</li>
@@ -2884,15 +2901,18 @@
               marcadores de inicio y fin del sample pasan de <code>SHIFT + Giro</code> a <code>Clic + Giro Enc 1</code>
               (inicio) y <code>Clic + Giro Enc 2</code> (fin), dejando <code>Giro</code> y <code>SHIFT + Giro</code>
               libres para todos los parámetros continuos.</li>
-            <li><strong>Sistema Anti-Clic Integral:</strong> Micro-fundidos automáticos de 0.7 ms en cortes, re-disparos,
+            <li><strong>Sistema Anti-Clic Integral:</strong> Micro-fundidos automáticos de 0.7 ms en cortes,
+              re-disparos,
               choke groups y mutes para un audio limpio sin chasquidos.</li>
             <li><strong>Modo <code>GATE</code> Secuenciado:</strong> Los pads configurados en modo <code>GATE</code>
               (ciclable con <code>Clic Largo Enc 1</code>) ahora respetan exactamente la duración programada en el
               secuenciador (1 paso, pasos ligados en Step Rec o duración real grabada en Live Rec).</li>
             <li><strong>Copia Íntegra de Parámetros en Pads:</strong> Copiar un pad (mantener <code>COPY</code> +
-              <code>Pad origen</code> + <code>Pad destino</code>) ahora clona todos sus ajustes DSP (Choke Group, Attack,
+              <code>Pad origen</code> + <code>Pad destino</code>) ahora clona todos sus ajustes DSP (Choke Group,
+              Attack,
               Release, Pitch, Filtro, Drive, Lo-Fi, Punch y Pan); al borrarlo (mantener <code>Pad</code> +
-              <code>REC</code>) se restablecen todos sus valores a cero.</li>
+              <code>REC</code>) se restablecen todos sus valores a cero.
+            </li>
             <li><strong>Reseteo Rápido a 2 Segundos:</strong> <code>Clic Largo</code> en <code>Enc 1</code> (Modo de
               Reproducción) y <code>Enc 2</code> (Choke Group) cicla su opción; mantenerlos <code>2 s</code> (antes
               3 s) los restablece al valor inicial.</li>
@@ -2908,7 +2928,8 @@
               superior derecha durante el Jam (Sampler, Sinte y MIDI), iluminándose en cyan al reproducir.</li>
             <li><strong>Ajuste Fino de Tempo (<code>0.1 BPM</code>):</strong> <code>SHIFT + Giro Enc 4</code> (en pistas
               Sampler) ajusta el tempo en pasos decimales de <code>0.1 BPM</code>, mientras el giro directo de
-              <code>Enc 4</code> conserva la aceleración dinámica en enteros.</li>
+              <code>Enc 4</code> conserva la aceleración dinámica en enteros.
+            </li>
             <li><strong>Integridad de Escenas y Patrones:</strong> Al eliminar un patrón, todas las escenas actualizan
               automáticamente sus referencias para conservar su patrón original; además, al reiniciar o cargar un Jam se
               restauran de inmediato los <code>Mute</code> y <code>Solo</code> de la escena activa.</li>
@@ -2916,7 +2937,8 @@
               <code>Step Rec</code> (<code>SHIFT + Pad</code> entra a <code>Edit Page</code> y <code>SHIFT</code> corto
               sale sin parpadeos); <code>Doble SHIFT</code> (barra de estado) totalmente aislado de
               <code>Step Rec / Edit Page</code> y guardado permanente del estado del Metrónomo
-              (<code>COPY + PLAY</code>).</li>
+              (<code>COPY + PLAY</code>).
+            </li>
           </ul>
         </div>
 
@@ -2941,7 +2963,8 @@
               <code>JAMS</code> del Menú de Sistema (<code>Clic Semi-Largo Joystick</code>): muestra únicamente los
               proyectos existentes junto al botón <code>[ + NUEVO JAM ]</code> (<code>Giro Enc 1</code> navega,
               <code>Clic Enc 1</code> carga/crea, <code>REC + Clic Enc 1</code> clona y <code>STOP</code> sostenido
-              1.5 s borra), eliminando la lista de bancos vacíos del 1 al 99.</li>
+              1.5 s borra), eliminando la lista de bancos vacíos del 1 al 99.
+            </li>
             <li><strong>Guardado Ultra-Estable en MicroSD:</strong> Guardado manual con <code>SHIFT + COPY</code> con
               optimización profunda de escritura alineada y deduplicación de pads copiados para guardar Jams con
               múltiples samples largos de hasta 10 segundos sin bloqueos ni reinicios.</li>
@@ -2956,34 +2979,44 @@
             <li><strong>Motor de Audio Global a 24 Bits Reales:</strong> Salida de audífonos/línea y captura por
               <code>LINE IN</code> actualizadas a 24 bits reales con filtro DC transparente (sin compuerta agresiva),
               además de interpolación cúbica de alta precisión en el Mini-Player de Studio (compatible con WAV 24-bit) y
-              Audio USB, manteniendo intacto el rendimiento de las 8 pistas del Jam.</li>
+              Audio USB, manteniendo intacto el rendimiento de las 8 pistas del Jam.
+            </li>
             <li><strong>Carrusel de 4 Fuentes en Modo Player:</strong> Selector dedicado abierto con
               <code>Clic corto en Joystick</code> (<code>Joystick X</code> navega entre <code>MICRO SD</code>,
               <code>RADIO FM</code>, <code>USB DAC</code> y <code>LINE IN</code>; <code>Joystick Y abajo</code> o
-              <code>Clic Joystick</code> confirma y <code>SHIFT</code> sale al Menú Principal).</li>
+              <code>Clic Joystick</code> confirma y <code>SHIFT</code> sale al Menú Principal).
+            </li>
             <li><strong>Reproductor MicroSD Hi-Res (<code>FLAC</code>, <code>WAV</code> y <code>MP3</code>):</strong>
               Decodificación nativa de <strong>FLAC y WAV hasta 24-bit / 96 kHz</strong> y <strong>MP3</strong>.
               Controles: <code>PLAY</code> reproduce/pausa, <code>STOP</code> detiene, <code>REC</code> /
-              <code>COPY</code> pista siguiente/anterior, <code>SHIFT + PLAY</code> cicla <code>NORM / LOOP / SHUF</code>
+              <code>COPY</code> pista siguiente/anterior, <code>SHIFT + PLAY</code> cicla
+              <code>NORM / LOOP / SHUF</code>
               y <code>Clic Enc 3</code> (o <code>SHIFT + COPY</code>) alterna entre <code>HI-FI DIRECT</code>
               —reproducción <em>bit-exact</em> a frecuencia nativa (<code>44.1 / 48 / 88.2 / 96 kHz</code>) sin
               procesado— y <code>DJ / FX</code> (<code>Enc 1</code> pitch, <code>SHIFT + Enc 1 / Enc 2</code> Loop A-B y
-              <code>SHIFT + REC</code> extraer chop en WAV).</li>
-            <li><strong>Búsqueda Fluida en Tracks (<code>Joystick X</code>):</strong> Adelanto y retroceso sin cortes con
-              barra de previsualización en amarillo, aceleración progresiva al mantener presionado y salto instantáneo al
+              <code>SHIFT + REC</code> extraer chop en WAV).
+            </li>
+            <li><strong>Búsqueda Fluida en Tracks (<code>Joystick X</code>):</strong> Adelanto y retroceso sin cortes
+              con
+              barra de previsualización en amarillo, aceleración progresiva al mantener presionado y salto instantáneo
+              al
               soltar —funciona en pausa o reproduciendo incluso en FLAC 24/96.</li>
-            <li><strong>Modo <code>USB DAC</code> Exclusivo Asíncrono (24-bit / hasta 96 kHz):</strong> Modo DAC dedicado
+            <li><strong>Modo <code>USB DAC</code> Exclusivo Asíncrono (24-bit / hasta 96 kHz):</strong> Modo DAC
+              dedicado
               (<em>"MiniJammer XXL Hi-Fi DAC"</em>) con sincronización asíncrona para reproducción
               <strong>Bit-Perfect</strong> en Windows (Foobar2000 WASAPI Exclusivo, etc.) y Android (HiBy Music USB
               Exclusivo). Detecta automáticamente <code>44.1 / 48 / 88.2 / 96 kHz</code>, muestra estado
-              <code>LOCKED</code>, búfer USB, espectro en vivo y mute rápido con <code>PLAY</code>.</li>
+              <code>LOCKED</code>, búfer USB, espectro en vivo y mute rápido con <code>PLAY</code>.
+            </li>
             <li><strong>Modo <code>LINE IN HI-FI</code> (Entrada TRS 24-bit Directa):</strong> Paso directo de señal
               analógica a <code>48 kHz</code> o <code>96 kHz</code> (<code>PLAY</code>), filtro
               <code>DC Blocker 5 Hz</code> activable (<code>COPY</code>) y ajuste fino de ganancia (<code>Enc 1</code>,
-              <code>0.10x–3.00x</code>).</li>
+              <code>0.10x–3.00x</code>).
+            </li>
             <li><strong>Modo <code>DARK / QUIET</code> Audiófilo (<code>Clic Enc 4</code> o
                 <code>SHIFT + STOP</code>):</strong> Apaga por completo la pantalla y todos los LEDs durante la escucha
-              (<code>MICRO SD</code>, <code>USB DAC</code> o <code>LINE IN</code>) para eliminar ruido eléctrico/visual y
+              (<code>MICRO SD</code>, <code>USB DAC</code> o <code>LINE IN</code>) para eliminar ruido eléctrico/visual
+              y
               ahorrar batería; despierta al instante al tocar cualquier control.</li>
           </ul>
         </div>
@@ -3025,7 +3058,8 @@
         <details class="faq-item" open
           style="border-color: rgba(0, 229, 255, 0.35); background: rgba(0, 229, 255, 0.03);">
           <summary style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
-            <span><strong style="color: var(--cyan);">v2.1</strong> — Audio USB, MIDI 2×4, Armonía, Punch-In FX 2.0, Walkie,
+            <span><strong style="color: var(--cyan);">v2.1</strong> — Audio USB, MIDI 2×4, Armonía, Punch-In FX 2.0,
+              Walkie,
               Sampler Pro &amp; Player Hi-Fi</span>
             <span
               style="font-size: 0.75rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">20/11/2026</span>
@@ -3034,13 +3068,16 @@
             <h3>🎧 Interfaz de Audio Digital USB Bidireccional</h3>
             <ul>
               <li><strong>Audio USB Estéreo (44.1 kHz / 16-bit):</strong> Conexión plug &amp; play con PC, Mac o
-                dispositivos móviles para enviar la mezcla master directa a tu DAW o celular, y recibir audio digital por
+                dispositivos móviles para enviar la mezcla master directa a tu DAW o celular, y recibir audio digital
+                por
                 USB para grabarlo en los pads (<code>USB</code> y <code>RESA + USB</code> en
-                <code>SHIFT + Clic Largo Enc 1</code>).</li>
+                <code>SHIFT + Clic Largo Enc 1</code>).
+              </li>
               <li><strong>Control de Ganancia USB IN / OUT:</strong> Nuevos parámetros <code>VOL USB IN</code> y
                 <code>VOL USB OUT</code> en la pestaña <code>MASTER</code> del Menú de Sistema
                 (<code>Clic Semi-Largo Joystick</code> → <code>Joystick X/Y</code> → <code>Giro Enc 1</code>), con
-                guardado automático en memoria.</li>
+                guardado automático en memoria.
+              </li>
             </ul>
           </div>
 
@@ -3053,17 +3090,21 @@
                 <code>SENSORES</code> del Menú de Sistema (<code>Clic Semi-Largo Joystick</code> →
                 <code>Joystick X</code> cambia modo, <code>Giro Enc 1</code> mueve el foco y <code>Giro Enc 2</code>
                 elige preset/efecto); disparo en vivo tocando cada segmento (o <code>SHIFT + Pad</code> al activar
-                <code>SW PADS</code>) y cambio instantáneo de página con <code>SHIFT + Touch (1..5)</code>.</li>
+                <code>SW PADS</code>) y cambio instantáneo de página con <code>SHIFT + Touch (1..5)</code>.
+              </li>
               <li><strong>Efectos Punch-In en Todos los Sensores:</strong> Enrutamiento libre de efectos (incluyendo
                 <code>Tape Stop</code> extendido a ~590 ms para scratch y frenado de vinilo, <code>Stutter</code> y
                 <code>Reverse</code>) al láser, giroscopio, volante, joystick o encoders con control analógico continuo.
                 Activación/desactivación rápida en vivo: <code>Clic Enc 3</code> (Láser),
                 <code>Clic Largo Enc 3</code> (Giroscopio), <code>SHIFT + Clic Enc 3</code> (Rotación) y
-                <code>SHIFT + Clic Largo Enc 3</code> (Volante).</li>
-              <li><strong>Menú de Sensores Rediseñado:</strong> Acceso con <code>Clic Semi-Largo Joystick</code> (pestaña
+                <code>SHIFT + Clic Largo Enc 3</code> (Volante).
+              </li>
+              <li><strong>Menú de Sensores Rediseñado:</strong> Acceso con <code>Clic Semi-Largo Joystick</code>
+                (pestaña
                 <code>SENSORES</code>): interfaz limpia sin ventanas emergentes, <code>Joystick Y</code> selecciona el
                 sensor, <code>Joystick X</code> cambia el modo (Audio/MIDI o Ribbon/Punch, indicado con flechas
-                <code>&lt; &gt;</code>) y <code>Giro Enc 1 / Enc 2</code> asigna el efecto o número CC.</li>
+                <code>&lt; &gt;</code>) y <code>Giro Enc 1 / Enc 2</code> asigna el efecto o número CC.
+              </li>
             </ul>
           </div>
 
@@ -3074,33 +3115,43 @@
                 asignable desde el Menú de Sistema (<code>Clic Semi-Largo Joystick</code> → pestaña
                 <code>ARCHIVOS</code> → <code>MIDI OUT</code> → <code>Clic Joystick</code>), con emisión simultánea por
                 USB y BLE, protección contra notas pegadas y ajuste de canal/BLE desde la barra inferior
-                (<code>Doble SHIFT</code> → <code>CH</code> / <code>BLE</code>) o en el Mixer (<code>Clic Joystick</code>
-                → <code>Enc 3</code> Canal / <code>Clic Enc 4</code> BLE).</li>
+                (<code>Doble SHIFT</code> → <code>CH</code> / <code>BLE</code>) o en el Mixer
+                (<code>Clic Joystick</code>
+                → <code>Enc 3</code> Canal / <code>Clic Enc 4</code> BLE).
+              </li>
               <li><strong>Dashboard MIDI 2×4 con 8 Perillas CC:</strong> Matriz de 8 perillas vectoriales configurables
                 por pista controladas simétricamente desde <code>Enc 1</code> (fila 1) y <code>Enc 2</code> (fila 2) con
                 <code>Giro</code>, <code>SHIFT + Giro</code>, <code>Clic + Giro</code> y
                 <code>SHIFT + Clic + Giro</code>, más botones <code>REC</code> y <code>COPY</code> asignables a CC.
                 Edición de números CC (<code>0..127</code>): <code>Clic Largo Enc 1</code> para entrar,
                 <code>Giro Enc 1</code> elige control, <code>Giro Enc 2</code> cambia CC y <code>SHIFT</code> guarda y
-                sale.</li>
+                sale.
+              </li>
               <li><strong>Sensores y Touchstrip en Modo MIDI:</strong> Todos los sensores físicos y la Touchstrip ahora
-                pueden alternar entre modo Audio y modo MIDI (<code>RIBBON MIDI</code> y <code>PUNCH MIDI</code>) desde la
+                pueden alternar entre modo Audio y modo MIDI (<code>RIBBON MIDI</code> y <code>PUNCH MIDI</code>) desde
+                la
                 pestaña <code>SENSORES</code> con <code>Joystick X</code>, eligiendo el número CC con
-                <code>Giro Enc 1 / Enc 2</code>.</li>
+                <code>Giro Enc 1 / Enc 2</code>.
+              </li>
             </ul>
           </div>
 
           <div class="changelog-section" style="margin-top: 18px;">
             <h3>🎼 Módulo de Armonía, Acordes, Strum y Arpegiador</h3>
             <ul>
-              <li><strong>Acceso Directo a Armonía (<code>SHIFT + Clic Enc 4</code>):</strong> Activa el panel flotante de
+              <li><strong>Acceso Directo a Armonía (<code>SHIFT + Clic Enc 4</code>):</strong> Activa el panel flotante
+                de
                 armonía (salida limpia con <code>SHIFT</code>): <code>Giro Enc 1</code> elige estilo
                 (<code>NORMAL</code>, <code>CHORD</code>, <code>STRUM</code>, <code>ARP</code>), <code>Giro Enc 2</code>
                 familia de acorde o patrón de arpegio, <code>Giro Enc 3</code> inversión o división rítmica y
-                <code>Giro Enc 4</code> velocidad de rasgueo, octavas de arpegio u octava del acorde.</li>
-              <li><strong>Secuenciación Polifónica Inteligente:</strong> Grabación de acordes completos en el secuenciador
-                respetando el límite de voces configurado en cada pista desde la barra inferior (<code>Doble SHIFT</code> →
-                <code>VOX</code> con <code>Joystick Y</code> o <code>Enc 1</code>).</li>
+                <code>Giro Enc 4</code> velocidad de rasgueo, octavas de arpegio u octava del acorde.
+              </li>
+              <li><strong>Secuenciación Polifónica Inteligente:</strong> Grabación de acordes completos en el
+                secuenciador
+                respetando el límite de voces configurado en cada pista desde la barra inferior
+                (<code>Doble SHIFT</code> →
+                <code>VOX</code> con <code>Joystick Y</code> o <code>Enc 1</code>).
+              </li>
             </ul>
           </div>
 
@@ -3111,7 +3162,8 @@
                 usando el micrófono interno, con pantalla de estado (<code>TX / RX / STANDBY</code>): mantén presionado
                 <code>REC</code> para hablar (PTT), cambia entre los 14 canales con <code>Pads 1..14</code> o
                 <code>Giro Enc 1</code>, ajusta el volumen de recepción con <code>Giro Enc 2</code> y sal al menú
-                principal con <code>Clic Largo Joystick</code> (0.8 s).</li>
+                principal con <code>Clic Largo Joystick</code> (0.8 s).
+              </li>
               <li><strong>Alcance RF Maximizado:</strong> Potencia de transmisión al máximo de hardware
                 (<code>+20 dBm</code>), protocolo Long Range y modulación de alta sensibilidad para ampliar la distancia
                 de comunicación.</li>
@@ -3124,7 +3176,8 @@
               <li><strong>Nuevo Ajuste de Marcadores de Chop (<code>Clic + Giro Enc 1 / Enc 2</code>):</strong> Los
                 marcadores de inicio y fin del sample pasan de <code>SHIFT + Giro</code> a
                 <code>Clic + Giro Enc 1</code> (inicio) y <code>Clic + Giro Enc 2</code> (fin), dejando
-                <code>Giro</code> y <code>SHIFT + Giro</code> libres para todos los parámetros continuos.</li>
+                <code>Giro</code> y <code>SHIFT + Giro</code> libres para todos los parámetros continuos.
+              </li>
               <li><strong>Sistema Anti-Clic Integral:</strong> Micro-fundidos automáticos de 0.7 ms en cortes,
                 re-disparos, choke groups y mutes para un audio limpio sin chasquidos.</li>
               <li><strong>Modo <code>GATE</code> Secuenciado:</strong> Los pads configurados en modo <code>GATE</code>
@@ -3133,7 +3186,8 @@
               <li><strong>Copia Íntegra de Parámetros en Pads:</strong> Copiar un pad (mantener <code>COPY</code> +
                 <code>Pad origen</code> + <code>Pad destino</code>) ahora clona todos sus ajustes DSP (Choke Group,
                 Attack, Release, Pitch, Filtro, Drive, Lo-Fi, Punch y Pan); al borrarlo (mantener <code>Pad</code> +
-                <code>REC</code>) se restablecen todos sus valores a cero.</li>
+                <code>REC</code>) se restablecen todos sus valores a cero.
+              </li>
               <li><strong>Reseteo Rápido a 2 Segundos:</strong> <code>Clic Largo</code> en <code>Enc 1</code> (Modo de
                 Reproducción) y <code>Enc 2</code> (Choke Group) cicla su opción; mantenerlos <code>2 s</code> (antes
                 3 s) los restablece al valor inicial.</li>
@@ -3149,7 +3203,8 @@
                 superior derecha durante el Jam (Sampler, Sinte y MIDI), iluminándose en cyan al reproducir.</li>
               <li><strong>Ajuste Fino de Tempo (<code>0.1 BPM</code>):</strong> <code>SHIFT + Giro Enc 4</code> (en
                 pistas Sampler) ajusta el tempo en pasos decimales de <code>0.1 BPM</code>, mientras el giro directo de
-                <code>Enc 4</code> conserva la aceleración dinámica en enteros.</li>
+                <code>Enc 4</code> conserva la aceleración dinámica en enteros.
+              </li>
               <li><strong>Integridad de Escenas y Patrones:</strong> Al eliminar un patrón, todas las escenas actualizan
                 automáticamente sus referencias para conservar su patrón original; además, al reiniciar o cargar un Jam
                 se restauran de inmediato los <code>Mute</code> y <code>Solo</code> de la escena activa.</li>
@@ -3157,7 +3212,8 @@
                 <code>Step Rec</code> (<code>SHIFT + Pad</code> entra a <code>Edit Page</code> y <code>SHIFT</code>
                 corto sale sin parpadeos); <code>Doble SHIFT</code> (barra de estado) totalmente aislado de
                 <code>Step Rec / Edit Page</code> y guardado permanente del estado del Metrónomo
-                (<code>COPY + PLAY</code>).</li>
+                (<code>COPY + PLAY</code>).
+              </li>
             </ul>
           </div>
 
@@ -3172,7 +3228,8 @@
               <li><strong>Octava Permanente y Estabilidad en Vivo:</strong> Sintetizadores monofónicos por defecto,
                 cambio rápido de octava desde cualquier grupo con <code>SHIFT + Giro Enc 4</code>, indicador
                 <code>OCT</code> unificado en esquina inferior izquierda y corrección de notas pegadas al cambiar de
-                octava mientras tocas.</li>
+                octava mientras tocas.
+              </li>
             </ul>
           </div>
 
@@ -3183,7 +3240,8 @@
                 <code>JAMS</code> del Menú de Sistema (<code>Clic Semi-Largo Joystick</code>): muestra únicamente los
                 proyectos existentes junto al botón <code>[ + NUEVO JAM ]</code> (<code>Giro Enc 1</code> navega,
                 <code>Clic Enc 1</code> carga/crea, <code>REC + Clic Enc 1</code> clona y <code>STOP</code> sostenido
-                1.5 s borra), eliminando la lista de bancos vacíos del 1 al 99.</li>
+                1.5 s borra), eliminando la lista de bancos vacíos del 1 al 99.
+              </li>
               <li><strong>Guardado Ultra-Estable en MicroSD:</strong> Guardado manual con <code>SHIFT + COPY</code> con
                 optimización profunda de escritura alineada y deduplicación de pads copiados para guardar Jams con
                 múltiples samples largos de hasta 10 segundos sin bloqueos ni reinicios.</li>
@@ -3197,35 +3255,49 @@
             <ul>
               <li><strong>Motor de Audio Global a 24 Bits Reales:</strong> Salida de audífonos/línea y captura por
                 <code>LINE IN</code> actualizadas a 24 bits reales con filtro DC transparente (sin compuerta agresiva),
-                además de interpolación cúbica de alta precisión en el Mini-Player de Studio (compatible con WAV 24-bit) y
-                Audio USB, manteniendo intacto el rendimiento de las 8 pistas del Jam.</li>
+                además de interpolación cúbica de alta precisión en el Mini-Player de Studio (compatible con WAV 24-bit)
+                y
+                Audio USB, manteniendo intacto el rendimiento de las 8 pistas del Jam.
+              </li>
               <li><strong>Carrusel de 4 Fuentes en Modo Player:</strong> Selector dedicado abierto con
                 <code>Clic corto en Joystick</code> (<code>Joystick X</code> navega entre <code>MICRO SD</code>,
                 <code>RADIO FM</code>, <code>USB DAC</code> y <code>LINE IN</code>; <code>Joystick Y abajo</code> o
-                <code>Clic Joystick</code> confirma y <code>SHIFT</code> sale al Menú Principal).</li>
+                <code>Clic Joystick</code> confirma y <code>SHIFT</code> sale al Menú Principal).
+              </li>
               <li><strong>Reproductor MicroSD Hi-Res (<code>FLAC</code>, <code>WAV</code> y <code>MP3</code>):</strong>
                 Decodificación nativa de <strong>FLAC y WAV hasta 24-bit / 96 kHz</strong> y <strong>MP3</strong>.
                 Controles: <code>PLAY</code> reproduce/pausa, <code>STOP</code> detiene, <code>REC</code> /
-                <code>COPY</code> pista siguiente/anterior, <code>SHIFT + PLAY</code> cicla <code>NORM / LOOP / SHUF</code>
+                <code>COPY</code> pista siguiente/anterior, <code>SHIFT + PLAY</code> cicla
+                <code>NORM / LOOP / SHUF</code>
                 y <code>Clic Enc 3</code> (o <code>SHIFT + COPY</code>) alterna entre <code>HI-FI DIRECT</code>
                 —reproducción <em>bit-exact</em> a frecuencia nativa (<code>44.1 / 48 / 88.2 / 96 kHz</code>) sin
-                procesado— y <code>DJ / FX</code> (<code>Enc 1</code> pitch, <code>SHIFT + Enc 1 / Enc 2</code> Loop A-B y
-                <code>SHIFT + REC</code> extraer chop en WAV).</li>
-              <li><strong>Búsqueda Fluida en Tracks (<code>Joystick X</code>):</strong> Adelanto y retroceso sin cortes con
-                barra de previsualización en amarillo, aceleración progresiva al mantener presionado y salto instantáneo al
+                procesado— y <code>DJ / FX</code> (<code>Enc 1</code> pitch, <code>SHIFT + Enc 1 / Enc 2</code> Loop A-B
+                y
+                <code>SHIFT + REC</code> extraer chop en WAV).
+              </li>
+              <li><strong>Búsqueda Fluida en Tracks (<code>Joystick X</code>):</strong> Adelanto y retroceso sin cortes
+                con
+                barra de previsualización en amarillo, aceleración progresiva al mantener presionado y salto instantáneo
+                al
                 soltar —funciona en pausa o reproduciendo incluso en FLAC 24/96.</li>
-              <li><strong>Modo <code>USB DAC</code> Exclusivo Asíncrono (24-bit / hasta 96 kHz):</strong> Modo DAC dedicado
+              <li><strong>Modo <code>USB DAC</code> Exclusivo Asíncrono (24-bit / hasta 96 kHz):</strong> Modo DAC
+                dedicado
                 (<em>"MiniJammer XXL Hi-Fi DAC"</em>) con sincronización asíncrona para reproducción
                 <strong>Bit-Perfect</strong> en Windows (Foobar2000 WASAPI Exclusivo, etc.) y Android (HiBy Music USB
                 Exclusivo). Detecta automáticamente <code>44.1 / 48 / 88.2 / 96 kHz</code>, muestra estado
-                <code>LOCKED</code>, búfer USB, espectro en vivo y mute rápido con <code>PLAY</code>.</li>
+                <code>LOCKED</code>, búfer USB, espectro en vivo y mute rápido con <code>PLAY</code>.
+              </li>
               <li><strong>Modo <code>LINE IN HI-FI</code> (Entrada TRS 24-bit Directa):</strong> Paso directo de señal
                 analógica a <code>48 kHz</code> o <code>96 kHz</code> (<code>PLAY</code>), filtro
-                <code>DC Blocker 5 Hz</code> activable (<code>COPY</code>) y ajuste fino de ganancia (<code>Enc 1</code>,
-                <code>0.10x–3.00x</code>).</li>
+                <code>DC Blocker 5 Hz</code> activable (<code>COPY</code>) y ajuste fino de ganancia
+                (<code>Enc 1</code>,
+                <code>0.10x–3.00x</code>).
+              </li>
               <li><strong>Modo <code>DARK / QUIET</code> Audiófilo (<code>Clic Enc 4</code> o
-                  <code>SHIFT + STOP</code>):</strong> Apaga por completo la pantalla y todos los LEDs durante la escucha
-                (<code>MICRO SD</code>, <code>USB DAC</code> o <code>LINE IN</code>) para eliminar ruido eléctrico/visual y
+                  <code>SHIFT + STOP</code>):</strong> Apaga por completo la pantalla y todos los LEDs durante la
+                escucha
+                (<code>MICRO SD</code>, <code>USB DAC</code> o <code>LINE IN</code>) para eliminar ruido
+                eléctrico/visual y
                 ahorrar batería; despierta al instante al tocar cualquier control.</li>
             </ul>
           </div>
@@ -3251,7 +3323,7 @@
             <h3>⚡ Sistema de Actualización Unificado</h3>
             <ul>
               <li><strong>Sistema de Actualización Unificado:</strong> Actualización por MicroSD (0 cables) con paquete
-                MINIJAMMER_UPDATE.BIN y por USB (1 solo cable) con binario del Esclavo embebido y pantalla de progreso
+                MINIJAMMERXXL_UPDATE_V2.1.BIN y por USB (1 solo cable) con binario del Esclavo embebido y pantalla de progreso
                 en escala de grises.</li>
             </ul>
           </div>
@@ -3262,12 +3334,14 @@
                 libremente como pista de Sintetizador, Sampler o MIDI. Cambio rápido de pista con
                 <code>SHIFT + Joystick X</code> (o desde el Mixer con <code>Clic Joystick</code>) y selección de tipo de
                 pista desde el Menú de Sistema (<code>Clic Semi-Largo Joystick</code> → pestaña <code>ARCHIVOS</code> →
-                <code>Joystick Y</code> → <code>Clic Joystick</code>).</li>
+                <code>Joystick Y</code> → <code>Clic Joystick</code>).
+              </li>
               <li><strong>Polifonía Multitimbral Dinámica:</strong> Capacidad de hasta 16 voces simultáneas para el
                 sampler y hasta 16 voces para los motores de sintetizador, con ajuste independiente de voces por pista
                 (<code>VOX</code>: Mono, 2P, 3P, 4P, 6P) desde la barra inferior (<code>Doble SHIFT</code> →
                 <code>VOX</code> con <code>Joystick X/Y</code> o <code>Giro Enc 1</code>) para optimizar la potencia de
-                procesamiento.</li>
+                procesamiento.
+              </li>
               <li><strong>Escalado de Headroom por Pista:</strong> Algoritmo de ganancia acústica individual que evita
                 que acordes densos en una pista atenúen el volumen de las demás pistas melódicas o rítmicas.</li>
             </ul>
@@ -3278,22 +3352,27 @@
             <ul>
               <li><strong>Polirritmia y Polimetría (Track Length):</strong> Longitud global de 1 a 16 páginas con
                 <code>COPY + Giro Enc 4</code> y longitud de compás independiente por pista (ajustable de 1 a 256 pasos
-                con <code>COPY + REC + ENC 4</code>), permitiendo métricas complejas e impares superpuestas.</li>
+                con <code>COPY + REC + ENC 4</code>), permitiendo métricas complejas e impares superpuestas.
+              </li>
               <li><strong>Swing y Shuffle por Pista:</strong> <code>COPY + Clic + Giro Enc 4</code> ajusta el swing por
                 pista (50% a 75% o global), <code>Clic + Giro Enc 4</code> el swing global y
                 <code>COPY + Clic Enc 4</code> cicla los 5 algoritmos de groove seleccionables (1/16, 1/8 Shuffle, Push,
-                Quintuplet y Double).</li>
+                Quintuplet y Double).
+              </li>
               <li><strong>Duración de Paso y Notas Ligadas (TIEs):</strong> Activa <code>Step Rec</code> con
-                <code>Clic corto Enc 4</code> (y <code>SHIFT + Pad</code> para <code>Edit Page</code>), mantén pulsado el
+                <code>Clic corto Enc 4</code> (y <code>SHIFT + Pad</code> para <code>Edit Page</code>), mantén pulsado
+                el
                 paso inicial y toca el paso final para ligar notas, o graba en tiempo real activando Live
-                <code>REC</code>.</li>
+                <code>REC</code>.
+              </li>
               <li><strong>Micro-Timing y Nudge:</strong> En <code>Step Rec</code> (<code>Edit Page</code>), mantén
                 pulsado el pad del paso y gira <code>Enc 4</code> (<code>-2</code> a <code>+3</code> pulsos de reloj)
                 para desplazar golpes fuera de la rejilla.</li>
               <li><strong>Automatización y Parameter Locks (P-Locks):</strong> Grabación de perillas en vivo con Live
                 <code>REC</code> reproduciendo, asignación paso a paso manteniendo el pad del paso en
                 <code>Edit Page</code> mientras giras <code>Enc 1 / Enc 2</code> (4 carriles por patrón), y borrado con
-                <code>REC + Clic Enc 1 / Enc 2</code> (o <code>2 s</code> para borrar toda la pista).</li>
+                <code>REC + Clic Enc 1 / Enc 2</code> (o <code>2 s</code> para borrar toda la pista).
+              </li>
             </ul>
           </div>
 
@@ -3323,7 +3402,8 @@
               <li><strong>Catálogo de Presets Integrado:</strong> 36 sonidos de fábrica explorables con
                 <code>SHIFT + Giro Enc 1</code> (en Grupo 1) o desde la pestaña <code>ARCHIVOS</code> →
                 <code>SINTETIZADOR</code>, guardado de presets de usuario en MicroSD con <code>COPY + Clic Enc 1</code>
-                y reseteo a sonido inicial manteniendo <code>Clic Enc 1</code> (2 s).</li>
+                y reseteo a sonido inicial manteniendo <code>Clic Enc 1</code> (2 s).
+              </li>
               <li><strong>Asignación de Sensores para Modulación:</strong> Mapeo directo de sensores físicos (láser ToF,
                 touchstrip, giroscopio y joystick) para modular en tiempo real los parámetros del sintetizador mediante
                 <code>Clic + Giro</code> (o <code>SHIFT + Clic + Giro</code>) en <code>Enc 1 / Enc 2</code>.
@@ -3341,14 +3421,18 @@
                 con <code>SHIFT</code> o <code>Clic Joystick</code> sobre la pista activa). Selecciona pista con
                 <code>Joystick X</code> o <code>Pads 1..8</code>; <code>Enc 1</code> ajusta Volumen, <code>Enc 2</code>
                 Paneo, <code>Enc 3</code> Cutoff (Sinte) / Pitch (Sampler) / Canal (MIDI) y <code>Enc 4</code> Decay
-                (Sinte) / Release (Sampler) / Octava (MIDI); clic corto en cada encoder restablece su parámetro (o conmuta
-                BLE en <code>Enc 4</code> MIDI).</li>
+                (Sinte) / Release (Sampler) / Octava (MIDI); clic corto en cada encoder restablece su parámetro (o
+                conmuta
+                BLE en <code>Enc 4</code> MIDI).
+              </li>
               <li><strong>Mute y Solo de Pistas:</strong> <code>Pads 9..16</code> conmutan <code>MUTE</code> de las
                 pistas 1 a 8 y <code>REC + Pads 9..16</code> conmutan <code>SOLO</code> en tiempo real con
                 retroalimentación lumínica.</li>
               <li><strong>Copia y Borrado Rápido de Pista:</strong> Mantén <code>COPY</code> +
-                <code>Pad origen (1..8)</code> + <code>Pad destino (1..8)</code> para clonar una pista completa; mantén el
-                pad de la pista (<code>1..8</code>) y pulsa <code>REC</code> para limpiarla al instante.</li>
+                <code>Pad origen (1..8)</code> + <code>Pad destino (1..8)</code> para clonar una pista completa; mantén
+                el
+                pad de la pista (<code>1..8</code>) y pulsa <code>REC</code> para limpiarla al instante.
+              </li>
             </ul>
           </div>
 
@@ -3358,20 +3442,23 @@
               <li><strong>99 Escenas Disponibles:</strong> Apertura y cierre con <code>SHIFT + PLAY</code>. Con
                 <code>SHIFT</code> sostenido: <code>Pads 1..16</code> cargan o duplican escenas (<code>SCN 01</code> a
                 <code>SCN 99</code>), <code>SHIFT + Giro Enc 3</code> cambia la página de escenas y
-                <code>SHIFT + Clic Enc 1..4</code> clona, copia, pega o resetea la escena activa.</li>
+                <code>SHIFT + Clic Enc 1..4</code> clona, copia, pega o resetea la escena activa.
+              </li>
               <li><strong>16 Variaciones de Patrones por Pista:</strong> Navega pistas con <code>Giro Enc 1</code> o
                 <code>Joystick X</code> y patrones con <code>Giro Enc 2</code>, <code>Joystick Y</code> o tocando
                 <code>Pads 1..16</code>. <code>Clic Enc 1</code> crea patrón (<code>+</code>), <code>Clic Enc 2</code>
                 elimina (<code>-</code>), <code>Clic Enc 3</code> Mute (<code>M</code>) y <code>Clic Enc 4</code> Solo
                 (<code>S</code>); <code>COPY</code> copia, <code>REC</code> pega y mantener <code>Pad + REC</code> borra
-                esa variación.</li>
+                esa variación.
+              </li>
               <li><strong>Encadenador de Canción de 99 Pasos:</strong> Activa o desactiva el Modo Canción con clic corto
                 <code>REC + PLAY</code>. Manteniendo <code>REC</code>: pulsa <code>Pads 1..16</code> para añadir escenas
                 a la línea de tiempo, <code>REC + Giro Enc 3</code> mueve el cursor de paso,
                 <code>REC + Giro Enc 4</code> ajusta repeticiones (<code>x1</code> a <code>x16</code>),
                 <code>REC + Clic Enc 3</code> borra el paso (sostenido <code>0.7 s</code> borra toda la canción) y
                 <code>REC + Clic Enc 4</code> (o <code>Joystick Y</code> en Modo Canción) alterna
-                <code>LOOP / 1 SHOT</code>.</li>
+                <code>LOOP / 1 SHOT</code>.
+              </li>
               <li><strong>Disparo y Conmutación en Vivo:</strong> Lanzamiento directo de patrones
                 (<code>Pads 1..16</code>) o escenas (<code>SHIFT + Pads 1..16</code>) y encolado sincronizado al final
                 del compás con <code>REC + PLAY + Pad</code>.</li>
@@ -3387,8 +3474,10 @@
                 transicionar con naturalidad desde toques suaves hasta golpes acentuados (rango MIDI 60 a 127).</li>
               <li><strong>Monitor de Impacto y Calibración:</strong> Desde la pestaña <code>UI / LED</code> del Menú de
                 Sistema (<code>Clic Semi-Largo Joystick</code> → <code>Joystick Y</code>): activa <code>VELOCITY</code>
-                (<code>OFF / MONITOR / ON</code>) y calibra <code>TECHO</code> (<code>Ceiling</code>) y <code>SCAN</code>
-                con <code>Giro / Clic Enc 1</code>.</li>
+                (<code>OFF / MONITOR / ON</code>) y calibra <code>TECHO</code> (<code>Ceiling</code>) y
+                <code>SCAN</code>
+                con <code>Giro / Clic Enc 1</code>.
+              </li>
             </ul>
           </div>
 
@@ -3442,7 +3531,8 @@
               <li><strong>Selector Dinámico de Idioma:</strong> Alterna entre Español e Inglés desde la pestaña
                 <code>UI / LED</code> del Menú de Sistema (<code>Clic Semi-Largo Joystick</code> → primer parámetro
                 <code>IDIOMA</code> → <code>Giro / Clic Enc 1</code>), preservando las abreviaturas técnicas estándar de
-                producción musical.</li>
+                producción musical.
+              </li>
             </ul>
           </div>
 
@@ -3453,7 +3543,8 @@
                 <code>SHIFT + COPY</code> y gestión de proyectos desde <code>ARCHIVOS</code> → <code>JAMS</code> en el
                 Menú de Sistema (<code>Clic Semi-Largo Joystick</code>); almacena en formato binario compacto los
                 patrones (<code>PATTERNS.BIN</code>), escenas (<code>SCENES.BIN</code>) y canciones
-                (<code>SONG.BIN</code>) en MicroSD.</li>
+                (<code>SONG.BIN</code>) en MicroSD.
+              </li>
             </ul>
           </div>
         </details>
@@ -3585,7 +3676,7 @@
           <div class="changelog-section" style="margin-top: 14px;">
             <ul>
               <li><strong>Sistema de Actualización Unificado:</strong> Actualización por MicroSD (0 cables) con paquete
-                MINIJAMMER_UPDATE.BIN y por USB (1 solo cable) con binario del Esclavo embebido y pantalla de progreso
+                MINIJAMMERXXL_UPDATE_V2.1.BIN y por USB (1 solo cable) con binario del Esclavo embebido y pantalla de progreso
                 en escala de grises.</li>
               <li><strong>Medición de Impacto a 800 Hz:</strong> Lectura del acelerómetro a alta velocidad para capturar
                 el transitorio exacto del golpe.</li>
